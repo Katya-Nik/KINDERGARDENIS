@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -121,6 +122,20 @@
     <Compile Include="DBModel\User.cs">
       <DependentUpon>ModelKindergarden.tt</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\MenuService.cs" />
+    <Compile Include="UIForms\ScheduleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\ScheduleWindow.Designer.cs">
+      <DependentUpon>ScheduleWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\UserInfoService.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,9 +144,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UIForms\Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\ScheduleWindow.resx">
+      <DependentUpon>ScheduleWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="DBModel\ModelKindergarden.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -155,6 +177,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Resources\BackgroundStatistics.png" />
+    <None Include="bin\Debug\Logo\Logo.png" />
+    <None Include="bin\Debug\Resources\BackgroundMenuPanel.png" />
+    <None Include="bin\Debug\Resources\BackgroundUserPanel.png" />
+    <None Include="bin\Debug\Resources\MainMenu.png" />
     <Content Include="DBModel\ModelKindergarden.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelKindergarden.Context.cs</LastGenOutput>
