@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KindergartenInformationSystemModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ChildrenID" />
+          </Key>
+          <Property Name="ChildrenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildrenName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ChildrenSurname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ChildrenPatronymic" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ChildrenGender" Type="nvarchar" MaxLength="10" />
+          <Property Name="ChildrenDateofBirth" Type="date" />
+          <Property Name="ChildrenSNILS" Type="varchar" MaxLength="14" />
+          <Property Name="ChildrenCHNDOC" Type="varchar" MaxLength="10" />
+          <Property Name="ChildrenCHSDOC" Type="varchar" MaxLength="6" />
+          <Property Name="ChildrenPolisOMS" Type="varchar" MaxLength="16" />
+          <Property Name="ChildrenAddressinSaintPetersburg" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChildrenTuitionFee" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ChildrenParentsID" Type="int" Nullable="false" />
+          <Property Name="ChildrenGroupsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DayOfWeek">
+          <Key>
+            <PropertyRef Name="DayOfWeekID" />
+          </Key>
+          <Property Name="DayOfWeekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayOfWeekNumber" Type="int" Nullable="false" />
+          <Property Name="DayOfWeekName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Educators">
+          <Key>
+            <PropertyRef Name="EducatorsID" />
+          </Key>
+          <Property Name="EducatorsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EducatorsEmployeesID" Type="int" Nullable="false" />
+          <Property Name="EducatorsGroupsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeesID" />
+          </Key>
+          <Property Name="EmployeesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeesName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmployeesSurname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmployeesPatronymic" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmployeesDateofBirth" Type="date" />
+          <Property Name="EmployeesUserID" Type="int" Nullable="false" />
+          <Property Name="EmployeesSNILS" Type="varchar" MaxLength="14" />
+          <Property Name="EmployeesPassportSeries" Type="varchar" MaxLength="4" />
+          <Property Name="EmployeesPassportNumber" Type="varchar" MaxLength="6" />
+          <Property Name="EmployeesPhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EmployeesEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeesSalary" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupsID" />
+          </Key>
+          <Property Name="GroupsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupsGroupNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupsGroupType" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupsGroupName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ModeType">
+          <Key>
+            <PropertyRef Name="ModeTypeID" />
+          </Key>
+          <Property Name="ModeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModTypeGroupID" Type="int" Nullable="false" />
+          <Property Name="ModeTypeIDName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Parents">
+          <Key>
+            <PropertyRef Name="ParentsID" />
+          </Key>
+          <Property Name="ParentsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentsName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentsSurname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentsPatronymic" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentsPassportSeries" Type="varchar" MaxLength="4" />
+          <Property Name="ParentsPassportNumber" Type="varchar" MaxLength="6" />
+          <Property Name="ParentsPhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="ParentsEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParentsUserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleModeTypeID" Type="int" Nullable="false" />
+          <Property Name="ScheduleDayOfWeekID" Type="int" Nullable="false" />
+          <Property Name="ScheduleActivityID" Type="int" Nullable="false" />
+          <Property Name="ScheduleStartTimeID" Type="int" Nullable="false" />
+          <Property Name="ScheduleEndTimelD" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="TimeID" />
+          </Key>
+          <Property Name="TimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeClassTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Children__Childr__5BE2A6F2">
+          <End Role="Parents" Type="Self.Parents" Multiplicity="1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parents">
+              <PropertyRef Name="ParentsID" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ChildrenParentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Children__Childr__5CD6CB2B">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ChildrenGroupsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Educators__Educa__44FF419A">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Educators" Type="Self.Educators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeesID" />
+            </Principal>
+            <Dependent Role="Educators">
+              <PropertyRef Name="EducatorsEmployeesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Educators__Educa__45F365D3">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Educators" Type="Self.Educators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="Educators">
+              <PropertyRef Name="EducatorsGroupsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Emplo__3E52440B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeesUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModeType__ModTyp__48CFD27E">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="ModeType" Type="Self.ModeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="ModeType">
+              <PropertyRef Name="ModTypeGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parents__Parents__59063A47">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Parents" Type="Self.Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Parents">
+              <PropertyRef Name="ParentsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5165187F">
+          <End Role="ModeType" Type="Self.ModeType" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeType">
+              <PropertyRef Name="ModeTypeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleModeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__52593CB8">
+          <End Role="DayOfWeek" Type="Self.DayOfWeek" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeek">
+              <PropertyRef Name="DayOfWeekID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleDayOfWeekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__534D60F1">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5441852A">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleStartTimeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5535A963">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleEndTimelD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__RoleID__3A81B327">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KindergartenInformationSystemModelContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Educators" EntityType="Self.Educators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModeType" EntityType="Self.ModeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parents" EntityType="Self.Parents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Children__Childr__5BE2A6F2" Association="Self.FK__Children__Childr__5BE2A6F2">
+            <End Role="Parents" EntitySet="Parents" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Children__Childr__5CD6CB2B" Association="Self.FK__Children__Childr__5CD6CB2B">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Educators__Educa__44FF419A" Association="Self.FK__Educators__Educa__44FF419A">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Educators" EntitySet="Educators" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Educators__Educa__45F365D3" Association="Self.FK__Educators__Educa__45F365D3">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Educators" EntitySet="Educators" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Emplo__3E52440B" Association="Self.FK__Employees__Emplo__3E52440B">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModeType__ModTyp__48CFD27E" Association="Self.FK__ModeType__ModTyp__48CFD27E">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ModeType" EntitySet="ModeType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parents__Parents__59063A47" Association="Self.FK__Parents__Parents__59063A47">
+            <End Role="User" EntitySet="User" />
+            <End Role="Parents" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5165187F" Association="Self.FK__Schedule__Schedu__5165187F">
+            <End Role="ModeType" EntitySet="ModeType" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__52593CB8" Association="Self.FK__Schedule__Schedu__52593CB8">
+            <End Role="DayOfWeek" EntitySet="DayOfWeek" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__534D60F1" Association="Self.FK__Schedule__Schedu__534D60F1">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5441852A" Association="Self.FK__Schedule__Schedu__5441852A">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5535A963" Association="Self.FK__Schedule__Schedu__5535A963">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__RoleID__3A81B327" Association="Self.FK__User__RoleID__3A81B327">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KindergartenInformationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Schedule__Schedu__534D60F1" FromRole="Activity" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ChildrenID" />
+          </Key>
+          <Property Name="ChildrenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildrenName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChildrenSurname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChildrenPatronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChildrenGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ChildrenDateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="ChildrenSNILS" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="ChildrenCHNDOC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ChildrenCHSDOC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ChildrenPolisOMS" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ChildrenAddressinSaintPetersburg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ChildrenTuitionFee" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ChildrenParentsID" Type="Int32" Nullable="false" />
+          <Property Name="ChildrenGroupsID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parents" Relationship="Self.FK__Children__Childr__5BE2A6F2" FromRole="Children" ToRole="Parents" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Children__Childr__5CD6CB2B" FromRole="Children" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="DayOfWeek">
+          <Key>
+            <PropertyRef Name="DayOfWeekID" />
+          </Key>
+          <Property Name="DayOfWeekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayOfWeekNumber" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeekName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Schedule__Schedu__52593CB8" FromRole="DayOfWeek" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Educators">
+          <Key>
+            <PropertyRef Name="EducatorsID" />
+          </Key>
+          <Property Name="EducatorsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EducatorsEmployeesID" Type="Int32" Nullable="false" />
+          <Property Name="EducatorsGroupsID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Educators__Educa__44FF419A" FromRole="Educators" ToRole="Employees" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Educators__Educa__45F365D3" FromRole="Educators" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeesID" />
+          </Key>
+          <Property Name="EmployeesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeesName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeesSurname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeesPatronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeesDateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="EmployeesUserID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeesSNILS" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeesPassportSeries" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeesPassportNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeesPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeesEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeesSalary" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Educators" Relationship="Self.FK__Educators__Educa__44FF419A" FromRole="Employees" ToRole="Educators" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Employees__Emplo__3E52440B" FromRole="Employees" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupsID" />
+          </Key>
+          <Property Name="GroupsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupsGroupNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupsGroupType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GroupsGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__Children__Childr__5CD6CB2B" FromRole="Groups" ToRole="Children" />
+          <NavigationProperty Name="Educators" Relationship="Self.FK__Educators__Educa__45F365D3" FromRole="Groups" ToRole="Educators" />
+          <NavigationProperty Name="ModeType" Relationship="Self.FK__ModeType__ModTyp__48CFD27E" FromRole="Groups" ToRole="ModeType" />
+        </EntityType>
+        <EntityType Name="ModeType">
+          <Key>
+            <PropertyRef Name="ModeTypeID" />
+          </Key>
+          <Property Name="ModeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModTypeGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ModeTypeIDName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__ModeType__ModTyp__48CFD27E" FromRole="ModeType" ToRole="Groups" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Schedule__Schedu__5165187F" FromRole="ModeType" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Parents">
+          <Key>
+            <PropertyRef Name="ParentsID" />
+          </Key>
+          <Property Name="ParentsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentsName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentsSurname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentsPatronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentsPassportSeries" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ParentsPassportNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ParentsPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ParentsEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParentsUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__Children__Childr__5BE2A6F2" FromRole="Parents" ToRole="Children" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Parents__Parents__59063A47" FromRole="Parents" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__RoleID__3A81B327" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleModeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDayOfWeekID" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleActivityID" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleStartTimeID" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleEndTimelD" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK__Schedule__Schedu__534D60F1" FromRole="Schedule" ToRole="Activity" />
+          <NavigationProperty Name="DayOfWeek" Relationship="Self.FK__Schedule__Schedu__52593CB8" FromRole="Schedule" ToRole="DayOfWeek" />
+          <NavigationProperty Name="ModeType" Relationship="Self.FK__Schedule__Schedu__5165187F" FromRole="Schedule" ToRole="ModeType" />
+          <NavigationProperty Name="Time" Relationship="Self.FK__Schedule__Schedu__5441852A" FromRole="Schedule" ToRole="Time" />
+          <NavigationProperty Name="Time1" Relationship="Self.FK__Schedule__Schedu__5535A963" FromRole="Schedule" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="TimeID" />
+          </Key>
+          <Property Name="TimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeClassTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__Schedule__Schedu__5441852A" FromRole="Time" ToRole="Schedule" />
+          <NavigationProperty Name="Schedule1" Relationship="Self.FK__Schedule__Schedu__5535A963" FromRole="Time" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Emplo__3E52440B" FromRole="User" ToRole="Employees" />
+          <NavigationProperty Name="Parents" Relationship="Self.FK__Parents__Parents__59063A47" FromRole="User" ToRole="Parents" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__User__RoleID__3A81B327" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Schedule__Schedu__534D60F1">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Children__Childr__5BE2A6F2">
+          <End Role="Parents" Type="Self.Parents" Multiplicity="1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parents">
+              <PropertyRef Name="ParentsID" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ChildrenParentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Children__Childr__5CD6CB2B">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="ChildrenGroupsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__52593CB8">
+          <End Role="DayOfWeek" Type="Self.DayOfWeek" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeek">
+              <PropertyRef Name="DayOfWeekID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleDayOfWeekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Educators__Educa__44FF419A">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Educators" Type="Self.Educators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeesID" />
+            </Principal>
+            <Dependent Role="Educators">
+              <PropertyRef Name="EducatorsEmployeesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Educators__Educa__45F365D3">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Educators" Type="Self.Educators" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="Educators">
+              <PropertyRef Name="EducatorsGroupsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Emplo__3E52440B">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeesUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModeType__ModTyp__48CFD27E">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="ModeType" Type="Self.ModeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupsID" />
+            </Principal>
+            <Dependent Role="ModeType">
+              <PropertyRef Name="ModTypeGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5165187F">
+          <End Role="ModeType" Type="Self.ModeType" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeType">
+              <PropertyRef Name="ModeTypeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleModeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parents__Parents__59063A47">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Parents" Type="Self.Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Parents">
+              <PropertyRef Name="ParentsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__RoleID__3A81B327">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5441852A">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleStartTimeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__Schedu__5535A963">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ScheduleEndTimelD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KindergartenInformationSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Self.Activity" />
+          <EntitySet Name="Children" EntityType="Self.Children" />
+          <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" />
+          <EntitySet Name="Educators" EntityType="Self.Educators" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="ModeType" EntityType="Self.ModeType" />
+          <EntitySet Name="Parents" EntityType="Self.Parents" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Time" EntityType="Self.Time" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__Schedule__Schedu__534D60F1" Association="Self.FK__Schedule__Schedu__534D60F1">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Children__Childr__5BE2A6F2" Association="Self.FK__Children__Childr__5BE2A6F2">
+            <End Role="Parents" EntitySet="Parents" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Children__Childr__5CD6CB2B" Association="Self.FK__Children__Childr__5CD6CB2B">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__52593CB8" Association="Self.FK__Schedule__Schedu__52593CB8">
+            <End Role="DayOfWeek" EntitySet="DayOfWeek" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Educators__Educa__44FF419A" Association="Self.FK__Educators__Educa__44FF419A">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Educators" EntitySet="Educators" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Educators__Educa__45F365D3" Association="Self.FK__Educators__Educa__45F365D3">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Educators" EntitySet="Educators" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Emplo__3E52440B" Association="Self.FK__Employees__Emplo__3E52440B">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModeType__ModTyp__48CFD27E" Association="Self.FK__ModeType__ModTyp__48CFD27E">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ModeType" EntitySet="ModeType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5165187F" Association="Self.FK__Schedule__Schedu__5165187F">
+            <End Role="ModeType" EntitySet="ModeType" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parents__Parents__59063A47" Association="Self.FK__Parents__Parents__59063A47">
+            <End Role="User" EntitySet="User" />
+            <End Role="Parents" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__RoleID__3A81B327" Association="Self.FK__User__RoleID__3A81B327">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5441852A" Association="Self.FK__Schedule__Schedu__5441852A">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__Schedu__5535A963" Association="Self.FK__Schedule__Schedu__5535A963">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KindergartenInformationSystemModelContainer" CdmEntityContainer="KindergartenInformationSystemEntities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Children">
+              <MappingFragment StoreEntitySet="Children">
+                <ScalarProperty Name="ChildrenID" ColumnName="ChildrenID" />
+                <ScalarProperty Name="ChildrenName" ColumnName="ChildrenName" />
+                <ScalarProperty Name="ChildrenSurname" ColumnName="ChildrenSurname" />
+                <ScalarProperty Name="ChildrenPatronymic" ColumnName="ChildrenPatronymic" />
+                <ScalarProperty Name="ChildrenGender" ColumnName="ChildrenGender" />
+                <ScalarProperty Name="ChildrenDateofBirth" ColumnName="ChildrenDateofBirth" />
+                <ScalarProperty Name="ChildrenSNILS" ColumnName="ChildrenSNILS" />
+                <ScalarProperty Name="ChildrenCHNDOC" ColumnName="ChildrenCHNDOC" />
+                <ScalarProperty Name="ChildrenCHSDOC" ColumnName="ChildrenCHSDOC" />
+                <ScalarProperty Name="ChildrenPolisOMS" ColumnName="ChildrenPolisOMS" />
+                <ScalarProperty Name="ChildrenAddressinSaintPetersburg" ColumnName="ChildrenAddressinSaintPetersburg" />
+                <ScalarProperty Name="ChildrenTuitionFee" ColumnName="ChildrenTuitionFee" />
+                <ScalarProperty Name="ChildrenParentsID" ColumnName="ChildrenParentsID" />
+                <ScalarProperty Name="ChildrenGroupsID" ColumnName="ChildrenGroupsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayOfWeek">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.DayOfWeek">
+              <MappingFragment StoreEntitySet="DayOfWeek">
+                <ScalarProperty Name="DayOfWeekID" ColumnName="DayOfWeekID" />
+                <ScalarProperty Name="DayOfWeekNumber" ColumnName="DayOfWeekNumber" />
+                <ScalarProperty Name="DayOfWeekName" ColumnName="DayOfWeekName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educators">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Educators">
+              <MappingFragment StoreEntitySet="Educators">
+                <ScalarProperty Name="EducatorsID" ColumnName="EducatorsID" />
+                <ScalarProperty Name="EducatorsEmployeesID" ColumnName="EducatorsEmployeesID" />
+                <ScalarProperty Name="EducatorsGroupsID" ColumnName="EducatorsGroupsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeesID" ColumnName="EmployeesID" />
+                <ScalarProperty Name="EmployeesName" ColumnName="EmployeesName" />
+                <ScalarProperty Name="EmployeesSurname" ColumnName="EmployeesSurname" />
+                <ScalarProperty Name="EmployeesPatronymic" ColumnName="EmployeesPatronymic" />
+                <ScalarProperty Name="EmployeesDateofBirth" ColumnName="EmployeesDateofBirth" />
+                <ScalarProperty Name="EmployeesUserID" ColumnName="EmployeesUserID" />
+                <ScalarProperty Name="EmployeesSNILS" ColumnName="EmployeesSNILS" />
+                <ScalarProperty Name="EmployeesPassportSeries" ColumnName="EmployeesPassportSeries" />
+                <ScalarProperty Name="EmployeesPassportNumber" ColumnName="EmployeesPassportNumber" />
+                <ScalarProperty Name="EmployeesPhoneNumber" ColumnName="EmployeesPhoneNumber" />
+                <ScalarProperty Name="EmployeesEmail" ColumnName="EmployeesEmail" />
+                <ScalarProperty Name="EmployeesSalary" ColumnName="EmployeesSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupsID" ColumnName="GroupsID" />
+                <ScalarProperty Name="GroupsGroupNumber" ColumnName="GroupsGroupNumber" />
+                <ScalarProperty Name="GroupsGroupType" ColumnName="GroupsGroupType" />
+                <ScalarProperty Name="GroupsGroupName" ColumnName="GroupsGroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModeType">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.ModeType">
+              <MappingFragment StoreEntitySet="ModeType">
+                <ScalarProperty Name="ModeTypeID" ColumnName="ModeTypeID" />
+                <ScalarProperty Name="ModTypeGroupID" ColumnName="ModTypeGroupID" />
+                <ScalarProperty Name="ModeTypeIDName" ColumnName="ModeTypeIDName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parents">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Parents">
+              <MappingFragment StoreEntitySet="Parents">
+                <ScalarProperty Name="ParentsID" ColumnName="ParentsID" />
+                <ScalarProperty Name="ParentsName" ColumnName="ParentsName" />
+                <ScalarProperty Name="ParentsSurname" ColumnName="ParentsSurname" />
+                <ScalarProperty Name="ParentsPatronymic" ColumnName="ParentsPatronymic" />
+                <ScalarProperty Name="ParentsPassportSeries" ColumnName="ParentsPassportSeries" />
+                <ScalarProperty Name="ParentsPassportNumber" ColumnName="ParentsPassportNumber" />
+                <ScalarProperty Name="ParentsPhoneNumber" ColumnName="ParentsPhoneNumber" />
+                <ScalarProperty Name="ParentsEmail" ColumnName="ParentsEmail" />
+                <ScalarProperty Name="ParentsUserID" ColumnName="ParentsUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+                <ScalarProperty Name="ScheduleModeTypeID" ColumnName="ScheduleModeTypeID" />
+                <ScalarProperty Name="ScheduleDayOfWeekID" ColumnName="ScheduleDayOfWeekID" />
+                <ScalarProperty Name="ScheduleActivityID" ColumnName="ScheduleActivityID" />
+                <ScalarProperty Name="ScheduleStartTimeID" ColumnName="ScheduleStartTimeID" />
+                <ScalarProperty Name="ScheduleEndTimelD" ColumnName="ScheduleEndTimelD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Time">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.Time">
+              <MappingFragment StoreEntitySet="Time">
+                <ScalarProperty Name="TimeID" ColumnName="TimeID" />
+                <ScalarProperty Name="TimeClassTime" ColumnName="TimeClassTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="KindergartenInformationSystemModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
