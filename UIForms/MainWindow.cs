@@ -27,11 +27,11 @@ namespace KINDERGARDENIS.UIForms
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, labelUsername, labelUserEmaile);
+            UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, pictureBox12, labelUsername, labelUserEmaile);
             MenuService.LoadMainMenu( pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
-            pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10,
+            pictureBox6, pictureBox7, pictureBox8, pictureBox9,
             label1, label2, label3, label4, label5,
-            label6, label7, label8, label9, label10);
+            label6, label7, label8, label9);
             MainWin();
         }
 
@@ -77,7 +77,7 @@ namespace KINDERGARDENIS.UIForms
             {
                 Name = "Количество детей",
                 ChartType = SeriesChartType.Column,
-                Color = Color.FromArgb(227, 19, 82),
+                Color = Color.FromArgb(100, 145, 145),
                 IsValueShownAsLabel = false // Отключаем подписи значений над столбцами
             };
 
@@ -97,6 +97,23 @@ namespace KINDERGARDENIS.UIForms
             // Настраиваем оси
             chartArea.AxisX.Interval = 1;
             chartArea.AxisY.Interval = 5;
+        }
+
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            UIForms.ScheduleWindow scheduleWindow = new UIForms.ScheduleWindow();
+            this.Hide();
+            scheduleWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            UIForms.EmployeesWindow employeesWindow = new UIForms.EmployeesWindow();
+            this.Hide();
+            employeesWindow.ShowDialog();
+            this.Show();
         }
     }
 }

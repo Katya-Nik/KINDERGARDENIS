@@ -57,7 +57,7 @@
             this.InscriptionName.RowCount = 2;
             this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.InscriptionName.Size = new System.Drawing.Size(661, 725);
+            this.InscriptionName.Size = new System.Drawing.Size(661, 655);
             this.InscriptionName.TabIndex = 1;
             // 
             // label1
@@ -70,7 +70,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 80, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(581, 312);
+            this.label1.Size = new System.Drawing.Size(581, 277);
             this.label1.TabIndex = 0;
             this.label1.Text = "Добро пожаловать\r\nв детский сад\r\n«KinderGuard»";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -100,7 +100,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.689459F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.25351F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(667, 731);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(667, 661);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // InscriptionAuthorization
@@ -113,7 +113,7 @@
             this.InscriptionAuthorization.Location = new System.Drawing.Point(153, 3);
             this.InscriptionAuthorization.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.InscriptionAuthorization.Name = "InscriptionAuthorization";
-            this.InscriptionAuthorization.Size = new System.Drawing.Size(360, 199);
+            this.InscriptionAuthorization.Size = new System.Drawing.Size(360, 178);
             this.InscriptionAuthorization.TabIndex = 0;
             this.InscriptionAuthorization.Text = "АВТОРИЗАЦИЯ";
             this.InscriptionAuthorization.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -126,10 +126,10 @@
             this.InscriptionLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.InscriptionLogin.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.InscriptionLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(38)))));
-            this.InscriptionLogin.Location = new System.Drawing.Point(153, 208);
+            this.InscriptionLogin.Location = new System.Drawing.Point(153, 187);
             this.InscriptionLogin.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.InscriptionLogin.Name = "InscriptionLogin";
-            this.InscriptionLogin.Size = new System.Drawing.Size(377, 96);
+            this.InscriptionLogin.Size = new System.Drawing.Size(377, 86);
             this.InscriptionLogin.TabIndex = 1;
             this.InscriptionLogin.Text = "Введите ваш логин:";
             this.InscriptionLogin.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -142,10 +142,10 @@
             this.InscriptionPassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.InscriptionPassword.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.InscriptionPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(38)))));
-            this.InscriptionPassword.Location = new System.Drawing.Point(153, 362);
+            this.InscriptionPassword.Location = new System.Drawing.Point(153, 326);
             this.InscriptionPassword.Margin = new System.Windows.Forms.Padding(20, 5, 5, 5);
             this.InscriptionPassword.Name = "InscriptionPassword";
-            this.InscriptionPassword.Size = new System.Drawing.Size(375, 42);
+            this.InscriptionPassword.Size = new System.Drawing.Size(375, 37);
             this.InscriptionPassword.TabIndex = 2;
             this.InscriptionPassword.Text = "Введите ваш пароль:";
             this.InscriptionPassword.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -155,7 +155,7 @@
             this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxLogin.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxLogin.Location = new System.Drawing.Point(153, 310);
+            this.textBoxLogin.Location = new System.Drawing.Point(153, 279);
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(20, 3, 50, 3);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(330, 31);
@@ -167,7 +167,7 @@
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPassword.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPassword.Location = new System.Drawing.Point(153, 412);
+            this.textBoxPassword.Location = new System.Drawing.Point(153, 371);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(20, 3, 50, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(330, 27);
@@ -182,7 +182,7 @@
             this.buttonEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEntry.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonEntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
-            this.buttonEntry.Location = new System.Drawing.Point(173, 533);
+            this.buttonEntry.Location = new System.Drawing.Point(173, 480);
             this.buttonEntry.Margin = new System.Windows.Forms.Padding(40, 5, 75, 5);
             this.buttonEntry.MaximumSize = new System.Drawing.Size(296, 37);
             this.buttonEntry.MinimumSize = new System.Drawing.Size(296, 37);
@@ -206,7 +206,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1334, 731);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1334, 661);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // Authorization
@@ -214,7 +214,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.BackgroundAuthorization;
-            this.ClientSize = new System.Drawing.Size(1334, 731);
+            this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

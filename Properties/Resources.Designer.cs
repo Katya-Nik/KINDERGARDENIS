@@ -83,6 +83,16 @@ namespace KINDERGARDENIS.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackgroundMenuPanel1 {
+            get {
+                object obj = ResourceManager.GetObject("BackgroundMenuPanel1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BackgroundStatistics {
             get {
                 object obj = ResourceManager.GetObject("BackgroundStatistics", resourceCulture);
@@ -123,9 +133,39 @@ namespace KINDERGARDENIS.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ButtonBackgrounddMore {
+            get {
+                object obj = ResourceManager.GetObject("ButtonBackgrounddMore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ButtonBackgroundEntry {
             get {
                 object obj = ResourceManager.GetObject("ButtonBackgroundEntry", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevron_forward {
+            get {
+                object obj = ResourceManager.GetObject("chevron-forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevron_forward1 {
+            get {
+                object obj = ResourceManager.GetObject("chevron-forward1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

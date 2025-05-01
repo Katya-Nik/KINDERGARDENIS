@@ -7,8 +7,9 @@ using System.Windows.Forms;
 public static class UserInfoService
 {
     private static string pathPhotoUsers = Environment.CurrentDirectory + @"\PhotoUsers\";
+    private static string pathChevron = Environment.CurrentDirectory + @"\Resources\";
 
-    public static void LoadUserInfo(PictureBox pictureBoxPhotoUsers, Label labelUsername, Label labelUserEmaile)
+    public static void LoadUserInfo(PictureBox pictureBoxPhotoUsers, PictureBox pictureBox12, Label labelUsername, Label labelUserEmaile)
     {
         if (Helper.users == null)
         {
@@ -22,6 +23,9 @@ public static class UserInfoService
             filePhotoUsers = pathPhotoUsers + "Stub.png";
         }
         pictureBoxPhotoUsers.Load(filePhotoUsers);
+        
+        string fileChevron = pathChevron + "chevron-forward.png";
+        pictureBox12.Load(fileChevron);
 
         // ФИО и почта работника
         if (Helper.users != null && Helper.users.RoleID >= 1 && Helper.users.RoleID <= 15)

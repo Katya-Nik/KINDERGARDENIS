@@ -26,5 +26,7 @@ namespace KINDERGARDENIS.DBModel
         public virtual ModeType ModeType { get; set; }
         public virtual Time Time { get; set; }
         public virtual Time Time1 { get; set; }
+        public object StartTime { get; internal set; }
+        public object EndTime { get; internal set; }
     }
 }
