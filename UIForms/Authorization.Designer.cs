@@ -152,6 +152,7 @@
             // 
             // textBoxLogin
             // 
+            this.textBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
             this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxLogin.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -164,6 +165,7 @@
             // 
             // textBoxPassword
             // 
+            this.textBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPassword.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -219,6 +221,7 @@
             this.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "Authorization";
             this.Text = "Authorization";
             this.InscriptionName.ResumeLayout(false);

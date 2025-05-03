@@ -148,6 +148,12 @@
     <Compile Include="UIForms\Authorization.Designer.cs">
       <DependentUpon>Authorization.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\ChildrenWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\ChildrenWindow.Designer.cs">
+      <DependentUpon>ChildrenWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\EmployeesWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,12 @@
     <Compile Include="UIForms\MoreInfoEmp.Designer.cs">
       <DependentUpon>MoreInfoEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\ParentsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\ParentsWindow.Designer.cs">
+      <DependentUpon>ParentsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\ScheduleWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +196,12 @@
       <DependentUpon>ScheduleWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="UIForms\UserInfoService.cs" />
+    <Compile Include="UIForms\UsersWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\UsersWindow.Designer.cs">
+      <DependentUpon>UsersWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -192,8 +210,14 @@
     <EmbeddedResource Include="UIForms\Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\ChildrenWindow.resx">
+      <DependentUpon>ChildrenWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\EmployeesWindow.resx">
       <DependentUpon>EmployeesWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\GroupWindow.resx">
+      <DependentUpon>GroupWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -201,8 +225,14 @@
     <EmbeddedResource Include="UIForms\MoreInfoEmp.resx">
       <DependentUpon>MoreInfoEmp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\ParentsWindow.resx">
+      <DependentUpon>ParentsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\ScheduleWindow.resx">
       <DependentUpon>ScheduleWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\UsersWindow.resx">
+      <DependentUpon>UsersWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="DBModel\ModelKindergarden.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -229,6 +259,9 @@
     <None Include="bin\Debug\Resources\Vector.png" />
     <None Include="bin\Debug\Resources\chevron-forward.png" />
     <None Include="bin\Debug\Resources\ButtonBackgrounddMore.png" />
+    <None Include="bin\Debug\Resources\Save.png" />
+    <None Include="bin\Debug\Resources\Cancel.png" />
+    <None Include="bin\Debug\Resources\ButtonAdding.png" />
     <Content Include="Logo.ico" />
     <None Include="bin\Debug\Resources\BackgroundStatistics.png" />
     <None Include="bin\Debug\Logo\Logo.png" />

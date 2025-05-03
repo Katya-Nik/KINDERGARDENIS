@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KINDERGARDENIS.DBModel;
+using System;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace KINDERGARDENIS.UIForms
                                 join user in context.User on emp.EmployeesUserID equals user.UserID
                                 join role in context.Role on user.RoleID equals role.RoleID
                                 where string.IsNullOrEmpty(filter) || emp.EmployeesPatronymic.Contains(filter)
-                                orderby emp.EmployeesPatronymic // Сортировка по отчеству
+                                orderby emp.EmployeesSurname // Сортировка по фамилии
                                 select new
                                 {
                                     Фамилия = emp.EmployeesSurname,
@@ -125,9 +126,25 @@ namespace KINDERGARDENIS.UIForms
             LoadEmployeesData(textBoxSearchPatronymic.Text);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonInfoEmp_Click(object sender, EventArgs e)
         {
+            if (dataGridViewEmployees.SelectedRows.Count > 0)
+            {
+                // Получаем логин пользователя из последней колонки
+                string userLogin = dataGridViewEmployees.CurrentRow.Cells["Логин"].Value.ToString();
 
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                {
+                    // Находим сотрудника по логину пользователя
+                    var emp = db.Employees.FirstOrDefault(em => em.User.UserLogin == userLogin);
+                    if (emp != null)
+                    {
+                        UIForms.MoreInfoEmp moreInfoEmp = new UIForms.MoreInfoEmp(emp);
+                        moreInfoEmp.ShowDialog();
+                        this.Show();
+                    }
+                }
+            }
         }
     }
 }

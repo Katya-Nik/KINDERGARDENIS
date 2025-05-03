@@ -48,15 +48,15 @@ namespace KINDERGARDENIS.UIForms
 
             // Колличество детей по группам
             // Очищаем предыдущие данные
-            chartKVG.Series.Clear();
-            chartKVG.Titles.Clear();
+            chartKDVG.Series.Clear();
+            chartKDVG.Titles.Clear();
 
             // Настройка внешнего вида chart
-            chartKVG.BackColor = Color.FromArgb(238, 245, 245);
-            chartKVG.ChartAreas[0].BackColor = Color.FromArgb(238, 245, 245);
+            chartKDVG.BackColor = Color.FromArgb(238, 245, 245);
+            chartKDVG.ChartAreas[0].BackColor = Color.FromArgb(238, 245, 245);
 
             // Настройка области диаграммы
-            var chartArea = chartKVG.ChartAreas[0];
+            var chartArea = chartKDVG.ChartAreas[0];
             chartArea.AxisX.Title = "Группы";
             chartArea.AxisY.Title = "Количество детей";
             chartArea.AxisX.MajorGrid.LineColor = Color.Black;
@@ -92,7 +92,7 @@ namespace KINDERGARDENIS.UIForms
             }
 
             // Добавляем серию на chart
-            chartKVG.Series.Add(series);
+            chartKDVG.Series.Add(series);
 
             // Настраиваем оси
             chartArea.AxisX.Interval = 1;
@@ -113,6 +113,38 @@ namespace KINDERGARDENIS.UIForms
             UIForms.EmployeesWindow employeesWindow = new UIForms.EmployeesWindow();
             this.Hide();
             employeesWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            UIForms.GroupWindow groupWindow = new UIForms.GroupWindow();
+            this.Hide();
+            groupWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            UIForms.ChildrenWindow childrenWindow = new UIForms.ChildrenWindow();
+            this.Hide();
+            childrenWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            UIForms.UsersWindow usersWindow = new UIForms.UsersWindow();
+            this.Hide();
+            usersWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            UIForms.ParentsWindow parentsWindow = new UIForms.ParentsWindow();
+            this.Hide();
+            parentsWindow.ShowDialog();
             this.Show();
         }
     }

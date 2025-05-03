@@ -12,5 +12,6 @@ namespace KINDERGARDENIS.UIForms
         public static DBModel.User users;
         public static DBModel.Role role;
         public static DBModel.Employees employees;
+        public static DBModel.Parents parents;
     }
 }

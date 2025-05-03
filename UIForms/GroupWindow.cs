@@ -15,6 +15,90 @@ namespace KINDERGARDENIS.UIForms
         public GroupWindow()
         {
             InitializeComponent();
+            LoadGroupsData();
+            ConfigureDataGridView();
+        }
+
+        private void LoadGroupsData()
+        {
+            var query = from groupItem in Helper.DB.Groups
+                        join educator in Helper.DB.Educators on groupItem.GroupsID equals educator.EducatorsGroupsID into educators
+                        from educator in educators.DefaultIfEmpty()
+                        join employee in Helper.DB.Employees on educator.EducatorsEmployeesID equals employee.EmployeesID into employees
+                        from employee in employees.DefaultIfEmpty()
+                        join modeType in Helper.DB.ModeType on groupItem.GroupsID equals modeType.ModTypeGroupID into modeTypes
+                        from modeType in modeTypes.DefaultIfEmpty()
+                        let childrenCount = Helper.DB.Children.Count(c => c.ChildrenGroupsID == groupItem.GroupsID)
+                        select new
+                        {
+                            Название = groupItem.GroupsGroupName,
+                            Номер = groupItem.GroupsGroupNumber,
+                            Тип = groupItem.GroupsGroupType,
+                            Режим = modeType != null ? modeType.ModeTypeIDName : null,
+                            Количество = childrenCount,
+                            Воспитатель = employee != null ? employee.EmployeesSurname : null,
+                            МладшийВоспитатель = (string)null // Добавьте логику для младшего воспитателя при необходимости
+                        };
+
+            if (!string.IsNullOrEmpty(textBoxSearchGroupName.Text))
+            {
+                query = query.Where(g => g.Название.Contains(textBoxSearchGroupName.Text));
+            }
+
+            query = query.OrderBy(g => g.Название);
+
+            dataGridViewGroups.DataSource = query.ToList();
+        }
+
+        private void ConfigureDataGridView()
+        {
+            // Настройка внешнего вида DataGridView
+            dataGridViewGroups.BackgroundColor = Color.FromArgb(238, 245, 245);
+            dataGridViewGroups.BorderStyle = BorderStyle.None;
+            dataGridViewGroups.DefaultCellStyle.Font = new Font("Verdana", 14.25f);
+            dataGridViewGroups.DefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
+            dataGridViewGroups.DefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
+            dataGridViewGroups.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
+            dataGridViewGroups.DefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+            dataGridViewGroups.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 240);
+
+            // Настройка заголовков столбцов
+            dataGridViewGroups.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 16f, FontStyle.Bold);
+            dataGridViewGroups.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
+            dataGridViewGroups.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
+            dataGridViewGroups.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewGroups.EnableHeadersVisualStyles = false;
+
+            // Автоматическое изменение размера столбцов
+            dataGridViewGroups.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewGroups.AutoResizeColumns();
+
+            // Отключение возможности редактирования
+            dataGridViewGroups.ReadOnly = true;
+            dataGridViewGroups.AllowUserToAddRows = false;
+            dataGridViewGroups.AllowUserToDeleteRows = false;
+            dataGridViewGroups.AllowUserToResizeRows = false;
+            dataGridViewGroups.MultiSelect = false;
+            dataGridViewGroups.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void textBoxSearchGroupName_TextChanged(object sender, EventArgs e)
+        {
+            LoadGroupsData();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void GroupWindow_Load(object sender, EventArgs e)
+        {
+            UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, pictureBox12, labelUsername, labelUserEmaile);
+            MenuService.LoadMainMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
+            pictureBox6, pictureBox7, pictureBox8, pictureBox9,
+            label1, label2, label3, label4, label5,
+            label6, label7, label8, label9);
         }
     }
 }
