@@ -63,6 +63,16 @@ namespace KINDERGARDENIS.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddPerson {
+            get {
+                object obj = ResourceManager.GetObject("AddPerson", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BackgroundAuthorization {
             get {
                 object obj = ResourceManager.GetObject("BackgroundAuthorization", resourceCulture);
@@ -216,6 +226,16 @@ namespace KINDERGARDENIS.Properties {
         internal static System.Drawing.Bitmap Save {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UploadPhoto {
+            get {
+                object obj = ResourceManager.GetObject("UploadPhoto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

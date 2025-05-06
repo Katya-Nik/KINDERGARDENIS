@@ -146,5 +146,13 @@ namespace KINDERGARDENIS.UIForms
                 }
             }
         }
+
+        private void labelAddEmp_Click(object sender, EventArgs e)
+        {
+            UIForms.AddEmployees addEmployees = new UIForms.AddEmployees();
+            this.Hide();
+            addEmployees.ShowDialog();
+            this.Show();
+        }
     }
 }

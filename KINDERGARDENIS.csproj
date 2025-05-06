@@ -142,6 +142,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\AddEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\AddEmployees.Designer.cs">
+      <DependentUpon>AddEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\AddParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\AddParent.Designer.cs">
+      <DependentUpon>AddParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +219,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\AddEmployees.resx">
+      <DependentUpon>AddEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\AddParent.resx">
+      <DependentUpon>AddParent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +280,8 @@
     <None Include="bin\Debug\Resources\Save.png" />
     <None Include="bin\Debug\Resources\Cancel.png" />
     <None Include="bin\Debug\Resources\ButtonAdding.png" />
+    <None Include="bin\Debug\Resources\AddPerson.png" />
+    <None Include="bin\Debug\Resources\UploadPhoto.png" />
     <Content Include="Logo.ico" />
     <None Include="bin\Debug\Resources\BackgroundStatistics.png" />
     <None Include="bin\Debug\Logo\Logo.png" />

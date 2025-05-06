@@ -37,7 +37,11 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.buttonInfoChild = new System.Windows.Forms.Button();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBoxRoleName = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxSearchSurname = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,16 +80,13 @@
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.textBoxSearchSurname = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboBoxRoleName = new System.Windows.Forms.ComboBox();
+            this.buttonInfoUser = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
+            this.tableLayoutPanel19.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
@@ -112,7 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            this.tableLayoutPanel19.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -187,7 +187,7 @@
             this.tableLayoutPanel16.ColumnCount = 1;
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.Controls.Add(this.dataGridViewUsers, 0, 0);
-            this.tableLayoutPanel16.Controls.Add(this.buttonInfoChild, 0, 1);
+            this.tableLayoutPanel16.Controls.Add(this.buttonInfoUser, 0, 1);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel16.Location = new System.Drawing.Point(30, 111);
             this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(10);
@@ -227,22 +227,82 @@
             this.dataGridViewUsers.Size = new System.Drawing.Size(1024, 426);
             this.dataGridViewUsers.TabIndex = 0;
             // 
-            // buttonInfoChild
+            // tableLayoutPanel19
             // 
-            this.buttonInfoChild.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
-            this.buttonInfoChild.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonInfoChild.FlatAppearance.BorderSize = 0;
-            this.buttonInfoChild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfoChild.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoChild.Location = new System.Drawing.Point(780, 437);
-            this.buttonInfoChild.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.buttonInfoChild.MaximumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoChild.MinimumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoChild.Name = "buttonInfoChild";
-            this.buttonInfoChild.Size = new System.Drawing.Size(250, 40);
-            this.buttonInfoChild.TabIndex = 0;
-            this.buttonInfoChild.Text = "Подробнее о сотруднике";
-            this.buttonInfoChild.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel19.ColumnCount = 2;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.Controls.Add(this.comboBoxRoleName, 1, 1);
+            this.tableLayoutPanel19.Controls.Add(this.label13, 1, 0);
+            this.tableLayoutPanel19.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel19.Controls.Add(this.textBoxSearchSurname, 0, 1);
+            this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(20, 20);
+            this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 2;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(1050, 81);
+            this.tableLayoutPanel19.TabIndex = 1;
+            // 
+            // comboBoxRoleName
+            // 
+            this.comboBoxRoleName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
+            this.comboBoxRoleName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxRoleName.Font = new System.Drawing.Font("Verdana", 14.25F);
+            this.comboBoxRoleName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.comboBoxRoleName.FormattingEnabled = true;
+            this.comboBoxRoleName.Location = new System.Drawing.Point(537, 44);
+            this.comboBoxRoleName.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.comboBoxRoleName.MaximumSize = new System.Drawing.Size(250, 0);
+            this.comboBoxRoleName.MinimumSize = new System.Drawing.Size(250, 0);
+            this.comboBoxRoleName.Name = "comboBoxRoleName";
+            this.comboBoxRoleName.Size = new System.Drawing.Size(250, 31);
+            this.comboBoxRoleName.TabIndex = 4;
+            this.comboBoxRoleName.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoleName_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.label13.Location = new System.Drawing.Point(535, 2);
+            this.label13.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(513, 40);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Поиск по фамилии:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.label10.Location = new System.Drawing.Point(10, 2);
+            this.label10.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(513, 40);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Поиск по фамилии:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // textBoxSearchSurname
+            // 
+            this.textBoxSearchSurname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
+            this.textBoxSearchSurname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxSearchSurname.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSearchSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.textBoxSearchSurname.Location = new System.Drawing.Point(13, 44);
+            this.textBoxSearchSurname.Margin = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.textBoxSearchSurname.MinimumSize = new System.Drawing.Size(250, 31);
+            this.textBoxSearchSurname.Name = "textBoxSearchSurname";
+            this.textBoxSearchSurname.Size = new System.Drawing.Size(250, 31);
+            this.textBoxSearchSurname.TabIndex = 1;
+            this.textBoxSearchSurname.TextChanged += new System.EventHandler(this.textBoxSearchSurname_TextChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -788,82 +848,22 @@
             this.pictureBox13.TabIndex = 3;
             this.pictureBox13.TabStop = false;
             // 
-            // textBoxSearchSurname
+            // buttonInfoUser
             // 
-            this.textBoxSearchSurname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
-            this.textBoxSearchSurname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxSearchSurname.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSearchSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.textBoxSearchSurname.Location = new System.Drawing.Point(13, 44);
-            this.textBoxSearchSurname.Margin = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.textBoxSearchSurname.MinimumSize = new System.Drawing.Size(250, 31);
-            this.textBoxSearchSurname.Name = "textBoxSearchSurname";
-            this.textBoxSearchSurname.Size = new System.Drawing.Size(250, 31);
-            this.textBoxSearchSurname.TabIndex = 1;
-            this.textBoxSearchSurname.TextChanged += new System.EventHandler(this.textBoxSearchSurname_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.label10.Location = new System.Drawing.Point(10, 2);
-            this.label10.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(513, 40);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Поиск по фамилии:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // tableLayoutPanel19
-            // 
-            this.tableLayoutPanel19.ColumnCount = 2;
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.Controls.Add(this.comboBoxRoleName, 1, 1);
-            this.tableLayoutPanel19.Controls.Add(this.label13, 1, 0);
-            this.tableLayoutPanel19.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel19.Controls.Add(this.textBoxSearchSurname, 0, 1);
-            this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(20, 20);
-            this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
-            this.tableLayoutPanel19.RowCount = 2;
-            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(1050, 81);
-            this.tableLayoutPanel19.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.label13.Location = new System.Drawing.Point(535, 2);
-            this.label13.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(513, 40);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Поиск по фамилии:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // comboBoxRoleName
-            // 
-            this.comboBoxRoleName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
-            this.comboBoxRoleName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxRoleName.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.comboBoxRoleName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.comboBoxRoleName.FormattingEnabled = true;
-            this.comboBoxRoleName.Location = new System.Drawing.Point(537, 44);
-            this.comboBoxRoleName.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.comboBoxRoleName.MaximumSize = new System.Drawing.Size(250, 0);
-            this.comboBoxRoleName.MinimumSize = new System.Drawing.Size(250, 0);
-            this.comboBoxRoleName.Name = "comboBoxRoleName";
-            this.comboBoxRoleName.Size = new System.Drawing.Size(250, 31);
-            this.comboBoxRoleName.TabIndex = 4;
-            this.comboBoxRoleName.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoleName_SelectedIndexChanged);
+            this.buttonInfoUser.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
+            this.buttonInfoUser.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonInfoUser.FlatAppearance.BorderSize = 0;
+            this.buttonInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInfoUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoUser.Location = new System.Drawing.Point(780, 437);
+            this.buttonInfoUser.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.buttonInfoUser.MaximumSize = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.MinimumSize = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.Name = "buttonInfoUser";
+            this.buttonInfoUser.Size = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.TabIndex = 0;
+            this.buttonInfoUser.Text = "Подробнее о пользователе";
+            this.buttonInfoUser.UseVisualStyleBackColor = true;
             // 
             // UsersWindow
             // 
@@ -882,6 +882,8 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
+            this.tableLayoutPanel19.ResumeLayout(false);
+            this.tableLayoutPanel19.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -919,8 +921,6 @@
             this.tableLayoutPanel18.ResumeLayout(false);
             this.tableLayoutPanel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            this.tableLayoutPanel19.ResumeLayout(false);
-            this.tableLayoutPanel19.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -933,7 +933,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
-        private System.Windows.Forms.Button buttonInfoChild;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
@@ -977,5 +976,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxSearchSurname;
         private System.Windows.Forms.ComboBox comboBoxRoleName;
+        private System.Windows.Forms.Button buttonInfoUser;
     }
 }
