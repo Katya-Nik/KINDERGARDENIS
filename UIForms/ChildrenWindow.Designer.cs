@@ -36,7 +36,9 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewChild = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonInfoChild = new System.Windows.Forms.Button();
+            this.buttonAddChild = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -85,6 +87,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChild)).BeginInit();
+            this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -186,7 +189,7 @@
             this.tableLayoutPanel16.ColumnCount = 1;
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.Controls.Add(this.dataGridViewChild, 0, 0);
-            this.tableLayoutPanel16.Controls.Add(this.buttonInfoChild, 0, 1);
+            this.tableLayoutPanel16.Controls.Add(this.tableLayoutPanel20, 0, 1);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel16.Location = new System.Drawing.Point(30, 111);
             this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(10);
@@ -225,22 +228,58 @@
             this.dataGridViewChild.Size = new System.Drawing.Size(1024, 426);
             this.dataGridViewChild.TabIndex = 0;
             // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.ColumnCount = 2;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.Controls.Add(this.buttonInfoChild, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.buttonAddChild, 0, 0);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(0, 432);
+            this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 1;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(1030, 48);
+            this.tableLayoutPanel20.TabIndex = 1;
+            // 
             // buttonInfoChild
             // 
             this.buttonInfoChild.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
             this.buttonInfoChild.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonInfoChild.FlatAppearance.BorderSize = 0;
             this.buttonInfoChild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfoChild.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoChild.Location = new System.Drawing.Point(780, 437);
+            this.buttonInfoChild.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoChild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.buttonInfoChild.Location = new System.Drawing.Point(780, 5);
             this.buttonInfoChild.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.buttonInfoChild.MaximumSize = new System.Drawing.Size(250, 40);
             this.buttonInfoChild.MinimumSize = new System.Drawing.Size(250, 40);
             this.buttonInfoChild.Name = "buttonInfoChild";
             this.buttonInfoChild.Size = new System.Drawing.Size(250, 40);
-            this.buttonInfoChild.TabIndex = 0;
+            this.buttonInfoChild.TabIndex = 2;
             this.buttonInfoChild.Text = "Подробнее о сотруднике";
             this.buttonInfoChild.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddChild
+            // 
+            this.buttonAddChild.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonAddPerson;
+            this.buttonAddChild.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonAddChild.FlatAppearance.BorderSize = 0;
+            this.buttonAddChild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddChild.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddChild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.buttonAddChild.Location = new System.Drawing.Point(0, 5);
+            this.buttonAddChild.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.buttonAddChild.MaximumSize = new System.Drawing.Size(250, 40);
+            this.buttonAddChild.MinimumSize = new System.Drawing.Size(250, 40);
+            this.buttonAddChild.Name = "buttonAddChild";
+            this.buttonAddChild.Size = new System.Drawing.Size(250, 40);
+            this.buttonAddChild.TabIndex = 1;
+            this.buttonAddChild.Text = "Добавить ребенка";
+            this.buttonAddChild.UseVisualStyleBackColor = true;
+            this.buttonAddChild.Click += new System.EventHandler(this.buttonAddChild_Click);
             // 
             // tableLayoutPanel19
             // 
@@ -879,6 +918,7 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChild)).EndInit();
+            this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel19.ResumeLayout(false);
             this.tableLayoutPanel19.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -930,7 +970,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.DataGridView dataGridViewChild;
-        private System.Windows.Forms.Button buttonInfoChild;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxSearchSurname;
@@ -974,5 +1013,8 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBoxGroupName;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private System.Windows.Forms.Button buttonInfoChild;
+        private System.Windows.Forms.Button buttonAddChild;
     }
 }

@@ -142,6 +142,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\AddChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\AddChild.Designer.cs">
+      <DependentUpon>AddChild.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\AddEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\AddChild.resx">
+      <DependentUpon>AddChild.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\AddEmployees.resx">
       <DependentUpon>AddEmployees.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +291,8 @@
     <None Include="bin\Debug\Resources\ButtonAdding.png" />
     <None Include="bin\Debug\Resources\AddPerson.png" />
     <None Include="bin\Debug\Resources\UploadPhoto.png" />
+    <None Include="bin\Debug\Resources\person-add.png" />
+    <None Include="bin\Debug\Resources\ButtonAddPerson.png" />
     <Content Include="Logo.ico" />
     <None Include="bin\Debug\Resources\BackgroundStatistics.png" />
     <None Include="bin\Debug\Logo\Logo.png" />

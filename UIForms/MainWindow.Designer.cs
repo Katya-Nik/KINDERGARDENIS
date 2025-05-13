@@ -472,7 +472,6 @@
             this.labelUserEmaile.Name = "labelUserEmaile";
             this.labelUserEmaile.Size = new System.Drawing.Size(244, 24);
             this.labelUserEmaile.TabIndex = 2;
-            this.labelUserEmaile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel6
             // 

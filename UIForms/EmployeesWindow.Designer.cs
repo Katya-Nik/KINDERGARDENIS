@@ -175,13 +175,14 @@
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel16, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel19, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 60);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1064, 595);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1070, 601);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // tableLayoutPanel16
@@ -197,7 +198,7 @@
             this.tableLayoutPanel16.RowCount = 2;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(1024, 474);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(1030, 480);
             this.tableLayoutPanel16.TabIndex = 0;
             // 
             // dataGridViewEmployees
@@ -225,7 +226,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewEmployees.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewEmployees.Size = new System.Drawing.Size(1018, 420);
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(1024, 426);
             this.dataGridViewEmployees.TabIndex = 0;
             // 
             // buttonInfoEmp
@@ -235,7 +236,7 @@
             this.buttonInfoEmp.FlatAppearance.BorderSize = 0;
             this.buttonInfoEmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfoEmp.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoEmp.Location = new System.Drawing.Point(774, 431);
+            this.buttonInfoEmp.Location = new System.Drawing.Point(780, 437);
             this.buttonInfoEmp.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.buttonInfoEmp.MaximumSize = new System.Drawing.Size(250, 40);
             this.buttonInfoEmp.MinimumSize = new System.Drawing.Size(250, 40);
@@ -250,7 +251,7 @@
             // 
             this.tableLayoutPanel19.ColumnCount = 2;
             this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 273F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel19.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel19.Controls.Add(this.textBoxSearchPatronymic, 0, 1);
             this.tableLayoutPanel19.Controls.Add(this.tableLayoutPanel20, 1, 1);
@@ -261,7 +262,7 @@
             this.tableLayoutPanel19.RowCount = 2;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(1044, 81);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(1050, 81);
             this.tableLayoutPanel19.TabIndex = 1;
             // 
             // label10
@@ -273,7 +274,7 @@
             this.label10.Location = new System.Drawing.Point(2, 2);
             this.label10.Margin = new System.Windows.Forms.Padding(2);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(767, 40);
+            this.label10.Size = new System.Drawing.Size(746, 40);
             this.label10.TabIndex = 0;
             this.label10.Text = "Поиск по фамилии:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -301,7 +302,7 @@
             this.tableLayoutPanel20.Controls.Add(this.labelAddEmp, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.pictureBoxAddEmp, 0, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(771, 44);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(750, 44);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel20.MaximumSize = new System.Drawing.Size(273, 37);
             this.tableLayoutPanel20.MinimumSize = new System.Drawing.Size(273, 37);
@@ -328,10 +329,12 @@
             // 
             // pictureBoxAddEmp
             // 
+            this.pictureBoxAddEmp.Image = global::KINDERGARDENIS.Properties.Resources.person_add;
             this.pictureBoxAddEmp.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxAddEmp.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxAddEmp.Name = "pictureBoxAddEmp";
             this.pictureBoxAddEmp.Size = new System.Drawing.Size(54, 37);
+            this.pictureBoxAddEmp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxAddEmp.TabIndex = 0;
             this.pictureBoxAddEmp.TabStop = false;
             // 

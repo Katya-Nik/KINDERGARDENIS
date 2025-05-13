@@ -156,5 +156,11 @@ namespace KINDERGARDENIS.UIForms
         {
             LoadChildrenData();
         }
+
+        private void buttonAddChild_Click(object sender, EventArgs e)
+        {
+            UIForms.AddChild addChild = new AddChild();
+            addChild.Show();
+        }
     }
 }

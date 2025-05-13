@@ -1058,24 +1058,25 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.MinimumSize = new System.Drawing.Size(264, 700);
+            this.tableLayoutPanel2.MinimumSize = new System.Drawing.Size(264, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(264, 700);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(264, 661);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // tableLayoutPanel5
             // 
+            this.tableLayoutPanel5.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.BackgroundUserPanel;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel17, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.labelUsername, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.labelUserEmaile, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(5, 555);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(5, 515);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel5.MaximumSize = new System.Drawing.Size(254, 137);
             this.tableLayoutPanel5.MinimumSize = new System.Drawing.Size(254, 137);
@@ -1159,7 +1160,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel8, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 110);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 102);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 9;
@@ -1172,7 +1173,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 440);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 408);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // tableLayoutPanel15
@@ -1183,7 +1184,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel15.Controls.Add(this.pictureBox9, 0, 0);
             this.tableLayoutPanel15.Controls.Add(this.label9, 1, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 387);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 363);
             this.tableLayoutPanel15.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel15.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
@@ -1222,7 +1223,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel14.Controls.Add(this.pictureBox8, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.label8, 1, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 339);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 318);
             this.tableLayoutPanel14.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel14.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -1261,7 +1262,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel13.Controls.Add(this.pictureBox7, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.label7, 1, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 291);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 273);
             this.tableLayoutPanel13.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel13.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -1300,7 +1301,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel12.Controls.Add(this.pictureBox6, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.label6, 1, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 243);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 228);
             this.tableLayoutPanel12.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel12.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -1339,7 +1340,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel11.Controls.Add(this.pictureBox5, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.label5, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 195);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 183);
             this.tableLayoutPanel11.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel11.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -1378,7 +1379,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel10.Controls.Add(this.pictureBox4, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.label4, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 147);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 138);
             this.tableLayoutPanel10.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel10.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -1417,7 +1418,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel9.Controls.Add(this.pictureBox3, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 99);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 93);
             this.tableLayoutPanel9.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel9.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -1457,7 +1458,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel8.Controls.Add(this.pictureBox2, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 51);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 48);
             this.tableLayoutPanel8.MaximumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel8.MinimumSize = new System.Drawing.Size(258, 37);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -1541,7 +1542,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(258, 104);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(258, 96);
             this.tableLayoutPanel18.TabIndex = 2;
             // 
             // label11
@@ -1553,7 +1554,7 @@ namespace KINDERGARDENIS.UIForms
             this.label11.Location = new System.Drawing.Point(80, 4);
             this.label11.Margin = new System.Windows.Forms.Padding(4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(174, 96);
+            this.label11.Size = new System.Drawing.Size(174, 88);
             this.label11.TabIndex = 2;
             this.label11.Text = "Kinder\r\nGuard";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
