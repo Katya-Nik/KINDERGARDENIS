@@ -33,14 +33,37 @@ namespace KINDERGARDENIS.UIForms
             {
                 MessageBox.Show("Пользователь найден. Вы вошли с ролью " + Helper.users.Role.RoleName, "Валидация пользователя", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                UIForms.MainWindow mainWindow = new UIForms.MainWindow();
-                this.Hide();
-                mainWindow.ShowDialog();
-                this.Show();
+                FormHelper.ShowFormAndHideCurrent(this, new MainWindow());
             }
             else //Отсутствует пользователь
             {
                 MessageBox.Show("Пользователь не найден", "Валидация пользователя", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OpenMainWindow()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.FormClosed += (s, args) => ReturnToAuthorization();
+            mainWindow.Show();
+            this.Hide();
+        }
+
+        private void ReturnToAuthorization()
+        {
+            bool authFormExists = false;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Authorization)
+                {
+                    authFormExists = true;
+                    form.Show();
+                    break;
+                }
+            }
+            if (!authFormExists)
+            {
+                this.Show();
             }
         }
 
@@ -56,5 +79,7 @@ namespace KINDERGARDENIS.UIForms
                 Environment.Exit(-1);
             }
         }
+
+
     }
 }
