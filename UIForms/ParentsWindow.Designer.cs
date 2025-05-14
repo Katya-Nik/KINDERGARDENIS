@@ -845,6 +845,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParentsWindow";
             this.Text = "ParentsWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParentsWindow_FormClosing);
             this.Load += new System.EventHandler(this.ParentsWindow_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);

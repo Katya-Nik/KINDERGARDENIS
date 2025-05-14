@@ -15,6 +15,7 @@ namespace KINDERGARDENIS.UIForms
         public UsersWindow()
         {
             InitializeComponent();
+            this.FormClosing += UsersWindow_FormClosing;
         }
 
         private void UsersWindow_Load(object sender, EventArgs e)
@@ -24,7 +25,6 @@ namespace KINDERGARDENIS.UIForms
                 pictureBox6, pictureBox7, pictureBox8, pictureBox9,
                 label1, label2, label3, label4, label5,
                 label6, label7, label8, label9);
-
             LoadRolesToComboBox();
             LoadUsersToDataGridView();
             ConfigureDataGridViewAppearance();
@@ -173,6 +173,15 @@ namespace KINDERGARDENIS.UIForms
         private void label7_Click(object sender, EventArgs e)
         {
             // Эта форма
+        }
+
+        private void UsersWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) // Если окно закрывается пользователем
+            {
+                Authorization auth = new Authorization();
+                auth.Show(); // Открываем Authorization
+            }
         }
     }
 }

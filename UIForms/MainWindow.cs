@@ -18,7 +18,7 @@ namespace KINDERGARDENIS.UIForms
         public MainWindow()
         {
             InitializeComponent();
-            this.FormClosed += (s, args) => new Authorization().Show();
+            this.FormClosing += MainWindow_FormClosing;
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
@@ -133,6 +133,15 @@ namespace KINDERGARDENIS.UIForms
         private void label7_Click(object sender, EventArgs e)
         {
             FormManager.OpenForm(new ParentsWindow(), this);
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) // Если окно закрывается пользователем
+            {
+                Authorization auth = new Authorization();
+                auth.Show(); // Открываем Authorization
+            }
         }
     }
 }

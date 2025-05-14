@@ -901,6 +901,8 @@
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "EmployeesWindow";
             this.Text = "Сотрудники KinderGuard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeesWindow_FormClosing);
+            this.Load += new System.EventHandler(this.EmployeesWindow_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();

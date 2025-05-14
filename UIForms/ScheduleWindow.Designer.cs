@@ -209,7 +209,7 @@ namespace KINDERGARDENIS.UIForms
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(1062, 52);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Рассписание групп в KinderGuard";
+            this.label12.Text = "Расписание групп в KinderGuard";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
@@ -1567,9 +1567,12 @@ namespace KINDERGARDENIS.UIForms
             // 
             // pictureBox13
             // 
+            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox13.Image = global::KINDERGARDENIS.Properties.Resources.Logo;
             this.pictureBox13.Location = new System.Drawing.Point(3, 3);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(70, 50);
+            this.pictureBox13.Size = new System.Drawing.Size(70, 90);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox13.TabIndex = 3;
             this.pictureBox13.TabStop = false;
             // 
@@ -1582,7 +1585,8 @@ namespace KINDERGARDENIS.UIForms
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScheduleWindow";
-            this.Text = "ScheduleWindow";
+            this.Text = "Расписание";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScheduleWindow_FormClosing);
             this.Load += new System.EventHandler(this.ScheduleWindow_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);

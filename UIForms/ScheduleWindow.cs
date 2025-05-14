@@ -11,6 +11,7 @@ namespace KINDERGARDENIS.UIForms
         public ScheduleWindow()
         {
             InitializeComponent();
+            this.FormClosing += ScheduleWindow_FormClosing;
             LoadGroups();
             LoadDaysOfWeek();
         }
@@ -224,6 +225,15 @@ namespace KINDERGARDENIS.UIForms
         private void label7_Click(object sender, EventArgs e)
         {
             FormManager.OpenForm(new UsersWindow(), this);
+        }
+
+        private void ScheduleWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) // Если окно закрывается пользователем
+            {
+                Authorization auth = new Authorization();
+                auth.Show(); // Открываем Authorization
+            }
         }
     }
 }

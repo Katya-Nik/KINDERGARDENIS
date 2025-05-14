@@ -882,6 +882,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersWindow";
             this.Text = "Пользователи";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UsersWindow_FormClosing);
             this.Load += new System.EventHandler(this.UsersWindow_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
