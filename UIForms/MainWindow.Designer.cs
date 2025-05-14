@@ -883,6 +883,7 @@
             this.label1.Size = new System.Drawing.Size(212, 29);
             this.label1.TabIndex = 1;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tableLayoutPanel18
             // 

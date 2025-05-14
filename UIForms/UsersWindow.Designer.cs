@@ -37,6 +37,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.buttonInfoUser = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxRoleName = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.buttonInfoUser = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -226,6 +226,23 @@
             this.dataGridViewUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewUsers.Size = new System.Drawing.Size(1024, 426);
             this.dataGridViewUsers.TabIndex = 0;
+            // 
+            // buttonInfoUser
+            // 
+            this.buttonInfoUser.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
+            this.buttonInfoUser.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonInfoUser.FlatAppearance.BorderSize = 0;
+            this.buttonInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInfoUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoUser.Location = new System.Drawing.Point(780, 437);
+            this.buttonInfoUser.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.buttonInfoUser.MaximumSize = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.MinimumSize = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.Name = "buttonInfoUser";
+            this.buttonInfoUser.Size = new System.Drawing.Size(250, 40);
+            this.buttonInfoUser.TabIndex = 0;
+            this.buttonInfoUser.Text = "Подробнее о пользователе";
+            this.buttonInfoUser.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel19
             // 
@@ -560,6 +577,7 @@
             this.label7.Size = new System.Drawing.Size(212, 29);
             this.label7.TabIndex = 1;
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -601,6 +619,7 @@
             this.label6.Size = new System.Drawing.Size(212, 29);
             this.label6.TabIndex = 1;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // tableLayoutPanel11
             // 
@@ -642,6 +661,7 @@
             this.label5.Size = new System.Drawing.Size(212, 29);
             this.label5.TabIndex = 1;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // tableLayoutPanel10
             // 
@@ -683,6 +703,7 @@
             this.label4.Size = new System.Drawing.Size(212, 29);
             this.label4.TabIndex = 1;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tableLayoutPanel9
             // 
@@ -724,6 +745,7 @@
             this.label3.Size = new System.Drawing.Size(212, 29);
             this.label3.TabIndex = 1;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -765,6 +787,7 @@
             this.label2.Size = new System.Drawing.Size(212, 29);
             this.label2.TabIndex = 1;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -806,6 +829,7 @@
             this.label1.Size = new System.Drawing.Size(212, 29);
             this.label1.TabIndex = 1;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tableLayoutPanel18
             // 
@@ -847,23 +871,6 @@
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox13.TabIndex = 3;
             this.pictureBox13.TabStop = false;
-            // 
-            // buttonInfoUser
-            // 
-            this.buttonInfoUser.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
-            this.buttonInfoUser.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonInfoUser.FlatAppearance.BorderSize = 0;
-            this.buttonInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfoUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoUser.Location = new System.Drawing.Point(780, 437);
-            this.buttonInfoUser.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.buttonInfoUser.MaximumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.MinimumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.Name = "buttonInfoUser";
-            this.buttonInfoUser.Size = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.TabIndex = 0;
-            this.buttonInfoUser.Text = "Подробнее о пользователе";
-            this.buttonInfoUser.UseVisualStyleBackColor = true;
             // 
             // UsersWindow
             // 

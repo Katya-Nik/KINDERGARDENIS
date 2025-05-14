@@ -178,6 +178,7 @@
     <Compile Include="UIForms\EmployeesWindow.Designer.cs">
       <DependentUpon>EmployeesWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\FormManager.cs" />
     <Compile Include="UIForms\GroupWindow.cs">
       <SubType>Form</SubType>
     </Compile>

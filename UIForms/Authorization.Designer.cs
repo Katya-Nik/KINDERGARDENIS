@@ -55,8 +55,8 @@
             this.InscriptionName.Location = new System.Drawing.Point(3, 3);
             this.InscriptionName.Name = "InscriptionName";
             this.InscriptionName.RowCount = 2;
-            this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.79389F));
+            this.InscriptionName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.20611F));
             this.InscriptionName.Size = new System.Drawing.Size(661, 655);
             this.InscriptionName.TabIndex = 1;
             // 
@@ -70,7 +70,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 80, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(581, 277);
+            this.label1.Size = new System.Drawing.Size(581, 322);
             this.label1.TabIndex = 0;
             this.label1.Text = "Добро пожаловать\r\nв детский сад\r\n«KinderGuard»";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

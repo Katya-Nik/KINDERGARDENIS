@@ -87,18 +87,48 @@ namespace KINDERGARDENIS.UIForms
             LoadGroupsData();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void GroupWindow_Load(object sender, EventArgs e)
         {
             UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, pictureBox12, labelUsername, labelUserEmaile);
-            MenuService.LoadMainMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
+            MenuService.LoadGroupMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
             pictureBox6, pictureBox7, pictureBox8, pictureBox9,
             label1, label2, label3, label4, label5,
             label6, label7, label8, label9);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new MainWindow(), this);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ScheduleWindow(), this);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new EmployeesWindow(), this);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            // Эта форма
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ChildrenWindow(), this);
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ParentsWindow(), this);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new UsersWindow(), this);
         }
     }
 }

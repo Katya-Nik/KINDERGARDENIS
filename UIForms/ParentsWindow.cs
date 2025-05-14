@@ -115,5 +115,40 @@ namespace KINDERGARDENIS.UIForms
                 
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new MainWindow(), this);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ScheduleWindow(), this);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new EmployeesWindow(), this);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new GroupWindow(), this);
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ChildrenWindow(), this);
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            // Эта форма
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new UsersWindow(), this);
+        }
     }
 }

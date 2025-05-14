@@ -236,8 +236,8 @@
             this.buttonInfoEmp.FlatAppearance.BorderSize = 0;
             this.buttonInfoEmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfoEmp.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoEmp.Location = new System.Drawing.Point(780, 437);
-            this.buttonInfoEmp.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.buttonInfoEmp.Location = new System.Drawing.Point(777, 437);
+            this.buttonInfoEmp.Margin = new System.Windows.Forms.Padding(0, 5, 3, 0);
             this.buttonInfoEmp.MaximumSize = new System.Drawing.Size(250, 40);
             this.buttonInfoEmp.MinimumSize = new System.Drawing.Size(250, 40);
             this.buttonInfoEmp.Name = "buttonInfoEmp";
@@ -337,6 +337,7 @@
             this.pictureBoxAddEmp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxAddEmp.TabIndex = 0;
             this.pictureBoxAddEmp.TabStop = false;
+            this.pictureBoxAddEmp.Click += new System.EventHandler(this.labelAddEmp_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -593,6 +594,7 @@
             this.label7.Size = new System.Drawing.Size(212, 29);
             this.label7.TabIndex = 1;
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -634,6 +636,7 @@
             this.label6.Size = new System.Drawing.Size(212, 29);
             this.label6.TabIndex = 1;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // tableLayoutPanel11
             // 
@@ -675,6 +678,7 @@
             this.label5.Size = new System.Drawing.Size(212, 29);
             this.label5.TabIndex = 1;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // tableLayoutPanel10
             // 
@@ -716,6 +720,7 @@
             this.label4.Size = new System.Drawing.Size(212, 29);
             this.label4.TabIndex = 1;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tableLayoutPanel9
             // 
@@ -758,6 +763,7 @@
             this.label3.Size = new System.Drawing.Size(212, 29);
             this.label3.TabIndex = 1;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // tableLayoutPanel8
             // 

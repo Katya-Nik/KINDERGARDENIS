@@ -18,6 +18,7 @@ namespace KINDERGARDENIS.UIForms
         public MainWindow()
         {
             InitializeComponent();
+            this.FormClosed += (s, args) => new Authorization().Show();
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
@@ -99,53 +100,39 @@ namespace KINDERGARDENIS.UIForms
             chartArea.AxisY.Interval = 5;
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            // Эта форма
+        }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            UIForms.ScheduleWindow scheduleWindow = new UIForms.ScheduleWindow();
-            this.Hide();
-            scheduleWindow.ShowDialog();
-            this.Show();
+            FormManager.OpenForm(new ScheduleWindow(), this);
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            UIForms.EmployeesWindow employeesWindow = new UIForms.EmployeesWindow();
-            this.Hide();
-            employeesWindow.ShowDialog();
-            this.Show();
+            FormManager.OpenForm(new EmployeesWindow(), this);
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            UIForms.GroupWindow groupWindow = new UIForms.GroupWindow();
-            this.Hide();
-            groupWindow.ShowDialog();
-            this.Show();
+            FormManager.OpenForm(new GroupWindow(), this);
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            UIForms.ChildrenWindow childrenWindow = new UIForms.ChildrenWindow();
-            this.Hide();
-            childrenWindow.ShowDialog();
-            this.Show();
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-            UIForms.UsersWindow usersWindow = new UIForms.UsersWindow();
-            this.Hide();
-            usersWindow.ShowDialog();
-            this.Show();
+            FormManager.OpenForm(new ChildrenWindow(), this);
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            UIForms.ParentsWindow parentsWindow = new UIForms.ParentsWindow();
-            this.Hide();
-            parentsWindow.ShowDialog();
-            this.Show();
+            FormManager.OpenForm(new UsersWindow(), this);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ParentsWindow(), this);
         }
     }
 }

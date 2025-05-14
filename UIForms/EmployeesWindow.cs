@@ -107,20 +107,6 @@ namespace KINDERGARDENIS.UIForms
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-            UIForms.MainWindow mainWindow = new UIForms.MainWindow();
-            mainWindow.Hide();
-            this.Close();
-            UIForms.ScheduleWindow scheduleWindow = new UIForms.ScheduleWindow();
-            scheduleWindow.ShowDialog();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void textBoxSearchPatronymic_TextChanged(object sender, EventArgs e)
         {
             LoadEmployeesData(textBoxSearchPatronymic.Text);
@@ -149,10 +135,45 @@ namespace KINDERGARDENIS.UIForms
 
         private void labelAddEmp_Click(object sender, EventArgs e)
         {
-            UIForms.AddEmployees addEmployees = new UIForms.AddEmployees();
+            AddEmployees addEmployees = new AddEmployees();
             this.Hide();
             addEmployees.ShowDialog();
             this.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new MainWindow(), this);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ScheduleWindow(), this);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            // Эта форма
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new GroupWindow(), this);
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ChildrenWindow(), this);
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new ParentsWindow(), this);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormManager.OpenForm(new UsersWindow(), this);
         }
     }
 }

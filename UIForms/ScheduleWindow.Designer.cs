@@ -1292,6 +1292,7 @@ namespace KINDERGARDENIS.UIForms
             this.label7.Size = new System.Drawing.Size(212, 29);
             this.label7.TabIndex = 1;
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -1331,6 +1332,7 @@ namespace KINDERGARDENIS.UIForms
             this.label6.Size = new System.Drawing.Size(212, 29);
             this.label6.TabIndex = 1;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // tableLayoutPanel11
             // 
@@ -1370,6 +1372,7 @@ namespace KINDERGARDENIS.UIForms
             this.label5.Size = new System.Drawing.Size(212, 29);
             this.label5.TabIndex = 1;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // tableLayoutPanel10
             // 
@@ -1409,6 +1412,7 @@ namespace KINDERGARDENIS.UIForms
             this.label4.Size = new System.Drawing.Size(212, 29);
             this.label4.TabIndex = 1;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tableLayoutPanel9
             // 
@@ -1448,6 +1452,7 @@ namespace KINDERGARDENIS.UIForms
             this.label3.Size = new System.Drawing.Size(212, 29);
             this.label3.TabIndex = 1;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -1488,6 +1493,7 @@ namespace KINDERGARDENIS.UIForms
             this.label2.Size = new System.Drawing.Size(212, 29);
             this.label2.TabIndex = 1;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // tableLayoutPanel7
             // 
