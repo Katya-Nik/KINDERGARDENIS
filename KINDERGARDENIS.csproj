@@ -189,6 +189,12 @@
     <Compile Include="DBModel\User.cs">
       <DependentUpon>ModelKindergarden.tt</DependentUpon>
     </Compile>
+    <Compile Include="UIForms\InfoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\InfoUser.Designer.cs">
+      <DependentUpon>InfoUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\GroupWindow.resx">
       <DependentUpon>GroupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\InfoUser.resx">
+      <DependentUpon>InfoUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

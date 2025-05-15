@@ -58,8 +58,8 @@ namespace KINDERGARDENIS.UIForms
 
             private void SetTextBoxColors()
             {
-                Color emptyColor = Color.FromArgb(133, 223, 234);
-                Color filledColor = Color.FromArgb(145, 195, 173);
+                Color emptyColor = Color.FromArgb(222, 238, 225);
+                Color filledColor = Color.FromArgb(222, 238, 225);
 
                 textBoxSurname.BackColor = string.IsNullOrEmpty(textBoxSurname.Text) ? emptyColor : filledColor;
                 textBoxName.BackColor = string.IsNullOrEmpty(textBoxName.Text) ? emptyColor : filledColor;
@@ -233,7 +233,6 @@ namespace KINDERGARDENIS.UIForms
             AddChild addChild = new AddChild();
             this.Close();
             addChild.ShowDialog();
-            this.Show();
         }
     }
 }

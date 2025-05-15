@@ -687,6 +687,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(145)))), ((int)(((byte)(145)))));
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(850, 550);
             this.Name = "AddChild";
             this.Text = "Добавление ребенка";

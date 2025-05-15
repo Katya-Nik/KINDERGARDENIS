@@ -1114,11 +1114,14 @@ namespace KINDERGARDENIS.UIForms
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Location = new System.Drawing.Point(189, 3);
+            this.pictureBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox12.Location = new System.Drawing.Point(186, 0);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(56, 42);
+            this.pictureBox12.Size = new System.Drawing.Size(62, 48);
             this.pictureBox12.TabIndex = 1;
             this.pictureBox12.TabStop = false;
+            this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);
             // 
             // labelUsername
             // 
@@ -1586,6 +1589,7 @@ namespace KINDERGARDENIS.UIForms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScheduleWindow";
             this.Text = "Расписание";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScheduleWindow_FormClosing);
             this.Load += new System.EventHandler(this.ScheduleWindow_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -23,7 +23,9 @@ namespace KINDERGARDENIS.UIForms
 
         private void pictureBox12_Click(object sender, EventArgs e)
         {
-
+            InfoUser infoUser = new InfoUser();
+            infoUser.ShowDialog();
+            this.Show();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

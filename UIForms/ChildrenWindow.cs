@@ -97,49 +97,52 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                var query = Helper.DB.Children.AsQueryable();
-
-                // Фильтрация по фамилии, если введена
-                if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
+                using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
                 {
-                    query = query.Where(c => c.ChildrenSurname.Contains(textBoxSearchSurname.Text));
-                }
+                    var query = db.Children.AsQueryable();
 
-                // Фильтрация по группе, если выбрана
-                if (comboBoxGroupName.SelectedIndex > 0)
-                {
-                    string selectedGroup = comboBoxGroupName.SelectedItem.ToString();
-                    query = query.Where(c => c.Groups.GroupsGroupName == selectedGroup);
-                }
-
-                // Получение данных с сортировкой по фамилии и названию группы
-                var childrenData = query
-                    .OrderBy(c => c.ChildrenSurname)
-                    .ThenBy(c => c.Groups.GroupsGroupName)
-                    .Select(c => new
+                    // Фильтрация по фамилии, если введена
+                    if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
                     {
-                        Фамилия = c.ChildrenSurname,
-                        Имя = c.ChildrenName,
-                        Отчество = c.ChildrenPatronymic,
-                        ДатаРождения = c.ChildrenDateofBirth,
-                        Группа = c.Groups.GroupsGroupName,
-                        Воспитатель = c.Groups.Educators
-                            .Where(e => e.Employees.User.Role.RoleName == "Воспитатель")
-                            .Select(e => e.Employees.EmployeesSurname)
-                            .FirstOrDefault(),
-                        МладшийВоспитатель = c.Groups.Educators
-                            .Where(e => e.Employees.User.Role.RoleName == "Младший воспитатель")
-                            .Select(e => e.Employees.EmployeesSurname)
-                            .FirstOrDefault()
-                    })
-                    .ToList();
+                        query = query.Where(c => c.ChildrenSurname.Contains(textBoxSearchSurname.Text));
+                    }
 
-                dataGridViewChild.DataSource = childrenData;
+                    // Фильтрация по группе, если выбрана
+                    if (comboBoxGroupName.SelectedIndex > 0)
+                    {
+                        string selectedGroup = comboBoxGroupName.SelectedItem.ToString();
+                        query = query.Where(c => c.Groups.GroupsGroupName == selectedGroup);
+                    }
 
-                // Настройка ширины колонок
-                foreach (DataGridViewColumn column in dataGridViewChild.Columns)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    // Получение данных с сортировкой по фамилии и названию группы
+                    var childrenData = query
+                        .OrderBy(c => c.ChildrenSurname)
+                        .ThenBy(c => c.Groups.GroupsGroupName)
+                        .Select(c => new
+                        {
+                            Фамилия = c.ChildrenSurname,
+                            Имя = c.ChildrenName,
+                            Отчество = c.ChildrenPatronymic,
+                            ДатаРождения = c.ChildrenDateofBirth,
+                            Группа = c.Groups.GroupsGroupName,
+                            Воспитатель = c.Groups.Educators
+                                .Where(e => e.Employees.User.Role.RoleName == "Воспитатель")
+                                .Select(e => e.Employees.EmployeesSurname)
+                                .FirstOrDefault(),
+                            МладшийВоспитатель = c.Groups.Educators
+                                .Where(e => e.Employees.User.Role.RoleName == "Младший воспитатель")
+                                .Select(e => e.Employees.EmployeesSurname)
+                                .FirstOrDefault()
+                        })
+                        .ToList();
+
+                    dataGridViewChild.DataSource = childrenData;
+
+                    // Настройка ширины колонок
+                    foreach (DataGridViewColumn column in dataGridViewChild.Columns)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
             }
             catch (Exception ex)
@@ -160,8 +163,8 @@ namespace KINDERGARDENIS.UIForms
 
         private void buttonAddChild_Click(object sender, EventArgs e)
         {
-            UIForms.AddChild addChild = new AddChild();
-            addChild.Show();
+            UIForms.AddParent addParent = new AddParent();
+            addParent.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -206,6 +209,13 @@ namespace KINDERGARDENIS.UIForms
                 Authorization auth = new Authorization();
                 auth.Show(); // Открываем Authorization
             }
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            InfoUser infoUser = new InfoUser();
+            infoUser.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -34,14 +34,17 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                var roles = Helper.DB.Role.ToList();
-                comboBoxRoleName.DataSource = roles;
-                comboBoxRoleName.DisplayMember = "RoleName";
-                comboBoxRoleName.ValueMember = "RoleID";
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                {
+                    var roles = db.Role.ToList();
+                    comboBoxRoleName.DataSource = roles;
+                    comboBoxRoleName.DisplayMember = "RoleName";
+                    comboBoxRoleName.ValueMember = "RoleID";
 
-                // Добавляем пункт для вывода всех ролей
-                comboBoxRoleName.Items.Insert(0, new { RoleID = 0, RoleName = "Все роли" });
-                comboBoxRoleName.SelectedIndex = 0;
+                    // Добавляем пункт для вывода всех ролей
+                    comboBoxRoleName.Items.Insert(0, new { RoleID = 0, RoleName = "Все роли" });
+                    comboBoxRoleName.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -53,40 +56,43 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                var usersQuery = from user in Helper.DB.User
-                                 join role in Helper.DB.Role on user.RoleID equals role.RoleID
-                                 join emp in Helper.DB.Employees on user.UserID equals emp.EmployeesUserID into empJoin
-                                 from emp in empJoin.DefaultIfEmpty()
-                                 join parent in Helper.DB.Parents on user.UserID equals parent.ParentsUserID into parentJoin
-                                 from parent in parentJoin.DefaultIfEmpty()
-                                 select new
-                                 {
-                                     Surname = emp != null ? emp.EmployeesSurname : parent.ParentsSurname,
-                                     Name = emp != null ? emp.EmployeesName : parent.ParentsName,
-                                     RoleName = role.RoleName,
-                                     Login = user.UserLogin,
-                                     Phone = emp != null ? emp.EmployeesPhoneNumber : parent.ParentsPhoneNumber,
-                                     Email = emp != null ? emp.EmployeesEmail : parent.ParentsEmail,
-                                     RoleID = role.RoleID
-                                 };
-
-                // Применяем фильтрацию, если выбрана конкретная роль
-                if (comboBoxRoleName.SelectedIndex > 0 && comboBoxRoleName.SelectedValue is int selectedRoleId)
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
-                    usersQuery = usersQuery.Where(u => u.RoleID == selectedRoleId);
+                    var usersQuery = from user in db.User
+                                     join role in db.Role on user.RoleID equals role.RoleID
+                                     join emp in db.Employees on user.UserID equals emp.EmployeesUserID into empJoin
+                                     from emp in empJoin.DefaultIfEmpty()
+                                     join parent in db.Parents on user.UserID equals parent.ParentsUserID into parentJoin
+                                     from parent in parentJoin.DefaultIfEmpty()
+                                     select new
+                                     {
+                                         Surname = emp != null ? emp.EmployeesSurname : parent.ParentsSurname,
+                                         Name = emp != null ? emp.EmployeesName : parent.ParentsName,
+                                         RoleName = role.RoleName,
+                                         Login = user.UserLogin,
+                                         Phone = emp != null ? emp.EmployeesPhoneNumber : parent.ParentsPhoneNumber,
+                                         Email = emp != null ? emp.EmployeesEmail : parent.ParentsEmail,
+                                         RoleID = role.RoleID
+                                     };
+
+                    // Применяем фильтрацию, если выбрана конкретная роль
+                    if (comboBoxRoleName.SelectedIndex > 0 && comboBoxRoleName.SelectedValue is int selectedRoleId)
+                    {
+                        usersQuery = usersQuery.Where(u => u.RoleID == selectedRoleId);
+                    }
+
+                    // Применяем фильтрацию по фамилии, если введен текст
+                    if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
+                    {
+                        string searchText = textBoxSearchSurname.Text.ToLower();
+                        usersQuery = usersQuery.Where(u => u.Surname.ToLower().Contains(searchText));
+                    }
+
+                    // Сортируем по фамилии
+                    usersQuery = usersQuery.OrderBy(u => u.Surname);
+
+                    dataGridViewUsers.DataSource = usersQuery.ToList();
                 }
-
-                // Применяем фильтрацию по фамилии, если введен текст
-                if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
-                {
-                    string searchText = textBoxSearchSurname.Text.ToLower();
-                    usersQuery = usersQuery.Where(u => u.Surname.ToLower().Contains(searchText));
-                }
-
-                // Сортируем по фамилии
-                usersQuery = usersQuery.OrderBy(u => u.Surname);
-
-                dataGridViewUsers.DataSource = usersQuery.ToList();
             }
             catch (Exception ex)
             {
@@ -182,6 +188,13 @@ namespace KINDERGARDENIS.UIForms
                 Authorization auth = new Authorization();
                 auth.Show(); // Открываем Authorization
             }
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            InfoUser infoUser = new InfoUser();
+            infoUser.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -49,19 +49,47 @@ namespace KINDERGARDENIS.UIForms
 
         private void LoadParents()
         {
-            var parents = Helper.DB.Parents.ToList();
-            foreach (var parent in parents)
+            using (var db = new DBModel.KindergartenInformationSystemEntities())
             {
-                comboBoxParent.Items.Add($"{parent.ParentsSurname} {parent.ParentsName}");
+                var parents = db.Parents.ToList();
+                foreach (var parent in parents)
+                {
+                    comboBoxParent.Items.Add($"{parent.ParentsSurname} {parent.ParentsName}");
+                }
             }
         }
 
         private void LoadGroups()
         {
-            var groups = Helper.DB.Groups.ToList();
-            foreach (var group in groups)
+            try
             {
-                comboBoxGroups.Items.Add(group.GroupsGroupName);
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                {
+                    var groups = db.Groups?.ToList(); // Проверка на null с помощью ?.
+
+                    comboBoxGroups.Items.Clear();
+                    comboBoxGroups.Items.Add("Выберите группу");
+
+                    if (groups != null)
+                    {
+                        foreach (var group in groups)
+                        {
+                            if (group != null && !string.IsNullOrEmpty(group.GroupsGroupName))
+                            {
+                                comboBoxGroups.Items.Add(group.GroupsGroupName);
+                            }
+                        }
+                    }
+
+                    if (comboBoxGroups.Items.Count > 0)
+                    {
+                        comboBoxGroups.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке групп: {ex.Message}");
             }
         }
 
@@ -84,15 +112,7 @@ namespace KINDERGARDENIS.UIForms
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            Control control = sender as Control;
-            if (string.IsNullOrWhiteSpace(control.Text))
-            {
-                control.BackColor = Color.FromArgb(133, 223, 234);
-            }
-            else
-            {
-                control.BackColor = Color.FromArgb(145, 195, 173);
-            }
+
         }
 
         private void buttonUploadPhoto_Click(object sender, EventArgs e)

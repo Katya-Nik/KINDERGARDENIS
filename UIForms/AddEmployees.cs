@@ -50,26 +50,29 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                // Получаем список ролей из базы данных
-                var roles = Helper.DB.Role.ToList();
-
-                // Очищаем comboBox перед загрузкой
-                comboBoxRole.Items.Clear();
-
-                // Добавляем роли в comboBox
-                foreach (var role in roles)
+                using (var db = new DBModel.KindergartenInformationSystemEntities()) 
                 {
-                    comboBoxRole.Items.Add(new KeyValuePair<int, string>(role.RoleID, role.RoleName));
-                }
+                    // Получаем список ролей из базы данных
+                    var roles = db.Role.ToList();
 
-                // Настраиваем отображение
-                comboBoxRole.DisplayMember = "Value";
-                comboBoxRole.ValueMember = "Key";
+                    // Очищаем comboBox перед загрузкой
+                    comboBoxRole.Items.Clear();
 
-                // Устанавливаем значение по умолчанию (например, первую роль)
-                if (comboBoxRole.Items.Count > 0)
-                {
-                    comboBoxRole.SelectedIndex = 0;
+                    // Добавляем роли в comboBox
+                    foreach (var role in roles)
+                    {
+                        comboBoxRole.Items.Add(new KeyValuePair<int, string>(role.RoleID, role.RoleName));
+                    }
+
+                    // Настраиваем отображение
+                    comboBoxRole.DisplayMember = "Value";
+                    comboBoxRole.ValueMember = "Key";
+
+                    // Устанавливаем значение по умолчанию (например, первую роль)
+                    if (comboBoxRole.Items.Count > 0)
+                    {
+                        comboBoxRole.SelectedIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -80,8 +83,8 @@ namespace KINDERGARDENIS.UIForms
 
         private void SetFieldsDefaultColors()
         {
-            Color defaultColor = Color.FromArgb(133, 223, 234);
-            Color filledColor = Color.FromArgb(145, 195, 173);
+            Color defaultColor = Color.FromArgb(222, 238, 225);
+            Color filledColor = Color.FromArgb(222, 238, 225);
 
             textBoxSurname.BackColor = string.IsNullOrEmpty(textBoxSurname.Text) ? defaultColor : filledColor;
             textBoxName.BackColor = string.IsNullOrEmpty(textBoxName.Text) ? defaultColor : filledColor;

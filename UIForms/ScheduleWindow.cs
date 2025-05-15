@@ -238,5 +238,12 @@ namespace KINDERGARDENIS.UIForms
                 auth.Show(); // Открываем Authorization
             }
         }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            InfoUser infoUser = new InfoUser();
+            infoUser.ShowDialog();
+            this.Show();
+        }
     }
 }

@@ -33,8 +33,10 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                // Получаем данные из базы данных
-                var parentsQuery = Helper.DB.Parents
+                using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
+                {
+                    // Получаем данные из базы данных
+                    var parentsQuery = db.Parents
                     .OrderBy(p => p.ParentsSurname)
                     .Select(p => new
                     {
@@ -47,11 +49,12 @@ namespace KINDERGARDENIS.UIForms
                     })
                     .ToList();
 
-                // Настраиваем DataGridView перед загрузкой данных
-                ConfigureDataGridView();
+                    // Настраиваем DataGridView перед загрузкой данных
+                    ConfigureDataGridView();
 
-                // Привязываем данные к DataGridView
-                dataGridViewParents.DataSource = parentsQuery;
+                    // Привязываем данные к DataGridView
+                    dataGridViewParents.DataSource = parentsQuery;
+                }
             }
             catch (Exception ex)
             {
@@ -159,6 +162,13 @@ namespace KINDERGARDENIS.UIForms
                 Authorization auth = new Authorization();
                 auth.Show(); // Открываем Authorization
             }
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            InfoUser infoUser = new InfoUser();
+            infoUser.ShowDialog();
+            this.Show();
         }
     }
 }

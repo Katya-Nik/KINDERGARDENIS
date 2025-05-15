@@ -224,6 +224,7 @@
             this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "Authorization";
             this.Text = "Authorization";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.InscriptionName.ResumeLayout(false);
             this.InscriptionName.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
