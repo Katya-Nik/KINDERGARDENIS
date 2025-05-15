@@ -26,7 +26,7 @@ namespace KINDERGARDENIS.UIForms
         private void AddEmployees_Load(object sender, EventArgs e)
         {
             // Установка начальных изображений
-            pictureBoxEmployees.Image = Image.FromFile(pathImage + "UploadPhoto.png");
+            pictureBoxEmployees.Image = Image.FromFile(pathImage + "AddImage.png");
             pictureBoxeye.Image = Image.FromFile(pathImage + "eyeoff.png");
 
             // Настройка масок

@@ -608,6 +608,7 @@
             this.labelParentIs.TabIndex = 2;
             this.labelParentIs.Text = "Родитель уже добавлен";
             this.labelParentIs.UseCompatibleTextRendering = true;
+            this.labelParentIs.Click += new System.EventHandler(this.labelParentIs_Click);
             // 
             // AddParent
             // 

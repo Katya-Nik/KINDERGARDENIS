@@ -41,7 +41,7 @@ namespace KINDERGARDENIS.UIForms
             maskedTextBoxPolisOMS.Mask = "0000000000000000";
 
             // Установка изображения по умолчанию
-            pictureBoxChild.Image = Image.FromFile(pathImage + "UploadPhoto.png");
+            pictureBoxChild.Image = Image.FromFile(pathImage + "AddImage.png");
 
             // Подписка на события изменения текста
             SubscribeToTextChangedEvents();

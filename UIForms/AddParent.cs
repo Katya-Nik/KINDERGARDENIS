@@ -26,7 +26,7 @@ namespace KINDERGARDENIS.UIForms
         private void AddParent_Load(object sender, EventArgs e)
         {
             // Установка начальных изображений
-            pictureBoxEmployees.Image = Image.FromFile(pathImage + "UploadPhoto.png");
+            pictureBoxEmployees.Image = Image.FromFile(pathImage + "AddImage.png");
             pictureBoxeye.Image = Image.FromFile(pathImage + "eyeoff.png");
 
             // Настройка масок ввода
@@ -87,109 +87,114 @@ namespace KINDERGARDENIS.UIForms
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInputs())
             {
-                if (!ValidateInputs())
-                {
-                    return;
-                }
-
-                try
-                {
-                    // Создаем пользователя
-                    var user = new DBModel.User
-                    {
-                        UserLogin = textBoxLogin.Text,
-                        UserPassword = HashPassword(textBoxPassword.Text), // Хэшируем пароль
-                        RoleID = 16 // RoleID для родителя
-                    };
-
-                    Helper.DB.User.Add(user);
-                    Helper.DB.SaveChanges();
-
-                    // Сохраняем фото, если оно было загружено
-                    if (uploadedPhoto != null)
-                    {
-                        SaveUserPhoto(user.UserID);
-                    }
-
-                    // Создаем запись родителя
-                    var parent = new DBModel.Parents
-                    {
-                        ParentsName = textBoxName.Text,
-                        ParentsSurname = textBoxSurname.Text,
-                        ParentsPatronymic = textBoxPatronymic.Text,
-                        ParentsPassportSeries = maskedTextBoxPassportSeries.Text,
-                        ParentsPassportNumber = maskedTextBoxPassportNumber.Text,
-                        ParentsPhoneNumber = maskedTextBoxPhoneNumber.Text,
-                        ParentsEmail = textBoxEmail.Text,
-                        ParentsUserID = user.UserID
-                    };
-
-                    Helper.DB.Parents.Add(parent);
-                    Helper.DB.SaveChanges();
-
-                    MessageBox.Show("Родитель успешно добавлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                return;
             }
 
-            private bool ValidateInputs()
+            try
             {
-                if (string.IsNullOrEmpty(textBoxSurname.Text) ||
-                    string.IsNullOrEmpty(textBoxName.Text) ||
-                    string.IsNullOrEmpty(textBoxPatronymic.Text) ||
-                    string.IsNullOrEmpty(maskedTextBoxPassportSeries.Text) ||
-                    string.IsNullOrEmpty(maskedTextBoxPassportNumber.Text) ||
-                    string.IsNullOrEmpty(maskedTextBoxPhoneNumber.Text.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "").Replace("+7", "")) ||
-                    string.IsNullOrEmpty(textBoxEmail.Text) ||
-                    string.IsNullOrEmpty(textBoxLogin.Text) ||
-                    string.IsNullOrEmpty(textBoxPassword.Text))
+                // Создаем пользователя
+                var user = new DBModel.User
                 {
-                    MessageBox.Show("Пожалуйста, заполните все обязательные поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    UserLogin = textBoxLogin.Text,
+                    UserPassword = HashPassword(textBoxPassword.Text), // Хэшируем пароль
+                    RoleID = 16 // RoleID для родителя
+                };
+
+                Helper.DB.User.Add(user);
+                Helper.DB.SaveChanges();
+
+                // Сохраняем фото, если оно было загружено
+                if (uploadedPhoto != null)
+                {
+                    SaveUserPhoto(user.UserID);
                 }
 
-                // Проверка уникальности логина
-                if (Helper.DB.User.Any(u => u.UserLogin == textBoxLogin.Text))
+                // Создаем запись родителя
+                var parent = new DBModel.Parents
                 {
-                    MessageBox.Show("Пользователь с таким логином уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+                    ParentsName = textBoxName.Text,
+                    ParentsSurname = textBoxSurname.Text,
+                    ParentsPatronymic = textBoxPatronymic.Text,
+                    ParentsPassportSeries = maskedTextBoxPassportSeries.Text,
+                    ParentsPassportNumber = maskedTextBoxPassportNumber.Text,
+                    ParentsPhoneNumber = maskedTextBoxPhoneNumber.Text,
+                    ParentsEmail = textBoxEmail.Text,
+                     ParentsUserID = user.UserID
+                };
 
-                return true;
+                Helper.DB.Parents.Add(parent);
+                Helper.DB.SaveChanges();
+
+                MessageBox.Show("Родитель успешно добавлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AddChild addChild = new AddChild();
+                this.Close();
+                addChild.ShowDialog();
+                this.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            private string HashPassword(string password)
+
+        }
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(textBoxSurname.Text) ||
+                string.IsNullOrEmpty(textBoxName.Text) ||
+                string.IsNullOrEmpty(textBoxPatronymic.Text) ||
+                string.IsNullOrEmpty(maskedTextBoxPassportSeries.Text) ||
+                string.IsNullOrEmpty(maskedTextBoxPassportNumber.Text) ||
+                string.IsNullOrEmpty(maskedTextBoxPhoneNumber.Text.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "").Replace("+7", "")) ||
+                string.IsNullOrEmpty(textBoxEmail.Text) ||
+                string.IsNullOrEmpty(textBoxLogin.Text) ||
+                string.IsNullOrEmpty(textBoxPassword.Text))
             {
-                // Простейшая реализация хэширования (в реальном проекте используйте более надежные методы)
-                using (var sha256 = System.Security.Cryptography.SHA256.Create())
-                {
-                    var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                    return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-                }
+                MessageBox.Show("Пожалуйста, заполните все обязательные поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
-            private void SaveUserPhoto(int userId)
+            // Проверка уникальности логина
+            if (Helper.DB.User.Any(u => u.UserLogin == textBoxLogin.Text))
             {
-                try
-                {
-                    if (!Directory.Exists(pathPhotoUsers))
-                    {
-                        Directory.CreateDirectory(pathPhotoUsers);
-                    }
-
-                    string photoPath = Path.Combine(pathPhotoUsers, $"{userId}.png");
-                    uploadedPhoto.Save(photoPath);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при сохранении фотографии: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show("Пользователь с таким логином уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+
+            return true;
+        }
+
+        private string HashPassword(string password)
+        {
+            // Простейшая реализация хэширования (в реальном проекте используйте более надежные методы)
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
+
+        private void SaveUserPhoto(int userId)
+        {
+            try
+            {
+                if (!Directory.Exists(pathPhotoUsers))
+                {
+                    Directory.CreateDirectory(pathPhotoUsers);
+                }
+                
+                string photoPath = Path.Combine(pathPhotoUsers, $"{userId}.jpg");
+                uploadedPhoto.Save(photoPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении фотографии: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         private void buttonCancellation_Click(object sender, EventArgs e)
         {
@@ -221,6 +226,14 @@ namespace KINDERGARDENIS.UIForms
                    !string.IsNullOrEmpty(textBoxLogin.Text) ||
                    !string.IsNullOrEmpty(textBoxPassword.Text) ||
                  uploadedPhoto != null;
+        }
+
+        private void labelParentIs_Click(object sender, EventArgs e)
+        {
+            AddChild addChild = new AddChild();
+            this.Close();
+            addChild.ShowDialog();
+            this.Show();
         }
     }
 }

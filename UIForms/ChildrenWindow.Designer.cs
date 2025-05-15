@@ -247,7 +247,7 @@
             // 
             // buttonInfoChild
             // 
-            this.buttonInfoChild.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
+            this.buttonInfoChild.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonAdding;
             this.buttonInfoChild.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonInfoChild.FlatAppearance.BorderSize = 0;
             this.buttonInfoChild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -260,7 +260,7 @@
             this.buttonInfoChild.Name = "buttonInfoChild";
             this.buttonInfoChild.Size = new System.Drawing.Size(250, 40);
             this.buttonInfoChild.TabIndex = 2;
-            this.buttonInfoChild.Text = "Подробнее о сотруднике";
+            this.buttonInfoChild.Text = "Подробнее о ребенке";
             this.buttonInfoChild.UseVisualStyleBackColor = true;
             // 
             // buttonAddChild

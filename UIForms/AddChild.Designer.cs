@@ -576,6 +576,7 @@
             this.buttonUploadPhoto.TabIndex = 1;
             this.buttonUploadPhoto.Text = "Загрузить фото";
             this.buttonUploadPhoto.UseVisualStyleBackColor = true;
+            this.buttonUploadPhoto.Click += new System.EventHandler(this.buttonUploadPhoto_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -647,6 +648,7 @@
             this.buttonCancellation.TabIndex = 1;
             this.buttonCancellation.Text = "Отмена";
             this.buttonCancellation.UseVisualStyleBackColor = true;
+            this.buttonCancellation.Click += new System.EventHandler(this.buttonCancellation_Click);
             // 
             // buttonSave
             // 
@@ -664,6 +666,7 @@
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // comboBoxGroups
             // 

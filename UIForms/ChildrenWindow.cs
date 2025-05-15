@@ -21,7 +21,7 @@ namespace KINDERGARDENIS.UIForms
         private void ChildrenWindow_Load(object sender, EventArgs e)
         {
             UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, pictureBox12, labelUsername, labelUserEmaile);
-            MenuService.LoadMainMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
+            MenuService.LoadChidrenlMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
             pictureBox6, pictureBox7, pictureBox8, pictureBox9,
             label1, label2, label3, label4, label5,
             label6, label7, label8, label9);

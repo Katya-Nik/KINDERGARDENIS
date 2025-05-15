@@ -38,66 +38,69 @@ namespace KINDERGARDENIS.UIForms
 
         private void MainWin()
         {
-            List<DBModel.Children> children = Helper.DB.Children.ToList();
-            List<DBModel.Groups> groups = Helper.DB.Groups.ToList();
-            List<DBModel.Employees> employees = Helper.DB.Employees.ToList();
-
-            // Количество детей/груп/сотрудников
-            labelKD.Text = children.Count.ToString();
-            labelKG.Text = groups.Count.ToString();
-            labelKS.Text = employees.Count.ToString();
-
-            // Колличество детей по группам
-            // Очищаем предыдущие данные
-            chartKDVG.Series.Clear();
-            chartKDVG.Titles.Clear();
-
-            // Настройка внешнего вида chart
-            chartKDVG.BackColor = Color.FromArgb(238, 245, 245);
-            chartKDVG.ChartAreas[0].BackColor = Color.FromArgb(238, 245, 245);
-
-            // Настройка области диаграммы
-            var chartArea = chartKDVG.ChartAreas[0];
-            chartArea.AxisX.Title = "Группы";
-            chartArea.AxisY.Title = "Количество детей";
-            chartArea.AxisX.MajorGrid.LineColor = Color.Black;
-            chartArea.AxisY.MajorGrid.LineColor = Color.Black;
-
-            // Группируем детей по группам и считаем количество
-            var childrenCountByGroup = children
-                .GroupBy(c => c.ChildrenGroupsID)
-                .Select(g => new
-                {
-                    GroupId = g.Key,
-                    Count = g.Count()
-                })
-                .ToList();
-
-            // Создаем серию данных
-            var series = new Series
+            using (var context = new DBModel.KindergartenInformationSystemEntities())
             {
-                Name = "Количество детей",
-                ChartType = SeriesChartType.Column,
-                Color = Color.FromArgb(100, 145, 145),
-                IsValueShownAsLabel = false // Отключаем подписи значений над столбцами
-            };
+                List<DBModel.Children> children = context.Children.ToList();
+                List<DBModel.Groups> groups = context.Groups.ToList();
+                List<DBModel.Employees> employees = context.Employees.ToList();
 
-            // Заполняем данными только активные группы (где есть дети)
-            foreach (var group in groups.OrderBy(g => g.GroupsID))
-            {
-                var countInfo = childrenCountByGroup.FirstOrDefault(c => c.GroupId == group.GroupsID);
-                if (countInfo != null)
+                // Количество детей/груп/сотрудников
+                labelKD.Text = children.Count.ToString();
+                labelKG.Text = groups.Count.ToString();
+                labelKS.Text = employees.Count.ToString();
+
+                // Колличество детей по группам
+                // Очищаем предыдущие данные
+                chartKDVG.Series.Clear();
+                chartKDVG.Titles.Clear();
+
+                // Настройка внешнего вида chart
+                chartKDVG.BackColor = Color.FromArgb(238, 245, 245);
+                chartKDVG.ChartAreas[0].BackColor = Color.FromArgb(238, 245, 245);
+
+                // Настройка области диаграммы
+                var chartArea = chartKDVG.ChartAreas[0];
+                chartArea.AxisX.Title = "Группы";
+                chartArea.AxisY.Title = "Количество детей";
+                chartArea.AxisX.MajorGrid.LineColor = Color.Black;
+                chartArea.AxisY.MajorGrid.LineColor = Color.Black;
+
+                // Группируем детей по группам и считаем количество
+                var childrenCountByGroup = children
+                    .GroupBy(c => c.ChildrenGroupsID)
+                    .Select(g => new
+                    {
+                        GroupId = g.Key,
+                        Count = g.Count()
+                    })
+                    .ToList();
+
+                // Создаем серию данных
+                var series = new Series
                 {
-                    series.Points.AddXY(group.GroupsGroupName, countInfo.Count);
+                    Name = "Количество детей",
+                    ChartType = SeriesChartType.Column,
+                    Color = Color.FromArgb(100, 145, 145),
+                    IsValueShownAsLabel = false // Отключаем подписи значений над столбцами
+                };
+
+                // Заполняем данными только активные группы (где есть дети)
+                foreach (var group in groups.OrderBy(g => g.GroupsID))
+                {
+                    var countInfo = childrenCountByGroup.FirstOrDefault(c => c.GroupId == group.GroupsID);
+                    if (countInfo != null)
+                    {
+                        series.Points.AddXY(group.GroupsGroupName, countInfo.Count);
+                    }
                 }
+
+                // Добавляем серию на chart
+                chartKDVG.Series.Add(series);
+
+                // Настраиваем оси
+                chartArea.AxisX.Interval = 1;
+                chartArea.AxisY.Interval = 5;
             }
-
-            // Добавляем серию на chart
-            chartKDVG.Series.Add(series);
-
-            // Настраиваем оси
-            chartArea.AxisX.Interval = 1;
-            chartArea.AxisY.Interval = 5;
         }
 
         private void label1_Click(object sender, EventArgs e)

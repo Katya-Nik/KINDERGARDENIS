@@ -22,33 +22,37 @@ namespace KINDERGARDENIS.UIForms
 
         private void LoadGroupsData()
         {
-            var query = from groupItem in Helper.DB.Groups
-                        join educator in Helper.DB.Educators on groupItem.GroupsID equals educator.EducatorsGroupsID into educators
-                        from educator in educators.DefaultIfEmpty()
-                        join employee in Helper.DB.Employees on educator.EducatorsEmployeesID equals employee.EmployeesID into employees
-                        from employee in employees.DefaultIfEmpty()
-                        join modeType in Helper.DB.ModeType on groupItem.GroupsID equals modeType.ModTypeGroupID into modeTypes
-                        from modeType in modeTypes.DefaultIfEmpty()
-                        let childrenCount = Helper.DB.Children.Count(c => c.ChildrenGroupsID == groupItem.GroupsID)
-                        select new
-                        {
-                            Название = groupItem.GroupsGroupName,
-                            Номер = groupItem.GroupsGroupNumber,
-                            Тип = groupItem.GroupsGroupType,
-                            Режим = modeType != null ? modeType.ModeTypeIDName : null,
-                            Количество = childrenCount,
-                            Воспитатель = employee != null ? employee.EmployeesSurname : null,
-                            МладшийВоспитатель = (string)null // Добавьте логику для младшего воспитателя при необходимости
-                        };
-
-            if (!string.IsNullOrEmpty(textBoxSearchGroupName.Text))
+            // Создаем новый контекст для этой операции
+            using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
             {
-                query = query.Where(g => g.Название.Contains(textBoxSearchGroupName.Text));
+                var query = from groupItem in db.Groups
+                            join educator in db.Educators on groupItem.GroupsID equals educator.EducatorsGroupsID into educators
+                            from educator in educators.DefaultIfEmpty()
+                            join employee in db.Employees on educator.EducatorsEmployeesID equals employee.EmployeesID into employees
+                            from employee in employees.DefaultIfEmpty()
+                            join modeType in db.ModeType on groupItem.GroupsID equals modeType.ModTypeGroupID into modeTypes
+                            from modeType in modeTypes.DefaultIfEmpty()
+                            let childrenCount = db.Children.Count(c => c.ChildrenGroupsID == groupItem.GroupsID)
+                            select new
+                            {
+                                Название = groupItem.GroupsGroupName,
+                                Номер = groupItem.GroupsGroupNumber,
+                                Тип = groupItem.GroupsGroupType,
+                                Режим = modeType != null ? modeType.ModeTypeIDName : null,
+                                Количество = childrenCount,
+                                Воспитатель = employee != null ? employee.EmployeesSurname : null,
+                                МладшийВоспитатель = (string)null
+                            };
+
+                if (!string.IsNullOrEmpty(textBoxSearchGroupName.Text))
+                {
+                    query = query.Where(g => g.Название.Contains(textBoxSearchGroupName.Text));
+                }
+
+                query = query.OrderBy(g => g.Название);
+
+                dataGridViewGroups.DataSource = query.ToList();
             }
-
-            query = query.OrderBy(g => g.Название);
-
-            dataGridViewGroups.DataSource = query.ToList();
         }
 
         private void ConfigureDataGridView()

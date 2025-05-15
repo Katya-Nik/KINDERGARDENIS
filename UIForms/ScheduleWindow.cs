@@ -30,17 +30,20 @@ namespace KINDERGARDENIS.UIForms
 
         private void LoadGroups()
         {
-            var groups = Helper.DB.Groups.ToList();
-
-            comboBoxGroupName.Items.Clear();
-            comboBoxGroupName.Items.Add("Выберите группу");
-
-            foreach (var group in groups)
+            using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
             {
-                comboBoxGroupName.Items.Add(group.GroupsGroupName);
-            }
+                var groups = db.Groups.ToList();
 
-            comboBoxGroupName.SelectedIndex = 0;
+                comboBoxGroupName.Items.Clear();
+                comboBoxGroupName.Items.Add("Выберите группу");
+
+                foreach (var group in groups)
+                {
+                    comboBoxGroupName.Items.Add(group.GroupsGroupName);
+                }
+
+                comboBoxGroupName.SelectedIndex = 0;
+            }
         }
 
         private void LoadDaysOfWeek()
