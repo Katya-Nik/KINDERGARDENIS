@@ -264,6 +264,7 @@
             this.buttonInfoChild.TabIndex = 2;
             this.buttonInfoChild.Text = "Подробнее о ребенке";
             this.buttonInfoChild.UseVisualStyleBackColor = true;
+            this.buttonInfoChild.Click += new System.EventHandler(this.buttonInfoChild_Click);
             // 
             // buttonAddChild
             // 

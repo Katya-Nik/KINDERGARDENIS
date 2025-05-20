@@ -229,5 +229,17 @@ namespace KINDERGARDENIS.UIForms
             infoUser.ShowDialog();
             this.Show();
         }
+
+        private void buttonInfoChild_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewChild.SelectedRows.Count > 0)
+            {
+                string tchild = dataGridViewChild.CurrentRow.Cells[0].Value.ToString();
+                int idChild = Convert.ToInt32(tchild);
+                UIForms.MoreInfoChild moreInfoChild = new UIForms.MoreInfoChild();
+                moreInfoChild.ShowDialog();
+                this.Show();
+            }
+        }
     }
 }

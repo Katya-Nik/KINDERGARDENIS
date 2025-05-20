@@ -205,11 +205,23 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="UIForms\MenuService.cs" />
+    <Compile Include="UIForms\MoreInfoChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\MoreInfoChild.Designer.cs">
+      <DependentUpon>MoreInfoChild.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\MoreInfoEmp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UIForms\MoreInfoEmp.Designer.cs">
       <DependentUpon>MoreInfoEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\MoreInfoParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\MoreInfoParent.Designer.cs">
+      <DependentUpon>MoreInfoParent.cs</DependentUpon>
     </Compile>
     <Compile Include="UIForms\ParentsWindow.cs">
       <SubType>Form</SubType>
@@ -262,8 +274,14 @@
     <EmbeddedResource Include="UIForms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\MoreInfoChild.resx">
+      <DependentUpon>MoreInfoChild.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\MoreInfoEmp.resx">
       <DependentUpon>MoreInfoEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\MoreInfoParent.resx">
+      <DependentUpon>MoreInfoParent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\ParentsWindow.resx">
       <DependentUpon>ParentsWindow.cs</DependentUpon>
