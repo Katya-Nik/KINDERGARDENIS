@@ -923,7 +923,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChildrenWindow";
-            this.Text = "ChildrenWindow";
+            this.Text = "Дети";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChildrenWindow_FormClosing);
             this.Load += new System.EventHandler(this.ChildrenWindow_Load);

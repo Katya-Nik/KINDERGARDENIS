@@ -104,7 +104,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(1305, 42);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Добавление сотрудников";
+            this.labelName.Text = "Добавление родителя";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -617,8 +617,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(145)))), ((int)(((byte)(145)))));
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddParent";
-            this.Text = "AddParent";
+            this.Text = "Добавление родителя";
             this.Load += new System.EventHandler(this.AddParent_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

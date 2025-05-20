@@ -226,7 +226,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1070, 601);
             this.tableLayoutPanel4.TabIndex = 4;
@@ -248,7 +248,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel19.Controls.Add(this.label14, 0, 2);
             this.tableLayoutPanel19.Controls.Add(this.label15, 0, 4);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(23, 23);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(23, 28);
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 13;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
@@ -264,7 +264,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(309, 575);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(309, 570);
             this.tableLayoutPanel19.TabIndex = 0;
             // 
             // labelModeType
@@ -471,7 +471,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel20.Controls.Add(this.labeL_02, 3, 2);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(338, 23);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(338, 28);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 18;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -492,7 +492,7 @@ namespace KINDERGARDENIS.UIForms
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.714285F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.714285F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.714285F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(729, 575);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(729, 570);
             this.tableLayoutPanel20.TabIndex = 1;
             // 
             // label16
@@ -563,9 +563,9 @@ namespace KINDERGARDENIS.UIForms
             this.label21.Location = new System.Drawing.Point(208, 532);
             this.label21.Margin = new System.Windows.Forms.Padding(0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(104, 43);
+            this.label21.Size = new System.Drawing.Size(104, 38);
             this.label21.TabIndex = 4;
-            this.label21.Text = "недели";
+            this.label21.Text = "недели:";
             // 
             // label23
             // 
@@ -575,9 +575,9 @@ namespace KINDERGARDENIS.UIForms
             this.label23.Location = new System.Drawing.Point(104, 532);
             this.label23.Margin = new System.Windows.Forms.Padding(0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(104, 43);
+            this.label23.Size = new System.Drawing.Size(104, 38);
             this.label23.TabIndex = 5;
-            this.label23.Text = "День ";
+            this.label23.Text = "День";
             this.label23.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labeL_00

@@ -240,7 +240,7 @@
             this.buttonInfoChild.Name = "buttonInfoChild";
             this.buttonInfoChild.Size = new System.Drawing.Size(250, 40);
             this.buttonInfoChild.TabIndex = 0;
-            this.buttonInfoChild.Text = "Подробнее о сотруднике";
+            this.buttonInfoChild.Text = "Подробнее о родителе";
             this.buttonInfoChild.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel19
@@ -847,7 +847,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParentsWindow";
-            this.Text = "ParentsWindow";
+            this.Text = "Родители";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParentsWindow_FormClosing);
             this.Load += new System.EventHandler(this.ParentsWindow_Load);

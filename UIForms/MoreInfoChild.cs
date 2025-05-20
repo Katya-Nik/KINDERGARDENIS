@@ -77,7 +77,7 @@ namespace KINDERGARDENIS.UIForms
 
         private void LoadChildPhoto(int childId)
         {
-            string photoPath = Path.Combine(pathPhotoChildren, $"{childId}.jpg");
+            string photoPath = Path.Combine(pathPhotoChildren + "{childId}.jpg");
             if (File.Exists(photoPath))
             {
                 pictureBoxChild.Image = Image.FromFile(photoPath);
@@ -90,7 +90,7 @@ namespace KINDERGARDENIS.UIForms
 
         private Image LoadDefaultPhoto()
         {
-            string defaultPhotoPath = Path.Combine(pathPhotoChildren, "images.png");
+            string defaultPhotoPath = Path.Combine(pathPhotoChildren + "images.png");
             if (File.Exists(defaultPhotoPath))
             {
                 return Image.FromFile(defaultPhotoPath);
@@ -238,6 +238,11 @@ namespace KINDERGARDENIS.UIForms
                     }
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

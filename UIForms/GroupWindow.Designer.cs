@@ -41,6 +41,9 @@
             this.buttonAddGroup = new System.Windows.Forms.Button();
             this.buttonInfoGroup = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelExcel = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxSearchGroupName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -88,6 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).BeginInit();
             this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
@@ -280,8 +285,10 @@
             // 
             // tableLayoutPanel19
             // 
-            this.tableLayoutPanel19.ColumnCount = 1;
+            this.tableLayoutPanel19.ColumnCount = 2;
             this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
+            this.tableLayoutPanel19.Controls.Add(this.tableLayoutPanel21, 1, 0);
             this.tableLayoutPanel19.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel19.Controls.Add(this.textBoxSearchGroupName, 0, 1);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -294,6 +301,52 @@
             this.tableLayoutPanel19.Size = new System.Drawing.Size(1044, 81);
             this.tableLayoutPanel19.TabIndex = 1;
             // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 2;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel21.Controls.Add(this.labelExcel, 1, 0);
+            this.tableLayoutPanel21.Controls.Add(this.pictureBox10, 0, 0);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(839, 0);
+            this.tableLayoutPanel21.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel21.MaximumSize = new System.Drawing.Size(200, 44);
+            this.tableLayoutPanel21.MinimumSize = new System.Drawing.Size(200, 44);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 1;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(200, 44);
+            this.tableLayoutPanel21.TabIndex = 3;
+            // 
+            // labelExcel
+            // 
+            this.labelExcel.AutoSize = true;
+            this.labelExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelExcel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.labelExcel.Location = new System.Drawing.Point(53, 3);
+            this.labelExcel.Margin = new System.Windows.Forms.Padding(3);
+            this.labelExcel.Name = "labelExcel";
+            this.labelExcel.Size = new System.Drawing.Size(144, 38);
+            this.labelExcel.TabIndex = 3;
+            this.labelExcel.Text = "Выгрузить ";
+            this.labelExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelExcel.Click += new System.EventHandler(this.labelExcel_Click);
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::KINDERGARDENIS.Properties.Resources.Excel;
+            this.pictureBox10.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(50, 44);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 0;
+            this.pictureBox10.TabStop = false;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -303,7 +356,7 @@
             this.label10.Location = new System.Drawing.Point(10, 2);
             this.label10.Margin = new System.Windows.Forms.Padding(10, 2, 2, 2);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(1032, 40);
+            this.label10.Size = new System.Drawing.Size(827, 40);
             this.label10.TabIndex = 0;
             this.label10.Text = "Поиск по названию группы:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -897,6 +950,9 @@
             this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel19.ResumeLayout(false);
             this.tableLayoutPanel19.PerformLayout();
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -990,5 +1046,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
         private System.Windows.Forms.Button buttonInfoGroup;
         private System.Windows.Forms.Button buttonAddGroup;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private System.Windows.Forms.Label labelExcel;
+        private System.Windows.Forms.PictureBox pictureBox10;
     }
 }

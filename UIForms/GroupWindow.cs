@@ -1,17 +1,27 @@
-﻿using System;
+﻿using KINDERGARDENIS.DBModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace KINDERGARDENIS.UIForms
 {
     public partial class GroupWindow : Form
     {
+        //Глобальные объекты Excel
+        Excel.Application excelApp;     //Сервер Excel
+        Excel.Workbook excelBook;       //Книга (документ)
+        Excel.Worksheet excelSheet;     //Один лист (закладка)
+        Excel.Range excelCells;			//Ячейки
+
+
         public GroupWindow()
         {
             InitializeComponent();
@@ -171,6 +181,149 @@ namespace KINDERGARDENIS.UIForms
             InfoUser infoUser = new InfoUser();
             infoUser.ShowDialog();
             this.Show();
+        }
+
+        private void labelExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Инициализация Excel
+                excelApp = new Excel.Application();
+                excelApp.Visible = false;
+
+                // Путь к шаблону
+                string pathTemplates = Environment.CurrentDirectory + @"\Templates\ExcelGroupTemplate.xlsx";
+
+                if (!File.Exists(pathTemplates))
+                {
+                    MessageBox.Show("Шаблон ExcelGroupTemplate.xlsx не найден!");
+                    return;
+                }
+
+                // Открытие шаблона
+                excelBook = excelApp.Workbooks.Open(pathTemplates);
+                excelSheet = (Excel.Worksheet)excelBook.Worksheets[1];
+
+                // Заполнение данных на первом листе (A5:F5)
+                excelSheet.Cells[5, 1] = "Название";
+                excelSheet.Cells[5, 2] = "Воспитатель";
+                excelSheet.Cells[5, 3] = "Младший воспитатель";
+                excelSheet.Cells[5, 4] = "Количество детей";
+                excelSheet.Cells[5, 5] = "Количество мальчиков";
+                excelSheet.Cells[5, 6] = "Количество девочек";
+
+                // Установка границ
+                Excel.Range range = excelSheet.Range["A5:F5"];
+                range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                // Получение данных из базы
+                using (var db = new KindergartenInformationSystemEntities())
+                {
+                    // Исправленный запрос с явной загрузкой связанных данных
+                    var groups = db.Groups
+                                .Include("Children") // Используем строку для указания навигационного свойства
+                                .ToList();
+
+                    foreach (var group in groups)
+                    {
+                        // Создаем новый лист
+                        Excel.Worksheet groupSheet = (Excel.Worksheet)excelBook.Worksheets.Add();
+                        groupSheet.Name = group.GroupsGroupName;
+
+                        // Заголовок листа
+                        Excel.Range headerRange = groupSheet.Range["A1:G1"];
+                        headerRange.Merge();
+                        headerRange.Value = group.GroupsGroupName;
+                        headerRange.Font.Name = "Verdana";
+                        headerRange.Font.Size = 13;
+                        headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                        // Заголовки таблицы
+                        groupSheet.Cells[2, 1] = "ФИО ребенка";
+                        groupSheet.Cells[2, 2] = "Дата рождения";
+                        groupSheet.Cells[2, 3] = "Пол";
+                        groupSheet.Cells[2, 4] = "СНИЛС";
+                        groupSheet.Cells[2, 5] = "ФИО родителя";
+                        groupSheet.Cells[2, 6] = "Телефон родителя";
+                        groupSheet.Cells[2, 7] = "Email родителя";
+
+                        // Форматирование заголовков
+                        Excel.Range headersRange = groupSheet.Range["A2:G2"];
+                        headersRange.Font.Name = "Verdana";
+                        headersRange.Font.Size = 11;
+                        headersRange.Font.Bold = true;
+                        headersRange.RowHeight = 28.5;
+
+                        // Получаем детей для текущей группы
+                        var children = db.Children
+                                      .Include("Parents") // Явно загружаем данные родителей
+                                      .Where(c => c.ChildrenGroupsID == group.GroupsID)
+                                      .ToList();
+
+                        // Заполнение данными детей
+                        int row = 3;
+                        foreach (var child in children)
+                        {
+                            groupSheet.Cells[row, 1] = $"{child.ChildrenSurname} {child.ChildrenName} {child.ChildrenPatronymic}";
+                            groupSheet.Cells[row, 2] = child.ChildrenDateofBirth?.ToShortDateString();
+                            groupSheet.Cells[row, 3] = child.ChildrenGender;
+                            groupSheet.Cells[row, 4] = child.ChildrenSNILS;
+                            groupSheet.Cells[row, 5] = $"{child.Parents.ParentsSurname} {child.Parents.ParentsName} {child.Parents.ParentsPatronymic}";
+                            groupSheet.Cells[row, 6] = child.Parents.ParentsPhoneNumber;
+                            groupSheet.Cells[row, 7] = child.Parents.ParentsEmail;
+
+                            // Форматирование данных
+                            Excel.Range dataRange = groupSheet.Range[$"A{row}:G{row}"];
+                            dataRange.Font.Name = "Verdana";
+                            dataRange.Font.Size = 10;
+                            dataRange.RowHeight = 15.5;
+
+                            row++;
+                        }
+
+                        // Установка границ
+                        Excel.Range allDataRange = groupSheet.Range[$"A2:G{row - 1}"];
+                        allDataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                        // Автоподбор ширины столбцов
+                        groupSheet.Columns.AutoFit();
+                    }
+                }
+
+                // Сохранение
+                string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\";
+                string fileName = $"GroupsReport_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+                string fullPath = Path.Combine(downloadsPath, fileName);
+
+                excelBook.SaveAs(fullPath);
+                excelBook.Close();
+                excelApp.Quit();
+
+
+                MessageBox.Show($"Отчет успешно сохранен: {fullPath}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при создании отчета: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                if (excelBook != null)
+                {
+                    excelBook.Close(false);
+                }
+                if (excelApp != null)
+                {
+                    excelApp.Quit();
+                }
+            }
+            finally
+            {
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelSheet);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelBook);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
         }
     }
 }

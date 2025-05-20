@@ -38,6 +38,7 @@ namespace KINDERGARDENIS.UIForms
             textBoxLogin.Text = Helper.users.UserLogin;
             textBoxLogin.ReadOnly = true;
             textBoxPassword.UseSystemPasswordChar = true;
+            textBoxPassword.Text = Helper.users.UserPassword;
 
             // Загрузка иконки глаза
             UpdateEyeIcon();

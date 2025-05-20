@@ -168,11 +168,11 @@
             this.textBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPassword.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPassword.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPassword.Location = new System.Drawing.Point(153, 371);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(20, 3, 50, 3);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(330, 27);
+            this.textBoxPassword.Size = new System.Drawing.Size(330, 31);
             this.textBoxPassword.TabIndex = 4;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
@@ -223,7 +223,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "Authorization";
-            this.Text = "Authorization";
+            this.Text = "Авторизация";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.InscriptionName.ResumeLayout(false);
             this.InscriptionName.PerformLayout();

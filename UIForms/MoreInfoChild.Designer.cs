@@ -61,13 +61,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBoxChild = new System.Windows.Forms.PictureBox();
-            this.buttonUploadPhoto = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCancellation = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.comboBoxGroups = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -108,7 +108,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(1305, 42);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Добавление ребенка";
+            this.labelName.Text = "Подробные данные ребенка";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -541,13 +541,11 @@
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Controls.Add(this.pictureBoxChild, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.buttonUploadPhoto, 0, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(15, 39);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.55963F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.44037F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(322, 207);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
@@ -557,29 +555,11 @@
             this.pictureBoxChild.Location = new System.Drawing.Point(10, 10);
             this.pictureBoxChild.Margin = new System.Windows.Forms.Padding(10);
             this.pictureBoxChild.Name = "pictureBoxChild";
-            this.pictureBoxChild.Size = new System.Drawing.Size(302, 128);
+            this.pictureBoxChild.Size = new System.Drawing.Size(302, 187);
             this.pictureBoxChild.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxChild.TabIndex = 0;
             this.pictureBoxChild.TabStop = false;
             this.pictureBoxChild.Click += new System.EventHandler(this.buttonLoadPhoto_Click);
-            // 
-            // buttonUploadPhoto
-            // 
-            this.buttonUploadPhoto.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.UploadPhoto;
-            this.buttonUploadPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonUploadPhoto.FlatAppearance.BorderSize = 0;
-            this.buttonUploadPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUploadPhoto.ForeColor = System.Drawing.Color.White;
-            this.buttonUploadPhoto.Location = new System.Drawing.Point(20, 153);
-            this.buttonUploadPhoto.Margin = new System.Windows.Forms.Padding(20, 5, 20, 20);
-            this.buttonUploadPhoto.MaximumSize = new System.Drawing.Size(282, 51);
-            this.buttonUploadPhoto.MinimumSize = new System.Drawing.Size(282, 51);
-            this.buttonUploadPhoto.Name = "buttonUploadPhoto";
-            this.buttonUploadPhoto.Size = new System.Drawing.Size(282, 51);
-            this.buttonUploadPhoto.TabIndex = 1;
-            this.buttonUploadPhoto.Text = "Загрузить фото";
-            this.buttonUploadPhoto.UseVisualStyleBackColor = true;
-            this.buttonUploadPhoto.Click += new System.EventHandler(this.buttonLoadPhoto_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -622,16 +602,17 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.buttonCancellation, 1, 1);
-            this.tableLayoutPanel8.Controls.Add(this.buttonSave, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.buttonCancellation, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.buttonSave, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 152);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.53846F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.46154F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(362, 78);
             this.tableLayoutPanel8.TabIndex = 13;
             // 
@@ -642,7 +623,7 @@
             this.buttonCancellation.FlatAppearance.BorderSize = 0;
             this.buttonCancellation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancellation.ForeColor = System.Drawing.Color.White;
-            this.buttonCancellation.Location = new System.Drawing.Point(211, 44);
+            this.buttonCancellation.Location = new System.Drawing.Point(211, 5);
             this.buttonCancellation.Margin = new System.Windows.Forms.Padding(30, 5, 5, 5);
             this.buttonCancellation.MaximumSize = new System.Drawing.Size(123, 30);
             this.buttonCancellation.MinimumSize = new System.Drawing.Size(123, 30);
@@ -660,7 +641,7 @@
             this.buttonSave.FlatAppearance.BorderSize = 0;
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(28, 44);
+            this.buttonSave.Location = new System.Drawing.Point(28, 5);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(5, 5, 30, 5);
             this.buttonSave.MaximumSize = new System.Drawing.Size(123, 30);
             this.buttonSave.MinimumSize = new System.Drawing.Size(123, 30);
@@ -682,6 +663,21 @@
             this.comboBoxGroups.Name = "comboBoxGroups";
             this.comboBoxGroups.Size = new System.Drawing.Size(350, 26);
             this.comboBoxGroups.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(83)))), ((int)(((byte)(101)))));
+            this.label1.Location = new System.Drawing.Point(211, 48);
+            this.label1.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 30);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Создать заявление";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // MoreInfoChild
             // 
@@ -706,6 +702,7 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -744,12 +741,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.PictureBox pictureBoxChild;
-        private System.Windows.Forms.Button buttonUploadPhoto;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button buttonCancellation;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.ComboBox comboBoxGroups;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -36,19 +36,19 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBoxPhotoUsers = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelRole = new System.Windows.Forms.Label();
-            this.labelFIO = new System.Windows.Forms.Label();
-            this.labelUserEmaile = new System.Windows.Forms.Label();
             this.labelPhoneNumber = new System.Windows.Forms.Label();
+            this.labelUserEmaile = new System.Windows.Forms.Label();
+            this.labelFIO = new System.Windows.Forms.Label();
+            this.labelRole = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.pictureBoxeye = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -89,7 +89,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(771, 42);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Добавление сотрудников";
+            this.labelName.Text = "Ваши данные";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -148,9 +148,10 @@
             // pictureBoxPhotoUsers
             // 
             this.pictureBoxPhotoUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxPhotoUsers.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxPhotoUsers.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxPhotoUsers.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxPhotoUsers.Name = "pictureBoxPhotoUsers";
-            this.pictureBoxPhotoUsers.Size = new System.Drawing.Size(232, 190);
+            this.pictureBoxPhotoUsers.Size = new System.Drawing.Size(238, 196);
             this.pictureBoxPhotoUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPhotoUsers.TabIndex = 0;
             this.pictureBoxPhotoUsers.TabStop = false;
@@ -166,18 +167,80 @@
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tableLayoutPanel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(263, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(263, 20);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(25, 20, 0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 6;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(512, 196);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(512, 176);
             this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // labelPhoneNumber
+            // 
+            this.labelPhoneNumber.AutoSize = true;
+            this.labelPhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelPhoneNumber.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPhoneNumber.Location = new System.Drawing.Point(0, 108);
+            this.labelPhoneNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPhoneNumber.Name = "labelPhoneNumber";
+            this.labelPhoneNumber.Size = new System.Drawing.Size(512, 27);
+            this.labelPhoneNumber.TabIndex = 3;
+            this.labelPhoneNumber.Text = "Номер телефона";
+            this.labelPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelUserEmaile
+            // 
+            this.labelUserEmaile.AutoSize = true;
+            this.labelUserEmaile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelUserEmaile.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUserEmaile.Location = new System.Drawing.Point(0, 81);
+            this.labelUserEmaile.Margin = new System.Windows.Forms.Padding(0);
+            this.labelUserEmaile.Name = "labelUserEmaile";
+            this.labelUserEmaile.Size = new System.Drawing.Size(512, 27);
+            this.labelUserEmaile.TabIndex = 2;
+            this.labelUserEmaile.Text = "Почта";
+            this.labelUserEmaile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelFIO
+            // 
+            this.labelFIO.AutoSize = true;
+            this.labelFIO.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelFIO.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFIO.Location = new System.Drawing.Point(0, 27);
+            this.labelFIO.Margin = new System.Windows.Forms.Padding(0);
+            this.labelFIO.Name = "labelFIO";
+            this.labelFIO.Size = new System.Drawing.Size(512, 54);
+            this.labelFIO.TabIndex = 1;
+            this.labelFIO.Text = "Фамилия Имя";
+            this.labelFIO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelRole
+            // 
+            this.labelRole.AutoSize = true;
+            this.labelRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelRole.Location = new System.Drawing.Point(0, 0);
+            this.labelRole.Margin = new System.Windows.Forms.Padding(0);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(512, 27);
+            this.labelRole.TabIndex = 0;
+            this.labelRole.Text = "Должность";
+            this.labelRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(3, 196);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 20);
+            this.label5.TabIndex = 2;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel6
             // 
@@ -192,74 +255,12 @@
             this.tableLayoutPanel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.tableLayoutPanel6.Location = new System.Drawing.Point(23, 239);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.25317F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.74684F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(769, 158);
             this.tableLayoutPanel6.TabIndex = 1;
-            // 
-            // labelRole
-            // 
-            this.labelRole.AutoSize = true;
-            this.labelRole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelRole.Location = new System.Drawing.Point(0, 0);
-            this.labelRole.Margin = new System.Windows.Forms.Padding(0);
-            this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(512, 39);
-            this.labelRole.TabIndex = 0;
-            this.labelRole.Text = "label1";
-            this.labelRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelFIO
-            // 
-            this.labelFIO.AutoSize = true;
-            this.labelFIO.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFIO.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelFIO.Location = new System.Drawing.Point(0, 39);
-            this.labelFIO.Margin = new System.Windows.Forms.Padding(0);
-            this.labelFIO.Name = "labelFIO";
-            this.labelFIO.Size = new System.Drawing.Size(512, 39);
-            this.labelFIO.TabIndex = 1;
-            this.labelFIO.Text = "label2";
-            this.labelFIO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelUserEmaile
-            // 
-            this.labelUserEmaile.AutoSize = true;
-            this.labelUserEmaile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelUserEmaile.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelUserEmaile.Location = new System.Drawing.Point(0, 78);
-            this.labelUserEmaile.Margin = new System.Windows.Forms.Padding(0);
-            this.labelUserEmaile.Name = "labelUserEmaile";
-            this.labelUserEmaile.Size = new System.Drawing.Size(512, 39);
-            this.labelUserEmaile.TabIndex = 2;
-            this.labelUserEmaile.Text = "label3";
-            this.labelUserEmaile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelPhoneNumber
-            // 
-            this.labelPhoneNumber.AutoSize = true;
-            this.labelPhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPhoneNumber.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPhoneNumber.Location = new System.Drawing.Point(0, 117);
-            this.labelPhoneNumber.Margin = new System.Windows.Forms.Padding(0);
-            this.labelPhoneNumber.Name = "labelPhoneNumber";
-            this.labelPhoneNumber.Size = new System.Drawing.Size(512, 39);
-            this.labelPhoneNumber.TabIndex = 3;
-            this.labelPhoneNumber.Text = "label4";
-            this.labelPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(3, 196);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 20);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Обновить фото";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel7
             // 
@@ -269,12 +270,12 @@
             this.tableLayoutPanel7.Controls.Add(this.textBoxPassword, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.pictureBoxeye, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 111);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 96);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(514, 47);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(514, 41);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // textBoxPassword
@@ -290,8 +291,8 @@
             // 
             // pictureBoxeye
             // 
-            this.pictureBoxeye.Location = new System.Drawing.Point(304, 0);
-            this.pictureBoxeye.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.pictureBoxeye.Location = new System.Drawing.Point(304, 2);
+            this.pictureBoxeye.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
             this.pictureBoxeye.MaximumSize = new System.Drawing.Size(59, 31);
             this.pictureBoxeye.MinimumSize = new System.Drawing.Size(59, 31);
             this.pictureBoxeye.Name = "pictureBoxeye";
@@ -314,24 +315,25 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(508, 105);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(508, 90);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(502, 34);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Логин";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(502, 28);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Пароль";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // textBoxLogin
             // 
             this.textBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
-            this.textBoxLogin.Location = new System.Drawing.Point(3, 34);
+            this.textBoxLogin.Location = new System.Drawing.Point(3, 30);
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.textBoxLogin.MaximumSize = new System.Drawing.Size(296, 31);
             this.textBoxLogin.MinimumSize = new System.Drawing.Size(296, 31);
@@ -340,28 +342,31 @@
             this.textBoxLogin.TabIndex = 1;
             this.textBoxLogin.Click += new System.EventHandler(this.textBoxLogin_Click);
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(502, 37);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Пароль";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(502, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Логин";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // buttonSave
             // 
+            this.buttonSave.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonSave.Location = new System.Drawing.Point(515, 114);
+            this.buttonSave.FlatAppearance.BorderSize = 0;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Location = new System.Drawing.Point(515, 99);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(1, 3, 4, 4);
             this.buttonSave.MaximumSize = new System.Drawing.Size(250, 40);
             this.buttonSave.MinimumSize = new System.Drawing.Size(250, 40);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(250, 40);
             this.buttonSave.TabIndex = 3;
-            this.buttonSave.Text = "button1";
+            this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
