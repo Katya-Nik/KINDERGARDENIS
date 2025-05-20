@@ -199,6 +199,8 @@
             // dataGridViewParents
             // 
             this.dataGridViewParents.AllowUserToAddRows = false;
+            this.dataGridViewParents.AllowUserToDeleteRows = false;
+            this.dataGridViewParents.AllowUserToOrderColumns = true;
             this.dataGridViewParents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));

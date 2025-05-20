@@ -29,40 +29,55 @@ namespace KINDERGARDENIS.UIForms
 
         private void ConfigureDataGridView()
         {
-            // Настройка внешнего вида DataGridView
-            dataGridViewEmployees.BackgroundColor = Color.FromArgb(238, 245, 245);
-            dataGridViewEmployees.BorderStyle = BorderStyle.FixedSingle;
-            dataGridViewEmployees.GridColor = Color.FromArgb(25, 25, 25);
+            // Общий цвет фона таблицы
+            Color backgroundColor = Color.FromArgb(238, 245, 245);
+            Color headerColor = Color.FromArgb(238, 245, 245); // Отдельный цвет для заголовков
+
+            // Настройка стиля заголовков
+            dataGridViewEmployees.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Verdana", 14, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = headerColor, // Фон заголовков
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = headerColor, // Важно: цвет при "выделении" заголовка
+                SelectionForeColor = Color.FromArgb(39, 39, 39) // Цвет текста при "выделении"
+            };
+
+            // Настройка стиля ячеек
+            dataGridViewEmployees.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Verdana", 12, FontStyle.Regular),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = backgroundColor,
+                Alignment = DataGridViewContentAlignment.MiddleLeft
+            };
+
+            // Настройка стиля выделенных строк (только для строк данных)
+            dataGridViewEmployees.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
+            dataGridViewEmployees.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+
+            // Настройка цвета сетки
+            dataGridViewEmployees.GridColor = Color.FromArgb(39, 39, 39);
+
+            // Настройка внешнего вида
+            dataGridViewEmployees.BackgroundColor = backgroundColor;
+            dataGridViewEmployees.BorderStyle = BorderStyle.None;
             dataGridViewEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewEmployees.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
-            dataGridViewEmployees.DefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+            dataGridViewEmployees.EnableHeadersVisualStyles = false;
             dataGridViewEmployees.RowHeadersVisible = false;
             dataGridViewEmployees.AllowUserToAddRows = false;
             dataGridViewEmployees.AllowUserToDeleteRows = false;
-            dataGridViewEmployees.AllowUserToResizeRows = false;
             dataGridViewEmployees.ReadOnly = true;
+            dataGridViewEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // Настройка шрифтов и цветов
-            var headerStyle = new DataGridViewCellStyle
-            {
-                Font = new Font("Verdana", 14f, FontStyle.Bold),
-                ForeColor = Color.FromArgb(25, 25, 25),
-                BackColor = Color.FromArgb(238, 245, 245),
-                Alignment = DataGridViewContentAlignment.MiddleLeft
-            };
+            // Дополнительные настройки
+            dataGridViewEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewEmployees.ColumnHeadersHeight = 30;
+            dataGridViewEmployees.RowTemplate.Height = 25;
 
-            var cellStyle = new DataGridViewCellStyle
-            {
-                Font = new Font("Verdana", 12f),
-                ForeColor = Color.FromArgb(25, 25, 25),
-                BackColor = Color.FromArgb(238, 245, 245),
-                Alignment = DataGridViewContentAlignment.MiddleLeft
-            };
-
-            dataGridViewEmployees.ColumnHeadersDefaultCellStyle = headerStyle;
-            dataGridViewEmployees.DefaultCellStyle = cellStyle;
-            dataGridViewEmployees.EnableHeadersVisualStyles = false;
+            // Важно: отключаем выделение заголовков
+            dataGridViewEmployees.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         }
 
         private void LoadEmployeesData(string filter = "")

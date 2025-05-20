@@ -202,6 +202,8 @@
             // dataGridViewUsers
             // 
             this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.AllowUserToDeleteRows = false;
+            this.dataGridViewUsers.AllowUserToOrderColumns = true;
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
@@ -290,7 +292,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(513, 40);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Поиск по фамилии:";
+            this.label13.Text = "Поиск по роли:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label10

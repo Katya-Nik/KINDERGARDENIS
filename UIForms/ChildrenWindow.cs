@@ -37,37 +37,55 @@ namespace KINDERGARDENIS.UIForms
 
         private void ConfigureDataGridView()
         {
+            // Общий цвет фона таблицы
+            Color backgroundColor = Color.FromArgb(238, 245, 245);
+            Color headerColor = Color.FromArgb(238, 245, 245); // Отдельный цвет для заголовков
+
             // Настройка стиля заголовков
             dataGridViewChild.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
-                Font = new Font("Verdana", 16, FontStyle.Bold),
-                ForeColor = Color.FromArgb(25, 25, 25),
-                BackColor = Color.FromArgb(238, 245, 245),
-                Alignment = DataGridViewContentAlignment.MiddleCenter
+                Font = new Font("Verdana", 14, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = headerColor, // Фон заголовков
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = headerColor, // Важно: цвет при "выделении" заголовка
+                SelectionForeColor = Color.FromArgb(39, 39, 39) // Цвет текста при "выделении"
             };
 
             // Настройка стиля ячеек
             dataGridViewChild.DefaultCellStyle = new DataGridViewCellStyle
             {
-                Font = new Font("Verdana", 14.25f),
-                ForeColor = Color.FromArgb(25, 25, 25),
-                BackColor = Color.FromArgb(238, 245, 245),
+                Font = new Font("Verdana", 12, FontStyle.Regular),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = backgroundColor,
                 Alignment = DataGridViewContentAlignment.MiddleLeft
             };
 
-            // Настройка стиля выделенных строк
+            // Настройка стиля выделенных строк (только для строк данных)
             dataGridViewChild.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
             dataGridViewChild.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
 
+            // Настройка цвета сетки
+            dataGridViewChild.GridColor = Color.FromArgb(39, 39, 39);
+
             // Настройка внешнего вида
-            dataGridViewChild.BackgroundColor = Color.FromArgb(238, 245, 245);
+            dataGridViewChild.BackgroundColor = backgroundColor;
             dataGridViewChild.BorderStyle = BorderStyle.None;
             dataGridViewChild.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewChild.EnableHeadersVisualStyles = false; 
             dataGridViewChild.RowHeadersVisible = false;
             dataGridViewChild.AllowUserToAddRows = false;
             dataGridViewChild.AllowUserToDeleteRows = false;
             dataGridViewChild.ReadOnly = true;
             dataGridViewChild.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Дополнительные настройки
+            dataGridViewChild.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewChild.ColumnHeadersHeight = 30;
+            dataGridViewChild.RowTemplate.Height = 25;
+
+            // Важно: отключаем выделение заголовков
+            dataGridViewChild.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         }
 
         private void LoadGroupNames()
@@ -97,17 +115,15 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
+                using (var db = new DBModel.KindergartenInformationSystemEntities()) 
                 {
                     var query = db.Children.AsQueryable();
 
-                    // Фильтрация по фамилии, если введена
                     if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
                     {
                         query = query.Where(c => c.ChildrenSurname.Contains(textBoxSearchSurname.Text));
                     }
 
-                    // Фильтрация по группе, если выбрана
                     if (comboBoxGroupName.SelectedIndex > 0)
                     {
                         string selectedGroup = comboBoxGroupName.SelectedItem.ToString();
@@ -116,33 +132,29 @@ namespace KINDERGARDENIS.UIForms
 
                     // Получение данных с сортировкой по фамилии и названию группы
                     var childrenData = query
-                        .OrderBy(c => c.ChildrenSurname)
-                        .ThenBy(c => c.Groups.GroupsGroupName)
-                        .Select(c => new
-                        {
-                            Фамилия = c.ChildrenSurname,
-                            Имя = c.ChildrenName,
-                            Отчество = c.ChildrenPatronymic,
-                            ДатаРождения = c.ChildrenDateofBirth,
-                            Группа = c.Groups.GroupsGroupName,
-                            Воспитатель = c.Groups.Educators
-                                .Where(e => e.Employees.User.Role.RoleName == "Воспитатель")
-                                .Select(e => e.Employees.EmployeesSurname)
-                                .FirstOrDefault(),
-                            МладшийВоспитатель = c.Groups.Educators
-                                .Where(e => e.Employees.User.Role.RoleName == "Младший воспитатель")
-                                .Select(e => e.Employees.EmployeesSurname)
-                                .FirstOrDefault()
-                        })
-                        .ToList();
+                    .OrderBy(c => c.ChildrenSurname)
+                    .ThenBy(c => c.Groups.GroupsGroupName)
+                    .Select(c => new
+                    {
+                        Фамилия = c.ChildrenSurname,
+                        Имя = c.ChildrenName,
+                        Отчество = c.ChildrenPatronymic,
+                        Дата_Рождения = c.ChildrenDateofBirth,
+                        Группа = c.Groups.GroupsGroupName,
+                        Воспитатель = c.Groups.Educators
+                            .Select(e => e.Employees)
+                            .Where(e => e.User.Role.RoleID == 7)
+                            .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
+                            .FirstOrDefault(),
+                        Младший_Воспитатель = c.Groups.Educators
+                            .Select(e => e.Employees)
+                            .Where(e => e.User.Role.RoleID == 8)
+                            .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
+                            .FirstOrDefault()
+                    })
+                    .ToList();
 
                     dataGridViewChild.DataSource = childrenData;
-
-                    // Настройка ширины колонок
-                    foreach (DataGridViewColumn column in dataGridViewChild.Columns)
-                    {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
                 }
             }
             catch (Exception ex)

@@ -64,32 +64,55 @@ namespace KINDERGARDENIS.UIForms
 
         private void ConfigureDataGridView()
         {
-            // Настройка внешнего вида DataGridView
-            dataGridViewParents.BackgroundColor = Color.FromArgb(238, 245, 245);
+            // Общий цвет фона таблицы
+            Color backgroundColor = Color.FromArgb(238, 245, 245);
+            Color headerColor = Color.FromArgb(238, 245, 245); // Отдельный цвет для заголовков
+
+            // Настройка стиля заголовков
+            dataGridViewParents.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Verdana", 14, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = headerColor, // Фон заголовков
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = headerColor, // Важно: цвет при "выделении" заголовка
+                SelectionForeColor = Color.FromArgb(39, 39, 39) // Цвет текста при "выделении"
+            };
+
+            // Настройка стиля ячеек
+            dataGridViewParents.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Verdana", 12, FontStyle.Regular),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = backgroundColor,
+                Alignment = DataGridViewContentAlignment.MiddleLeft
+            };
+
+            // Настройка стиля выделенных строк (только для строк данных)
+            dataGridViewParents.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
+            dataGridViewParents.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+            
+            // Настройка цвета сетки
+            dataGridViewParents.GridColor = Color.FromArgb(39, 39, 39);
+
+            // Настройка внешнего вида
+            dataGridViewParents.BackgroundColor = backgroundColor;
             dataGridViewParents.BorderStyle = BorderStyle.None;
             dataGridViewParents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewParents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewParents.EnableHeadersVisualStyles = false;
             dataGridViewParents.RowHeadersVisible = false;
             dataGridViewParents.AllowUserToAddRows = false;
             dataGridViewParents.AllowUserToDeleteRows = false;
-            dataGridViewParents.AllowUserToResizeRows = false;
             dataGridViewParents.ReadOnly = true;
-            dataGridViewParents.EnableHeadersVisualStyles = false;
+            dataGridViewParents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // Настройка стиля заголовков
-            dataGridViewParents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
-            dataGridViewParents.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
-            dataGridViewParents.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 16, FontStyle.Bold);
-            dataGridViewParents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewParents.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            // Дополнительные настройки
+            dataGridViewParents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewParents.ColumnHeadersHeight = 30;
+            dataGridViewParents.RowTemplate.Height = 25;
 
-            // Настройка стиля строк
-            dataGridViewParents.DefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
-            dataGridViewParents.DefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
-            dataGridViewParents.DefaultCellStyle.Font = new Font("Verdana", 14.25f);
-            dataGridViewParents.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
-            dataGridViewParents.DefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
-            dataGridViewParents.RowTemplate.Height = 35;
+            // Важно: отключаем выделение заголовков
+            dataGridViewParents.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         }
 
         private void textBoxSearchSurname_TextChanged(object sender, EventArgs e)

@@ -36,13 +36,17 @@ namespace KINDERGARDENIS.UIForms
             {
                 using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
-                    var roles = db.Role.ToList();
-                    comboBoxRoleName.DataSource = roles;
-                    comboBoxRoleName.DisplayMember = "RoleName";
-                    comboBoxRoleName.ValueMember = "RoleID";
+                    var groups = db.Role
+                    .OrderBy(g => g.RoleName)
+                    .Select(g => g.RoleName)
+                    .Distinct()
+                    .ToList();
 
-                    // Добавляем пункт для вывода всех ролей
-                    comboBoxRoleName.Items.Insert(0, new { RoleID = 0, RoleName = "Все роли" });
+                    comboBoxRoleName.Items.Add("Все группы");
+                    foreach (var group in groups)
+                    {
+                        comboBoxRoleName.Items.Add(group);
+                    }
                     comboBoxRoleName.SelectedIndex = 0;
                 }
             }
@@ -102,20 +106,55 @@ namespace KINDERGARDENIS.UIForms
 
         private void ConfigureDataGridViewAppearance()
         {
-            // Настройка внешнего вида DataGridView
-            dataGridViewUsers.BackgroundColor = Color.FromArgb(238, 245, 245);
+            // Общий цвет фона таблицы
+            Color backgroundColor = Color.FromArgb(238, 245, 245);
+            Color headerColor = Color.FromArgb(238, 245, 245); // Отдельный цвет для заголовков
+
+            // Настройка стиля заголовков
+            dataGridViewUsers.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            { 
+                Font = new Font("Verdana", 14, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = headerColor, // Фон заголовков
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = headerColor, // Важно: цвет при "выделении" заголовка
+                SelectionForeColor = Color.FromArgb(39, 39, 39) // Цвет текста при "выделении"
+            };
+
+            // Настройка стиля ячеек
+            dataGridViewUsers.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Verdana", 12, FontStyle.Regular),
+                ForeColor = Color.FromArgb(39, 39, 39),
+                BackColor = backgroundColor,
+                Alignment = DataGridViewContentAlignment.MiddleLeft
+            };
+
+            // Настройка стиля выделенных строк (только для строк данных)
+            dataGridViewUsers.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
+            dataGridViewUsers.RowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+
+            // Настройка цвета сетки
+            dataGridViewUsers.GridColor = Color.FromArgb(39, 39, 39);
+
+            // Настройка внешнего вида
+            dataGridViewUsers.BackgroundColor = backgroundColor;
             dataGridViewUsers.BorderStyle = BorderStyle.None;
             dataGridViewUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewUsers.DefaultCellStyle.Font = new Font("Verdana", 14.25f);
-            dataGridViewUsers.DefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
-            dataGridViewUsers.DefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
-            dataGridViewUsers.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 145, 145);
-            dataGridViewUsers.DefaultCellStyle.SelectionForeColor = Color.FromArgb(254, 255, 255);
+            dataGridViewUsers.EnableHeadersVisualStyles = false;
+            dataGridViewUsers.RowHeadersVisible = false;
+            dataGridViewUsers.AllowUserToAddRows = false;
+            dataGridViewUsers.AllowUserToDeleteRows = false;
+            dataGridViewUsers.ReadOnly = true;
+            dataGridViewUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // Настройка заголовков столбцов
-            dataGridViewUsers.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 16f, FontStyle.Bold);
-            dataGridViewUsers.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(25, 25, 25);
-            dataGridViewUsers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(238, 245, 245);
+            // Дополнительные настройки
+            dataGridViewUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewUsers.ColumnHeadersHeight = 30;
+            dataGridViewUsers.RowTemplate.Height = 25;
+
+            // Отключаем выделение заголовков
+            dataGridViewUsers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewUsers.EnableHeadersVisualStyles = false;
 
             // Переименовываем заголовки столбцов
