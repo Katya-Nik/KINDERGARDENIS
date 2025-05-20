@@ -561,6 +561,7 @@
             this.pictureBoxChild.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxChild.TabIndex = 0;
             this.pictureBoxChild.TabStop = false;
+            this.pictureBoxChild.Click += new System.EventHandler(this.buttonLoadPhoto_Click);
             // 
             // buttonUploadPhoto
             // 
@@ -578,6 +579,7 @@
             this.buttonUploadPhoto.TabIndex = 1;
             this.buttonUploadPhoto.Text = "Загрузить фото";
             this.buttonUploadPhoto.UseVisualStyleBackColor = true;
+            this.buttonUploadPhoto.Click += new System.EventHandler(this.buttonLoadPhoto_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -649,6 +651,7 @@
             this.buttonCancellation.TabIndex = 1;
             this.buttonCancellation.Text = "Отмена";
             this.buttonCancellation.UseVisualStyleBackColor = true;
+            this.buttonCancellation.Click += new System.EventHandler(this.buttonCancellation_Click);
             // 
             // buttonSave
             // 
@@ -666,6 +669,7 @@
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // comboBoxGroups
             // 
@@ -685,9 +689,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 551);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1350, 590);
             this.Name = "MoreInfoChild";
-            this.Text = "MoreInfoChild";
+            this.Text = "Пордобная информация о ребенке";
             this.Load += new System.EventHandler(this.MoreInfoChild_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

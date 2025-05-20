@@ -72,7 +72,7 @@ namespace KINDERGARDENIS.UIForms
             dataGridViewChild.BackgroundColor = backgroundColor;
             dataGridViewChild.BorderStyle = BorderStyle.None;
             dataGridViewChild.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewChild.EnableHeadersVisualStyles = false; 
+            dataGridViewChild.EnableHeadersVisualStyles = false;
             dataGridViewChild.RowHeadersVisible = false;
             dataGridViewChild.AllowUserToAddRows = false;
             dataGridViewChild.AllowUserToDeleteRows = false;
@@ -115,7 +115,7 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                using (var db = new DBModel.KindergartenInformationSystemEntities()) 
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
                     var query = db.Children.AsQueryable();
 
@@ -136,6 +136,7 @@ namespace KINDERGARDENIS.UIForms
                     .ThenBy(c => c.Groups.GroupsGroupName)
                     .Select(c => new
                     {
+                        ID = c.ChildrenID, // Добавлен столбец с ID
                         Фамилия = c.ChildrenSurname,
                         Имя = c.ChildrenName,
                         Отчество = c.ChildrenPatronymic,
@@ -155,6 +156,12 @@ namespace KINDERGARDENIS.UIForms
                     .ToList();
 
                     dataGridViewChild.DataSource = childrenData;
+
+                    // Скрываем столбец ID после привязки данных
+                    if (dataGridViewChild.Columns.Contains("ID"))
+                    {
+                        dataGridViewChild.Columns["ID"].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -232,13 +239,28 @@ namespace KINDERGARDENIS.UIForms
 
         private void buttonInfoChild_Click(object sender, EventArgs e)
         {
-            if (dataGridViewChild.SelectedRows.Count > 0)
+            try
             {
-                string tchild = dataGridViewChild.CurrentRow.Cells[0].Value.ToString();
-                int idChild = Convert.ToInt32(tchild);
-                UIForms.MoreInfoChild moreInfoChild = new UIForms.MoreInfoChild();
-                moreInfoChild.ShowDialog();
-                this.Show();
+                if (dataGridViewChild.SelectedRows.Count > 0)
+                {
+                    // Получаем ID из скрытого столбца
+                    var idCell = dataGridViewChild.SelectedRows[0].Cells["ID"];
+                    if (idCell != null && idCell.Value != null)
+                    {
+                        int idChild = Convert.ToInt32(idCell.Value);
+                        UIForms.MoreInfoChild moreInfoChild = new UIForms.MoreInfoChild(idChild);
+                        moreInfoChild.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ID ребенка не указан.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
     }
