@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -40,6 +41,10 @@ namespace KINDERGARDENIS.UIForms
                             from educator in educators.DefaultIfEmpty()
                             join employee in db.Employees on educator.EducatorsEmployeesID equals employee.EmployeesID into employees
                             from employee in employees.DefaultIfEmpty()
+                            join user in db.User on employee.EmployeesUserID equals user.UserID into users
+                            from user in users.DefaultIfEmpty()
+                            join role in db.Role on user.Role.RoleID equals role.RoleID into roles
+                            from role in roles.DefaultIfEmpty()
                             join modeType in db.ModeType on groupItem.GroupsID equals modeType.ModTypeGroupID into modeTypes
                             from modeType in modeTypes.DefaultIfEmpty()
                             let childrenCount = db.Children.Count(c => c.ChildrenGroupsID == groupItem.GroupsID)
@@ -50,8 +55,8 @@ namespace KINDERGARDENIS.UIForms
                                 Тип = groupItem.GroupsGroupType,
                                 Режим = modeType != null ? modeType.ModeTypeIDName : null,
                                 Количество = childrenCount,
-                                Воспитатель = employee != null ? employee.EmployeesSurname : null,
-                                МладшийВоспитатель = (string)null
+                                Воспитатель = employee != null && role != null && role.RoleID == 7 ? employee.EmployeesSurname : null,
+                                МладшийВоспитатель = employee != null && role != null && role.RoleID == 8 ? employee.EmployeesSurname : null
                             };
 
                 if (!string.IsNullOrEmpty(textBoxSearchGroupName.Text))
@@ -185,142 +190,99 @@ namespace KINDERGARDENIS.UIForms
 
         private void labelExcel_Click(object sender, EventArgs e)
         {
+            Excel.Application excelApp = null;
+            Excel.Workbook excelBook = null;
+            Excel.Worksheet excelSheet = null;
+
             try
             {
-                // Инициализация Excel
-                excelApp = new Excel.Application();
-                excelApp.Visible = false;
+                excelApp = new Excel.Application { Visible = false };
+                string templatePath = Path.Combine(Environment.CurrentDirectory, @"Templates\ExcelGroupTemplate.xls");
 
-                // Путь к шаблону
-                string pathTemplates = Environment.CurrentDirectory + @"\Templates\ExcelGroupTemplate.xlsx";
-
-                if (!File.Exists(pathTemplates))
+                if (!File.Exists(templatePath))
                 {
-                    MessageBox.Show("Шаблон ExcelGroupTemplate.xlsx не найден!");
+                    MessageBox.Show("Шаблон не найден!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Открытие шаблона
-                excelBook = excelApp.Workbooks.Open(pathTemplates);
+                excelBook = excelApp.Workbooks.Open(templatePath);
                 excelSheet = (Excel.Worksheet)excelBook.Worksheets[1];
 
-                // Заполнение данных на первом листе (A5:F5)
-                excelSheet.Cells[5, 1] = "Название";
-                excelSheet.Cells[5, 2] = "Воспитатель";
-                excelSheet.Cells[5, 3] = "Младший воспитатель";
-                excelSheet.Cells[5, 4] = "Количество детей";
-                excelSheet.Cells[5, 5] = "Количество мальчиков";
-                excelSheet.Cells[5, 6] = "Количество девочек";
-
-                // Установка границ
-                Excel.Range range = excelSheet.Range["A5:F5"];
-                range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-                // Получение данных из базы
+                // Создаем новый контекст базы данных
                 using (var db = new KindergartenInformationSystemEntities())
                 {
-                    // Исправленный запрос с явной загрузкой связанных данных
-                    var groups = db.Groups
-                                .Include("Children") // Используем строку для указания навигационного свойства
-                                .ToList();
-
-                    foreach (var group in groups)
-                    {
-                        // Создаем новый лист
-                        Excel.Worksheet groupSheet = (Excel.Worksheet)excelBook.Worksheets.Add();
-                        groupSheet.Name = group.GroupsGroupName;
-
-                        // Заголовок листа
-                        Excel.Range headerRange = groupSheet.Range["A1:G1"];
-                        headerRange.Merge();
-                        headerRange.Value = group.GroupsGroupName;
-                        headerRange.Font.Name = "Verdana";
-                        headerRange.Font.Size = 13;
-                        headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
-                        // Заголовки таблицы
-                        groupSheet.Cells[2, 1] = "ФИО ребенка";
-                        groupSheet.Cells[2, 2] = "Дата рождения";
-                        groupSheet.Cells[2, 3] = "Пол";
-                        groupSheet.Cells[2, 4] = "СНИЛС";
-                        groupSheet.Cells[2, 5] = "ФИО родителя";
-                        groupSheet.Cells[2, 6] = "Телефон родителя";
-                        groupSheet.Cells[2, 7] = "Email родителя";
-
-                        // Форматирование заголовков
-                        Excel.Range headersRange = groupSheet.Range["A2:G2"];
-                        headersRange.Font.Name = "Verdana";
-                        headersRange.Font.Size = 11;
-                        headersRange.Font.Bold = true;
-                        headersRange.RowHeight = 28.5;
-
-                        // Получаем детей для текущей группы
-                        var children = db.Children
-                                      .Include("Parents") // Явно загружаем данные родителей
-                                      .Where(c => c.ChildrenGroupsID == group.GroupsID)
-                                      .ToList();
-
-                        // Заполнение данными детей
-                        int row = 3;
-                        foreach (var child in children)
+                    // Получаем все данные о группах, воспитателях и детях одним запросом
+                    var groupsData = db.Groups
+                        .Select(g => new
                         {
-                            groupSheet.Cells[row, 1] = $"{child.ChildrenSurname} {child.ChildrenName} {child.ChildrenPatronymic}";
-                            groupSheet.Cells[row, 2] = child.ChildrenDateofBirth?.ToShortDateString();
-                            groupSheet.Cells[row, 3] = child.ChildrenGender;
-                            groupSheet.Cells[row, 4] = child.ChildrenSNILS;
-                            groupSheet.Cells[row, 5] = $"{child.Parents.ParentsSurname} {child.Parents.ParentsName} {child.Parents.ParentsPatronymic}";
-                            groupSheet.Cells[row, 6] = child.Parents.ParentsPhoneNumber;
-                            groupSheet.Cells[row, 7] = child.Parents.ParentsEmail;
+                            GroupName = g.GroupsGroupName,
+                            GroupNumber = g.GroupsGroupNumber,
+                            GroupType = g.GroupsGroupType,
+                            Educator = g.Educators
+                                .Where(ed => ed.Employees.User.Role.RoleID == 7)
+                                .Select(ed => ed.Employees.EmployeesSurname)
+                                .FirstOrDefault(),
+                            JuniorEducator = g.Educators
+                                .Where(ed => ed.Employees.User.Role.RoleID == 8)
+                                .Select(ed => ed.Employees.EmployeesSurname)
+                                .FirstOrDefault(),
+                            ChildrenCount = g.Children.Count,
+                            BoysCount = g.Children.Count(c => c.ChildrenGender == "мужской"),
+                            GirlsCount = g.Children.Count(c => c.ChildrenGender == "женский"),
+                            ModeType = g.ModeType.FirstOrDefault().ModeTypeIDName
+                        })
+                        .OrderBy(g => g.GroupName)
+                        .ToList();
 
-                            // Форматирование данных
-                            Excel.Range dataRange = groupSheet.Range[$"A{row}:G{row}"];
-                            dataRange.Font.Name = "Verdana";
-                            dataRange.Font.Size = 10;
-                            dataRange.RowHeight = 15.5;
-
-                            row++;
-                        }
-
-                        // Установка границ
-                        Excel.Range allDataRange = groupSheet.Range[$"A2:G{row - 1}"];
-                        allDataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-                        // Автоподбор ширины столбцов
-                        groupSheet.Columns.AutoFit();
+                    // Заполняем Excel
+                    int startRow = 5;
+                    foreach (var group in groupsData)
+                    {
+                        excelSheet.Cells[startRow, 1] = group.GroupName;
+                        excelSheet.Cells[startRow, 2] = group.Educator;
+                        excelSheet.Cells[startRow, 3] = group.JuniorEducator;
+                        excelSheet.Cells[startRow, 4] = group.ChildrenCount;
+                        excelSheet.Cells[startRow, 5] = group.BoysCount;
+                        excelSheet.Cells[startRow, 6] = group.GirlsCount;
+                        startRow++;
                     }
                 }
 
-                // Сохранение
+                // Автоподбор ширины столбцов
+                Excel.Range usedRange = excelSheet.UsedRange;
+                usedRange.Columns.AutoFit();
+
+                // Сохранение в "Загрузки"
                 string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\";
-                string fileName = $"GroupsReport_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+                Directory.CreateDirectory(downloadsPath);
+                string fileName = $"Группы_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                 string fullPath = Path.Combine(downloadsPath, fileName);
 
-                excelBook.SaveAs(fullPath);
-                excelBook.Close();
-                excelApp.Quit();
+                excelApp.DisplayAlerts = false;
+                excelBook.SaveAs(fullPath, Excel.XlFileFormat.xlOpenXMLWorkbook);
 
-
-                MessageBox.Show($"Отчет успешно сохранен: {fullPath}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Файл сохранён: {fullPath}", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Runtime.InteropServices.COMException ex) when (ex.ErrorCode == -2146827286)
+            {
+                MessageBox.Show("Ошибка: файл занят или недоступен. Закройте Excel и попробуйте снова.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при создании отчета: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
                 if (excelBook != null)
                 {
                     excelBook.Close(false);
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelBook);
                 }
                 if (excelApp != null)
                 {
                     excelApp.Quit();
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
                 }
-            }
-            finally
-            {
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelSheet);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelBook);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
-
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
