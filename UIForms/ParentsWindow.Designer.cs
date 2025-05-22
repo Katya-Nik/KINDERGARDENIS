@@ -233,6 +233,7 @@
             this.buttonInfoChild.FlatAppearance.BorderSize = 0;
             this.buttonInfoChild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfoChild.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoChild.ForeColor = System.Drawing.Color.White;
             this.buttonInfoChild.Location = new System.Drawing.Point(780, 437);
             this.buttonInfoChild.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.buttonInfoChild.MaximumSize = new System.Drawing.Size(250, 40);
@@ -242,6 +243,7 @@
             this.buttonInfoChild.TabIndex = 0;
             this.buttonInfoChild.Text = "Подробнее о родителе";
             this.buttonInfoChild.UseVisualStyleBackColor = true;
+            this.buttonInfoChild.Click += new System.EventHandler(this.buttonInfoChild_Click);
             // 
             // tableLayoutPanel19
             // 

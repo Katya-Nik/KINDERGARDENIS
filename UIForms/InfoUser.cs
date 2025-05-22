@@ -12,10 +12,25 @@ namespace KINDERGARDENIS.UIForms
         private static string pathPhotoUsers = Environment.CurrentDirectory + @"\PhotoUsers\";
         private static string pathChevron = Environment.CurrentDirectory + @"\Resources\";
         private bool isPasswordVisible = false;
+        private DBModel.User _user;
 
         public InfoUser()
         {
             InitializeComponent();
+        }
+
+        public InfoUser(DBModel.User user) : this()  
+        {
+            _user = user;
+            LoadUserData();  // Загружаем данные пользователя в форму
+        }
+
+        private void LoadUserData()
+        {
+            if (_user != null)
+            {
+                
+            }
         }
 
         private void InfoUser_Load(object sender, EventArgs e)

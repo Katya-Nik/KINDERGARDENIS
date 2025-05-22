@@ -246,11 +246,83 @@ namespace KINDERGARDENIS.UIForms
                         excelSheet.Cells[startRow, 6] = group.GirlsCount;
                         startRow++;
                     }
+
+                    // Создаем листы для каждой группы с детьми
+                    var groupsWithChildren = db.Groups
+                        .Include(g => g.Children)
+                        .OrderBy(g => g.GroupsGroupName)
+                        .ToList();
+
+                    foreach (var group in groupsWithChildren)
+                    {
+                        // Создаем новый лист для группы
+                        Excel.Worksheet groupSheet = (Excel.Worksheet)excelBook.Worksheets.Add(After: excelBook.Worksheets[excelBook.Worksheets.Count]);
+                        groupSheet.Name = group.GroupsGroupName;
+
+                        // 1) Объединяем первую строку и вставляем название группы
+                        Excel.Range headerRange = groupSheet.Range["A1:D1"];
+                        headerRange.Merge();
+                        headerRange.Value = group.GroupsGroupName;
+                        headerRange.Font.Name = "Verdana";
+                        headerRange.Font.Size = 13;
+                        headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                        groupSheet.Rows[1].RowHeight = 35;
+
+                        // 2) Заголовки столбцов
+                        groupSheet.Cells[2, 1] = "ФИО ребенка";
+                        groupSheet.Cells[2, 2] = "ФИО родителя";
+                        groupSheet.Cells[2, 3] = "Телефон родителя";
+                        groupSheet.Cells[2, 4] = "Email родителя";
+
+                        // 3) Форматирование заголовков
+                        Excel.Range headerCells = groupSheet.Range["A2:D2"];
+                        headerCells.Font.Name = "Verdana";
+                        headerCells.Font.Size = 11;
+                        headerCells.Font.Bold = true;
+                        groupSheet.Rows[2].RowHeight = 28.5;
+
+                        // Заполняем данными о детях
+                        int childRow = 3;
+                        foreach (var child in group.Children)
+                        {
+                            // Получаем данные о родителях
+                            var parent = db.Parents.FirstOrDefault(p => p.ParentsID == child.ChildrenParentsID);
+                            string parentName = parent != null ? $"{parent.ParentsSurname} {parent.ParentsName} {parent.ParentsPatronymic}" : "";
+                            string parentPhone = parent?.ParentsPhoneNumber ?? "";
+                            string parentEmail = parent?.ParentsEmail ?? "";
+
+                            groupSheet.Cells[childRow, 1] = $"{child.ChildrenSurname} {child.ChildrenName} {child.ChildrenPatronymic}";
+                            groupSheet.Cells[childRow, 2] = parentName;
+                            groupSheet.Cells[childRow, 3] = parentPhone;
+                            groupSheet.Cells[childRow, 4] = parentEmail;
+
+                            // 4) Форматирование основной информации
+                            Excel.Range dataCells = groupSheet.Range[$"A{childRow}:D{childRow}"];
+                            dataCells.Font.Name = "Verdana";
+                            dataCells.Font.Size = 10;
+                            groupSheet.Rows[childRow].RowHeight = 15.5;
+
+                            childRow++;
+                        }
+
+                        // 5) Устанавливаем границы для заполненных строк
+                        if (group.Children.Any())
+                        {
+                            Excel.Range dataRange = groupSheet.Range[$"A2:D{childRow - 1}"];
+                            dataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            dataRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
+                        }
+
+                        // Автоподбор ширины столбцов
+                        Excel.Range usedRange = groupSheet.UsedRange;
+                        usedRange.Columns.AutoFit();
+                    }
                 }
 
-                // Автоподбор ширины столбцов
-                Excel.Range usedRange = excelSheet.UsedRange;
-                usedRange.Columns.AutoFit();
+                // Автоподбор ширины столбцов на основном листе
+                Excel.Range mainUsedRange = excelSheet.UsedRange;
+                mainUsedRange.Columns.AutoFit();
 
                 // Сохранение в "Загрузки"
                 string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\";

@@ -70,12 +70,12 @@ namespace KINDERGARDENIS.UIForms
                                      from parent in parentJoin.DefaultIfEmpty()
                                      select new
                                      {
-                                         Surname = emp != null ? emp.EmployeesSurname : parent.ParentsSurname,
-                                         Name = emp != null ? emp.EmployeesName : parent.ParentsName,
-                                         RoleName = role.RoleName,
-                                         Login = user.UserLogin,
-                                         Phone = emp != null ? emp.EmployeesPhoneNumber : parent.ParentsPhoneNumber,
-                                         Email = emp != null ? emp.EmployeesEmail : parent.ParentsEmail,
+                                         Фамилия = emp != null ? emp.EmployeesSurname : parent.ParentsSurname,
+                                         Имя = emp != null ? emp.EmployeesName : parent.ParentsName,
+                                         Должность = role.RoleName,
+                                         Логин = user.UserLogin,
+                                         Номер_Телефона = emp != null ? emp.EmployeesPhoneNumber : parent.ParentsPhoneNumber,
+                                         Почта = emp != null ? emp.EmployeesEmail : parent.ParentsEmail,
                                          RoleID = role.RoleID
                                      };
 
@@ -89,11 +89,11 @@ namespace KINDERGARDENIS.UIForms
                     if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
                     {
                         string searchText = textBoxSearchSurname.Text.ToLower();
-                        usersQuery = usersQuery.Where(u => u.Surname.ToLower().Contains(searchText));
+                        usersQuery = usersQuery.Where(u => u.Фамилия.ToLower().Contains(searchText));
                     }
 
                     // Сортируем по фамилии
-                    usersQuery = usersQuery.OrderBy(u => u.Surname);
+                    usersQuery = usersQuery.OrderBy(u => u.Фамилия);
 
                     dataGridViewUsers.DataSource = usersQuery.ToList();
                 }
@@ -234,6 +234,28 @@ namespace KINDERGARDENIS.UIForms
             InfoUser infoUser = new InfoUser();
             infoUser.ShowDialog();
             this.Show();
+        }
+
+        private void buttonInfoUser_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewUsers.SelectedRows.Count > 0)
+            {
+                // Получаем логин пользователя из последней колонки
+                string userLogin = dataGridViewUsers.CurrentRow.Cells["Логин"].Value.ToString();
+
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                {
+                    // Находим сотрудника по логину пользователя
+                    var use = db.User.FirstOrDefault(us => us.UserLogin == userLogin);
+                    if (use != null)
+                    {
+                        UIForms.InfoUser infoUser = new UIForms.InfoUser(use);
+                        infoUser.ShowDialog();
+                        this.Show();
+                    }
+                }
+            }
+
         }
     }
 }

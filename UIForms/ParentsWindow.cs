@@ -193,5 +193,26 @@ namespace KINDERGARDENIS.UIForms
             infoUser.ShowDialog();
             this.Show();
         }
+
+        private void buttonInfoChild_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewParents.SelectedRows.Count > 0)
+            {
+                // Получаем логин пользователя из последней колонки
+                string userLogin = dataGridViewParents.CurrentRow.Cells["Логин"].Value.ToString();
+
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                {
+                    // Находим сотрудника по логину пользователя
+                    var par = db.Parents.FirstOrDefault(pa => pa.User.UserLogin == userLogin);
+                    if (par != null)
+                    { 
+                        UIForms.MoreInfoParent moreInfoParent = new UIForms.MoreInfoParent(par);
+                        moreInfoParent.ShowDialog();
+                        this.Show();
+                    }
+                }
+            }
+        }
     }
 }

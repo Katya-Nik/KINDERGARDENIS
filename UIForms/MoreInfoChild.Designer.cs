@@ -66,8 +66,8 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCancellation = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.comboBoxGroups = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxGroups = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -652,18 +652,6 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // comboBoxGroups
-            // 
-            this.comboBoxGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
-            this.comboBoxGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBoxGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.comboBoxGroups.FormattingEnabled = true;
-            this.comboBoxGroups.Location = new System.Drawing.Point(2, 78);
-            this.comboBoxGroups.Margin = new System.Windows.Forms.Padding(2, 2, 10, 2);
-            this.comboBoxGroups.Name = "comboBoxGroups";
-            this.comboBoxGroups.Size = new System.Drawing.Size(350, 26);
-            this.comboBoxGroups.TabIndex = 14;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -678,6 +666,18 @@
             this.label1.Text = "Создать заявление";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // comboBoxGroups
+            // 
+            this.comboBoxGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(238)))), ((int)(((byte)(225)))));
+            this.comboBoxGroups.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.comboBoxGroups.FormattingEnabled = true;
+            this.comboBoxGroups.Location = new System.Drawing.Point(2, 78);
+            this.comboBoxGroups.Margin = new System.Windows.Forms.Padding(2, 2, 10, 2);
+            this.comboBoxGroups.Name = "comboBoxGroups";
+            this.comboBoxGroups.Size = new System.Drawing.Size(350, 26);
+            this.comboBoxGroups.TabIndex = 14;
             // 
             // MoreInfoChild
             // 

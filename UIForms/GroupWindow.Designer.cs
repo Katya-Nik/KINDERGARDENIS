@@ -38,7 +38,6 @@
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewGroups = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonAddGroup = new System.Windows.Forms.Button();
             this.buttonInfoGroup = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
@@ -238,7 +237,6 @@
             this.tableLayoutPanel20.ColumnCount = 2;
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel20.Controls.Add(this.buttonAddGroup, 0, 0);
             this.tableLayoutPanel20.Controls.Add(this.buttonInfoGroup, 1, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(0, 426);
@@ -249,23 +247,6 @@
             this.tableLayoutPanel20.Size = new System.Drawing.Size(1024, 48);
             this.tableLayoutPanel20.TabIndex = 1;
             // 
-            // buttonAddGroup
-            // 
-            this.buttonAddGroup.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonAdding;
-            this.buttonAddGroup.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonAddGroup.FlatAppearance.BorderSize = 0;
-            this.buttonAddGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddGroup.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddGroup.Location = new System.Drawing.Point(3, 5);
-            this.buttonAddGroup.Margin = new System.Windows.Forms.Padding(3, 5, 0, 0);
-            this.buttonAddGroup.MaximumSize = new System.Drawing.Size(250, 40);
-            this.buttonAddGroup.MinimumSize = new System.Drawing.Size(250, 40);
-            this.buttonAddGroup.Name = "buttonAddGroup";
-            this.buttonAddGroup.Size = new System.Drawing.Size(250, 40);
-            this.buttonAddGroup.TabIndex = 2;
-            this.buttonAddGroup.Text = "Добавить группу";
-            this.buttonAddGroup.UseVisualStyleBackColor = true;
-            // 
             // buttonInfoGroup
             // 
             this.buttonInfoGroup.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
@@ -273,6 +254,7 @@
             this.buttonInfoGroup.FlatAppearance.BorderSize = 0;
             this.buttonInfoGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfoGroup.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoGroup.ForeColor = System.Drawing.Color.White;
             this.buttonInfoGroup.Location = new System.Drawing.Point(774, 5);
             this.buttonInfoGroup.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.buttonInfoGroup.MaximumSize = new System.Drawing.Size(250, 40);
@@ -1045,7 +1027,6 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
         private System.Windows.Forms.Button buttonInfoGroup;
-        private System.Windows.Forms.Button buttonAddGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Label labelExcel;
         private System.Windows.Forms.PictureBox pictureBox10;

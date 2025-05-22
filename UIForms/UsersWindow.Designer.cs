@@ -236,6 +236,7 @@
             this.buttonInfoUser.FlatAppearance.BorderSize = 0;
             this.buttonInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfoUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfoUser.ForeColor = System.Drawing.Color.White;
             this.buttonInfoUser.Location = new System.Drawing.Point(780, 437);
             this.buttonInfoUser.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.buttonInfoUser.MaximumSize = new System.Drawing.Size(250, 40);
@@ -245,6 +246,7 @@
             this.buttonInfoUser.TabIndex = 0;
             this.buttonInfoUser.Text = "Подробнее о пользователе";
             this.buttonInfoUser.UseVisualStyleBackColor = true;
+            this.buttonInfoUser.Click += new System.EventHandler(this.buttonInfoUser_Click);
             // 
             // tableLayoutPanel19
             // 
