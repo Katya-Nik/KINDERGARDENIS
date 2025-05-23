@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace KINDERGARDENIS.UIForms
 {
@@ -242,7 +243,145 @@ namespace KINDERGARDENIS.UIForms
 
         private void label1_Click(object sender, EventArgs e)
         {
+            // Проверяем, что у нас есть выбранный ребенок
+            if (childId == 0)
+            {
+                MessageBox.Show("Сначала сохраните данные ребенка", "Ошибка",
+                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            try
+            {
+                // Получаем данные ребенка и родителя из базы
+                using (var db = new KindergartenInformationSystemEntities())
+                {
+                    var child = db.Children
+                        .Include(c => c.Parents)
+                        .FirstOrDefault(c => c.ChildrenID == childId);
+
+                    if (child == null)
+                    {
+                        MessageBox.Show("Ребенок не найден", "Ошибка",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Получаем данные заведующего (FIOZav и FIOZav2)
+                    var zav = db.Employees
+                        .FirstOrDefault(em => em.User.Role.RoleName.Contains("Заведующий"));
+
+                    // Путь к шаблону
+                    string templatePath = Path.Combine(Environment.CurrentDirectory,
+                                                     @"Templates\WordStatementTemplate.docx");
+
+                    if (!File.Exists(templatePath))
+                    {
+                        MessageBox.Show("Шаблон документа не найден", "Ошибка",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Создаем экземпляр Word
+                    var wordApp = new Word.Application();
+                    wordApp.Visible = false;
+
+                    // Открываем шаблон
+                    var wordDoc = wordApp.Documents.Open(templatePath);
+
+                    // Заполняем закладки
+                    try
+                    {
+                        FillBookmark(wordDoc, "AdressChild", child.ChildrenAddressinSaintPetersburg);
+                        FillBookmark(wordDoc, "Date1", DateTime.Now.ToString("dd.MM.yyyy"));
+                        FillBookmark(wordDoc, "Date2", DateTime.Now.ToString("dd.MM.yyyy"));
+                        FillBookmark(wordDoc, "DateOfBirthChild",
+                                   child.ChildrenDateofBirth?.ToString("dd.MM.yyyy") ?? "");
+                        FillBookmark(wordDoc, "FIOChild",
+                                   $"{child.ChildrenSurname} {child.ChildrenName} {child.ChildrenPatronymic}");
+                        FillBookmark(wordDoc, "FIOPar",
+                                   $"{child.Parents.ParentsSurname} {child.Parents.ParentsName} {child.Parents.ParentsPatronymic}");
+
+                        // Данные заведующего
+                        if (zav != null)
+                        {
+                            FillBookmark(wordDoc, "FIOZav",
+                                       $"{zav.EmployeesSurname} {zav.EmployeesName}");
+                            FillBookmark(wordDoc, "FIOZav2",
+                                       $"{zav.EmployeesSurname} {zav.EmployeesName} {zav.EmployeesPatronymic}");
+                        }
+
+                        FillBookmark(wordDoc, "ParEmail", child.Parents.ParentsEmail ?? "");
+                        FillBookmark(wordDoc, "ParPhoneNum", child.Parents.ParentsPhoneNumber ?? "");
+                        FillBookmark(wordDoc, "PassportNumber", child.Parents.ParentsPassportNumber ?? "");
+                        FillBookmark(wordDoc, "PassportSeria", child.Parents.ParentsPassportSeries ?? "");
+
+                        // Сохраняем документ
+                        string savePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\";
+                        Directory.CreateDirectory(savePath);
+                        string fileName = $"Заявление_{child.ChildrenSurname}_{DateTime.Now:yyyyMMdd}.docx";
+                        string fullPath = Path.Combine(savePath, fileName);
+
+                        wordDoc.SaveAs2(fullPath);
+                        wordApp.Visible = true; // Показываем готовый документ
+
+                        MessageBox.Show($"Документ сохранен: {savePath}", "Успешно",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при заполнении документа: {ex.Message}", "Ошибка",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        // Не закрываем Word, чтобы пользователь мог увидеть документ
+                        // Освобождаем ресурсы
+                        if (wordDoc != null)
+                        {
+                            System.Runtime.InteropServices.Marshal.ReleaseComObject(wordDoc);
+                        }
+                        if (wordApp != null)
+                        {
+                            System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+                        }
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Вспомогательный метод для заполнения закладки
+        private void FillBookmark(Word.Document doc, string bookmarkName, string text)
+        {
+            try
+            {
+                if (doc.Bookmarks.Exists(bookmarkName))
+                {
+                    Word.Bookmark bookmark = doc.Bookmarks[bookmarkName];
+                    bookmark.Range.Text = text;
+
+                    // Восстанавливаем закладку (чтобы можно было заполнять несколько раз)
+                    doc.Bookmarks.Add(bookmarkName, bookmark.Range);
+                }
+                else
+                {
+                    // Для отладки - можно закомментировать в релизе
+                    // MessageBox.Show($"Закладка {bookmarkName} не найдена", "Предупреждение", 
+                    //               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при заполнении закладки {bookmarkName}: {ex.Message}",
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

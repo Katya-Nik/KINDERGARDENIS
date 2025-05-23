@@ -19,20 +19,6 @@ namespace KINDERGARDENIS.UIForms
             InitializeComponent();
         }
 
-        public InfoUser(DBModel.User user) : this()  
-        {
-            _user = user;
-            LoadUserData();  // Загружаем данные пользователя в форму
-        }
-
-        private void LoadUserData()
-        {
-            if (_user != null)
-            {
-                
-            }
-        }
-
         private void InfoUser_Load(object sender, EventArgs e)
         {
             if (Helper.users == null)

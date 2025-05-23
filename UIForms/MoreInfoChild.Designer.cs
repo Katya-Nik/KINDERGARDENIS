@@ -108,7 +108,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(1305, 42);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Подробные данные ребенка";
+            this.labelName.Text = "Информация о ребенке";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -688,7 +688,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1350, 590);
             this.Name = "MoreInfoChild";
-            this.Text = "Пордобная информация о ребенке";
+            this.Text = "Информация о ребенке";
             this.Load += new System.EventHandler(this.MoreInfoChild_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

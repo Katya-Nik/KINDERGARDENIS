@@ -42,7 +42,7 @@ namespace KINDERGARDENIS.UIForms
                     .Distinct()
                     .ToList();
 
-                    comboBoxRoleName.Items.Add("Все группы");
+                    comboBoxRoleName.Items.Add("Все роли");
                     foreach (var group in groups)
                     {
                         comboBoxRoleName.Items.Add(group);
@@ -234,28 +234,6 @@ namespace KINDERGARDENIS.UIForms
             InfoUser infoUser = new InfoUser();
             infoUser.ShowDialog();
             this.Show();
-        }
-
-        private void buttonInfoUser_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewUsers.SelectedRows.Count > 0)
-            {
-                // Получаем логин пользователя из последней колонки
-                string userLogin = dataGridViewUsers.CurrentRow.Cells["Логин"].Value.ToString();
-
-                using (var db = new DBModel.KindergartenInformationSystemEntities())
-                {
-                    // Находим сотрудника по логину пользователя
-                    var use = db.User.FirstOrDefault(us => us.UserLogin == userLogin);
-                    if (use != null)
-                    {
-                        UIForms.InfoUser infoUser = new UIForms.InfoUser(use);
-                        infoUser.ShowDialog();
-                        this.Show();
-                    }
-                }
-            }
-
         }
     }
 }

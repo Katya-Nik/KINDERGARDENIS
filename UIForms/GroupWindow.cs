@@ -34,29 +34,33 @@ namespace KINDERGARDENIS.UIForms
         private void LoadGroupsData()
         {
             // Создаем новый контекст для этой операции
-            using (var db = new DBModel.KindergartenInformationSystemEntities()) // Замените YourDbContextClass на реальный тип вашего контекста
+            using (var db = new DBModel.KindergartenInformationSystemEntities())
             {
                 var query = from groupItem in db.Groups
-                            join educator in db.Educators on groupItem.GroupsID equals educator.EducatorsGroupsID into educators
-                            from educator in educators.DefaultIfEmpty()
-                            join employee in db.Employees on educator.EducatorsEmployeesID equals employee.EmployeesID into employees
-                            from employee in employees.DefaultIfEmpty()
-                            join user in db.User on employee.EmployeesUserID equals user.UserID into users
-                            from user in users.DefaultIfEmpty()
-                            join role in db.Role on user.Role.RoleID equals role.RoleID into roles
-                            from role in roles.DefaultIfEmpty()
-                            join modeType in db.ModeType on groupItem.GroupsID equals modeType.ModTypeGroupID into modeTypes
-                            from modeType in modeTypes.DefaultIfEmpty()
+                            let educator = db.Educators
+                                .Where(e => e.EducatorsGroupsID == groupItem.GroupsID &&
+                                       e.Employees.User.Role.RoleID == 7)
+                                .Select(e => e.Employees.EmployeesSurname)
+                                .FirstOrDefault()
+                            let juniorEducator = db.Educators
+                                .Where(e => e.EducatorsGroupsID == groupItem.GroupsID &&
+                                        e.Employees.User.Role.RoleID == 8)
+                                .Select(e => e.Employees.EmployeesSurname)
+                                .FirstOrDefault()
+                            let modeType = db.ModeType
+                                .Where(m => m.ModTypeGroupID == groupItem.GroupsID)
+                                .Select(m => m.ModeTypeIDName)
+                                .FirstOrDefault()
                             let childrenCount = db.Children.Count(c => c.ChildrenGroupsID == groupItem.GroupsID)
                             select new
                             {
                                 Название = groupItem.GroupsGroupName,
                                 Номер = groupItem.GroupsGroupNumber,
                                 Тип = groupItem.GroupsGroupType,
-                                Режим = modeType != null ? modeType.ModeTypeIDName : null,
+                                Режим = modeType,
                                 Количество = childrenCount,
-                                Воспитатель = employee != null && role != null && role.RoleID == 7 ? employee.EmployeesSurname : null,
-                                МладшийВоспитатель = employee != null && role != null && role.RoleID == 8 ? employee.EmployeesSurname : null
+                                Воспитатель = educator,
+                                МладшийВоспитатель = juniorEducator
                             };
 
                 if (!string.IsNullOrEmpty(textBoxSearchGroupName.Text))
@@ -245,84 +249,93 @@ namespace KINDERGARDENIS.UIForms
                         excelSheet.Cells[startRow, 5] = group.BoysCount;
                         excelSheet.Cells[startRow, 6] = group.GirlsCount;
                         startRow++;
+                        Excel.Range dataExcel = excelSheet.Range[$"A{startRow}:$F{startRow - 1}"];
+                        dataExcel.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        dataExcel.Borders.Weight = Excel.XlBorderWeight.xlThin;
                     }
 
                     // Создаем листы для каждой группы с детьми
                     var groupsWithChildren = db.Groups
-                        .Include(g => g.Children)
+                        .Include(g => g.Children.Select(c => c.Parents))
                         .OrderBy(g => g.GroupsGroupName)
                         .ToList();
 
                     foreach (var group in groupsWithChildren)
                     {
                         // Создаем новый лист для группы
-                        Excel.Worksheet groupSheet = (Excel.Worksheet)excelBook.Worksheets.Add(After: excelBook.Worksheets[excelBook.Worksheets.Count]);
-                        groupSheet.Name = group.GroupsGroupName;
+                        Excel.Worksheet groupSheet = (Excel.Worksheet)excelBook.Worksheets.Add();
+                        groupSheet.Name = group.GroupsGroupName.Length > 31 ?
+                            group.GroupsGroupName.Substring(0, 31) : group.GroupsGroupName;
 
+                        // Настройка стилей и заголовков
                         // 1) Объединяем первую строку и вставляем название группы
-                        Excel.Range headerRange = groupSheet.Range["A1:D1"];
+                        Excel.Range headerRange = groupSheet.Range["A1:E1"];
                         headerRange.Merge();
                         headerRange.Value = group.GroupsGroupName;
                         headerRange.Font.Name = "Verdana";
                         headerRange.Font.Size = 13;
+                        headerRange.Font.Bold = true;
                         headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                         headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
                         groupSheet.Rows[1].RowHeight = 35;
 
                         // 2) Заголовки столбцов
                         groupSheet.Cells[2, 1] = "ФИО ребенка";
-                        groupSheet.Cells[2, 2] = "ФИО родителя";
-                        groupSheet.Cells[2, 3] = "Телефон родителя";
-                        groupSheet.Cells[2, 4] = "Email родителя";
+                        groupSheet.Cells[2, 2] = "Дата рождения";
+                        groupSheet.Cells[2, 3] = "ФИО родителя";
+                        groupSheet.Cells[2, 4] = "Телефон родителя";
+                        groupSheet.Cells[2, 5] = "Email родителя";
 
-                        // 3) Форматирование заголовков
-                        Excel.Range headerCells = groupSheet.Range["A2:D2"];
-                        headerCells.Font.Name = "Verdana";
-                        headerCells.Font.Size = 11;
-                        headerCells.Font.Bold = true;
+                        // Настройка стиля заголовков (2 строка)
+                        Excel.Range headerRow = groupSheet.Range["A2:E2"];
+                        headerRow.Font.Name = "Verdana";
+                        headerRow.Font.Size = 11;
+                        headerRow.Font.Bold = true;
+                        headerRow.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        headerRow.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
                         groupSheet.Rows[2].RowHeight = 28.5;
 
                         // Заполняем данными о детях
                         int childRow = 3;
-                        foreach (var child in group.Children)
+                        foreach (var child in group.Children.OrderBy(c => c.ChildrenSurname))
                         {
-                            // Получаем данные о родителях
-                            var parent = db.Parents.FirstOrDefault(p => p.ParentsID == child.ChildrenParentsID);
-                            string parentName = parent != null ? $"{parent.ParentsSurname} {parent.ParentsName} {parent.ParentsPatronymic}" : "";
-                            string parentPhone = parent?.ParentsPhoneNumber ?? "";
-                            string parentEmail = parent?.ParentsEmail ?? "";
-
                             groupSheet.Cells[childRow, 1] = $"{child.ChildrenSurname} {child.ChildrenName} {child.ChildrenPatronymic}";
-                            groupSheet.Cells[childRow, 2] = parentName;
-                            groupSheet.Cells[childRow, 3] = parentPhone;
-                            groupSheet.Cells[childRow, 4] = parentEmail;
+                            groupSheet.Cells[childRow, 2] = child.ChildrenDateofBirth?.ToString("dd.MM.yyyy");
+                            groupSheet.Cells[childRow, 3] = $"{child.Parents.ParentsSurname} {child.Parents.ParentsName} {child.Parents.ParentsPatronymic}";
+                            groupSheet.Cells[childRow, 4] = child.Parents.ParentsPhoneNumber;
+                            groupSheet.Cells[childRow, 5] = child.Parents.ParentsEmail;
 
-                            // 4) Форматирование основной информации
-                            Excel.Range dataCells = groupSheet.Range[$"A{childRow}:D{childRow}"];
-                            dataCells.Font.Name = "Verdana";
-                            dataCells.Font.Size = 10;
+                            // Настройка стиля данных (начиная с 3 строки)
+                            Excel.Range dataRow = groupSheet.Range[$"A{childRow}:E{childRow}"];
+                            dataRow.Font.Name = "Verdana";
+                            dataRow.Font.Size = 10;
                             groupSheet.Rows[childRow].RowHeight = 15.5;
 
                             childRow++;
                         }
 
-                        // 5) Устанавливаем границы для заполненных строк
-                        if (group.Children.Any())
-                        {
-                            Excel.Range dataRange = groupSheet.Range[$"A2:D{childRow - 1}"];
-                            dataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                            dataRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
-                        }
+                        // Устанавливаем границы для заполненных ячеек (начиная со 2 строки)
+                        Excel.Range dataRange = groupSheet.Range[$"A2:E{childRow - 1}"];
+                        dataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        dataRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
 
                         // Автоподбор ширины столбцов
                         Excel.Range usedRange = groupSheet.UsedRange;
                         usedRange.Columns.AutoFit();
                     }
+
+                    // Удаляем лишние пустые листы (если они есть)
+                    // Сохраняем первый лист и листы с группами
+                    int sheetsToKeep = groupsWithChildren.Count + 1; // +1 для основного листа
+                    while (excelBook.Worksheets.Count > sheetsToKeep)
+                    {
+                        Excel.Worksheet lastSheet = (Excel.Worksheet)excelBook.Worksheets[excelBook.Worksheets.Count];
+                        lastSheet.Delete();
+                    }
                 }
 
-                // Автоподбор ширины столбцов на основном листе
-                Excel.Range mainUsedRange = excelSheet.UsedRange;
-                mainUsedRange.Columns.AutoFit();
+                // Активируем первый лист
+                ((Excel.Worksheet)excelBook.Worksheets[1]).Activate();
 
                 // Сохранение в "Загрузки"
                 string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\";
@@ -345,16 +358,8 @@ namespace KINDERGARDENIS.UIForms
             }
             finally
             {
-                if (excelBook != null)
-                {
-                    excelBook.Close(false);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelBook);
-                }
-                if (excelApp != null)
-                {
-                    excelApp.Quit();
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
-                }
+                excelApp.Quit();
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }

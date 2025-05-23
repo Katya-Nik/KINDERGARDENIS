@@ -55,12 +55,12 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxEmployees = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancellation = new System.Windows.Forms.Button();
             this.labelParentIs = new System.Windows.Forms.Label();
-            this.pictureBoxEmployees = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -68,9 +68,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxeye)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmployees)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -101,7 +101,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(1155, 42);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Добавление родителя";
+            this.labelName.Text = "Информация о родителе";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
@@ -469,6 +469,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Фото";
             // 
+            // pictureBoxEmployees
+            // 
+            this.pictureBoxEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxEmployees.Location = new System.Drawing.Point(15, 39);
+            this.pictureBoxEmployees.Margin = new System.Windows.Forms.Padding(10);
+            this.pictureBoxEmployees.Name = "pictureBoxEmployees";
+            this.pictureBoxEmployees.Size = new System.Drawing.Size(363, 126);
+            this.pictureBoxEmployees.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxEmployees.TabIndex = 1;
+            this.pictureBoxEmployees.TabStop = false;
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
@@ -556,17 +567,6 @@
             this.labelParentIs.Text = "Родитель уже добавлен";
             this.labelParentIs.UseCompatibleTextRendering = true;
             // 
-            // pictureBoxEmployees
-            // 
-            this.pictureBoxEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxEmployees.Location = new System.Drawing.Point(15, 39);
-            this.pictureBoxEmployees.Margin = new System.Windows.Forms.Padding(10);
-            this.pictureBoxEmployees.Name = "pictureBoxEmployees";
-            this.pictureBoxEmployees.Size = new System.Drawing.Size(363, 126);
-            this.pictureBoxEmployees.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxEmployees.TabIndex = 1;
-            this.pictureBoxEmployees.TabStop = false;
-            // 
             // MoreInfoParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,7 +576,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MoreInfoParent";
-            this.Text = "Подробная информация о родителе";
+            this.Text = "Информация о родителе";
             this.Load += new System.EventHandler(this.MoreInfoParent_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -588,10 +588,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxeye)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmployees)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmployees)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -37,7 +37,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.buttonInfoUser = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxRoleName = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -158,7 +157,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(1062, 52);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Пользователи KinderGuard ";
+            this.label12.Text = "Пользователи";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
@@ -187,7 +186,6 @@
             this.tableLayoutPanel16.ColumnCount = 1;
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.Controls.Add(this.dataGridViewUsers, 0, 0);
-            this.tableLayoutPanel16.Controls.Add(this.buttonInfoUser, 0, 1);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel16.Location = new System.Drawing.Point(30, 111);
             this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(10);
@@ -228,25 +226,6 @@
             this.dataGridViewUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewUsers.Size = new System.Drawing.Size(1024, 426);
             this.dataGridViewUsers.TabIndex = 0;
-            // 
-            // buttonInfoUser
-            // 
-            this.buttonInfoUser.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
-            this.buttonInfoUser.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonInfoUser.FlatAppearance.BorderSize = 0;
-            this.buttonInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfoUser.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoUser.ForeColor = System.Drawing.Color.White;
-            this.buttonInfoUser.Location = new System.Drawing.Point(780, 437);
-            this.buttonInfoUser.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.buttonInfoUser.MaximumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.MinimumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.Name = "buttonInfoUser";
-            this.buttonInfoUser.Size = new System.Drawing.Size(250, 40);
-            this.buttonInfoUser.TabIndex = 0;
-            this.buttonInfoUser.Text = "Подробнее о пользователе";
-            this.buttonInfoUser.UseVisualStyleBackColor = true;
-            this.buttonInfoUser.Click += new System.EventHandler(this.buttonInfoUser_Click);
             // 
             // tableLayoutPanel19
             // 
@@ -990,6 +969,5 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxSearchSurname;
         private System.Windows.Forms.ComboBox comboBoxRoleName;
-        private System.Windows.Forms.Button buttonInfoUser;
     }
 }

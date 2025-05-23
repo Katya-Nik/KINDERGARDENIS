@@ -156,7 +156,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(1062, 52);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Родители KinderGuard ";
+            this.label12.Text = "Родители";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4

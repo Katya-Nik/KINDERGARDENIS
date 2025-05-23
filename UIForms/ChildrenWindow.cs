@@ -92,22 +92,27 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                var groups = Helper.DB.Groups
-                    .OrderBy(g => g.GroupsGroupName)
-                    .Select(g => g.GroupsGroupName)
-                    .Distinct()
-                    .ToList();
-
-                comboBoxGroupName.Items.Add("Все группы");
-                foreach (var group in groups)
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
-                    comboBoxGroupName.Items.Add(group);
+                    var groups = db.Groups
+                        .OrderBy(g => g.GroupsGroupName)
+                        .Select(g => g.GroupsGroupName)
+                        .Distinct()
+                        .ToList();
+
+                    comboBoxGroupName.Items.Clear(); // Очистка перед загрузкой
+                    comboBoxGroupName.Items.Add("Все группы");
+                    foreach (var group in groups)
+                    {
+                        comboBoxGroupName.Items.Add(group);
+                    }
+                    comboBoxGroupName.SelectedIndex = 0;
                 }
-                comboBoxGroupName.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                // Cообщения об ошибках не выводятся
+                // Добавьте логирование ошибки (например, в файл или консоль)
+                Console.WriteLine($"Ошибка загрузки групп: {ex.Message}");
             }
         }
 
@@ -119,45 +124,47 @@ namespace KINDERGARDENIS.UIForms
                 {
                     var query = db.Children.AsQueryable();
 
+                    // Фильтрация по фамилии
                     if (!string.IsNullOrWhiteSpace(textBoxSearchSurname.Text))
                     {
                         query = query.Where(c => c.ChildrenSurname.Contains(textBoxSearchSurname.Text));
                     }
 
+                    // Фильтрация по группе
                     if (comboBoxGroupName.SelectedIndex > 0)
                     {
                         string selectedGroup = comboBoxGroupName.SelectedItem.ToString();
                         query = query.Where(c => c.Groups.GroupsGroupName == selectedGroup);
                     }
 
-                    // Получение данных с сортировкой по фамилии и названию группы
+                    // Явная сортировка по фамилии и группе
                     var childrenData = query
-                    .OrderBy(c => c.ChildrenSurname)
-                    .ThenBy(c => c.Groups.GroupsGroupName)
-                    .Select(c => new
-                    {
-                        ID = c.ChildrenID, // Добавлен столбец с ID
-                        Фамилия = c.ChildrenSurname,
-                        Имя = c.ChildrenName,
-                        Отчество = c.ChildrenPatronymic,
-                        Дата_Рождения = c.ChildrenDateofBirth,
-                        Группа = c.Groups.GroupsGroupName,
-                        Воспитатель = c.Groups.Educators
-                            .Select(e => e.Employees)
-                            .Where(e => e.User.Role.RoleID == 7)
-                            .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
-                            .FirstOrDefault(),
-                        Младший_Воспитатель = c.Groups.Educators
-                            .Select(e => e.Employees)
-                            .Where(e => e.User.Role.RoleID == 8)
-                            .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
-                            .FirstOrDefault()
-                    })
-                    .ToList();
+                        .OrderBy(c => c.ChildrenSurname)
+                        .ThenBy(c => c.Groups.GroupsGroupName)
+                        .Select(c => new
+                        {
+                            ID = c.ChildrenID,
+                            Фамилия = c.ChildrenSurname,
+                            Имя = c.ChildrenName,
+                            Отчество = c.ChildrenPatronymic,
+                            Дата_Рождения = c.ChildrenDateofBirth,
+                            Группа = c.Groups.GroupsGroupName,
+                            Воспитатель = c.Groups.Educators
+                                .Select(e => e.Employees)
+                                .Where(e => e.User.Role.RoleID == 7)
+                                .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
+                                .FirstOrDefault(),
+                            Младший_Воспитатель = c.Groups.Educators
+                                .Select(e => e.Employees)
+                                .Where(e => e.User.Role.RoleID == 8)
+                                .Select(e => e.EmployeesSurname + " " + e.EmployeesName)
+                                .FirstOrDefault()
+                        })
+                        .ToList();
 
                     dataGridViewChild.DataSource = childrenData;
 
-                    // Скрываем столбец ID после привязки данных
+                    // Скрытие столбца ID
                     if (dataGridViewChild.Columns.Contains("ID"))
                     {
                         dataGridViewChild.Columns["ID"].Visible = false;
@@ -166,7 +173,7 @@ namespace KINDERGARDENIS.UIForms
             }
             catch (Exception ex)
             {
-                // В соответствии с требованиями, сообщения об ошибках не выводятся
+                Console.WriteLine($"Ошибка загрузки данных: {ex.Message}");
             }
         }
 

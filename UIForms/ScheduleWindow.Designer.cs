@@ -209,7 +209,7 @@ namespace KINDERGARDENIS.UIForms
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(1062, 52);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Расписание групп в KinderGuard";
+            this.label12.Text = "Расписание групп";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
@@ -1109,6 +1109,7 @@ namespace KINDERGARDENIS.UIForms
             this.pictureBoxPhotoUsers.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxPhotoUsers.Name = "pictureBoxPhotoUsers";
             this.pictureBoxPhotoUsers.Size = new System.Drawing.Size(56, 42);
+            this.pictureBoxPhotoUsers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPhotoUsers.TabIndex = 0;
             this.pictureBoxPhotoUsers.TabStop = false;
             // 
@@ -1119,6 +1120,7 @@ namespace KINDERGARDENIS.UIForms
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(62, 48);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox12.TabIndex = 1;
             this.pictureBox12.TabStop = false;
             this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);

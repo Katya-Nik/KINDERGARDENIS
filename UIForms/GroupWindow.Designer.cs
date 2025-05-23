@@ -38,7 +38,6 @@
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewGroups = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonInfoGroup = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.labelExcel = new System.Windows.Forms.Label();
@@ -88,7 +87,6 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).BeginInit();
-            this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -163,7 +161,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(1062, 52);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Группы KinderGuard ";
+            this.label12.Text = "Группы";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
@@ -237,7 +235,6 @@
             this.tableLayoutPanel20.ColumnCount = 2;
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel20.Controls.Add(this.buttonInfoGroup, 1, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(0, 426);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(0);
@@ -246,24 +243,6 @@
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.Size = new System.Drawing.Size(1024, 48);
             this.tableLayoutPanel20.TabIndex = 1;
-            // 
-            // buttonInfoGroup
-            // 
-            this.buttonInfoGroup.BackgroundImage = global::KINDERGARDENIS.Properties.Resources.ButtonBackgrounddMore;
-            this.buttonInfoGroup.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonInfoGroup.FlatAppearance.BorderSize = 0;
-            this.buttonInfoGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfoGroup.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfoGroup.ForeColor = System.Drawing.Color.White;
-            this.buttonInfoGroup.Location = new System.Drawing.Point(774, 5);
-            this.buttonInfoGroup.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.buttonInfoGroup.MaximumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoGroup.MinimumSize = new System.Drawing.Size(250, 40);
-            this.buttonInfoGroup.Name = "buttonInfoGroup";
-            this.buttonInfoGroup.Size = new System.Drawing.Size(250, 40);
-            this.buttonInfoGroup.TabIndex = 1;
-            this.buttonInfoGroup.Text = "Подробнее о группе";
-            this.buttonInfoGroup.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel19
             // 
@@ -929,7 +908,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).EndInit();
-            this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel19.ResumeLayout(false);
             this.tableLayoutPanel19.PerformLayout();
             this.tableLayoutPanel21.ResumeLayout(false);
@@ -1026,7 +1004,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
-        private System.Windows.Forms.Button buttonInfoGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Label labelExcel;
         private System.Windows.Forms.PictureBox pictureBox10;
