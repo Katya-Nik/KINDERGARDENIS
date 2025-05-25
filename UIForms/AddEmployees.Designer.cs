@@ -712,7 +712,6 @@
             this.comboBoxRole.Name = "comboBoxRole";
             this.comboBoxRole.Size = new System.Drawing.Size(350, 26);
             this.comboBoxRole.TabIndex = 14;
-            this.comboBoxRole.SelectedIndexChanged += new System.EventHandler(this.comboBoxRole_SelectedIndexChanged);
             // 
             // AddEmployees
             // 

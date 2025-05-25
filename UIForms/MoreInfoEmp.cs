@@ -35,15 +35,9 @@ namespace KINDERGARDENIS.UIForms
             textBoxSalary.Text = employees.EmployeesSalary?.ToString("N2");
 
             // Загрузка данных пользователя (логин и пароль)
-            using (var db = new DBModel.KindergartenInformationSystemEntities())
-            {
-                var user = db.User.Find(employees.EmployeesUserID);
-                if (user != null)
-                {
-                    textBoxLogin.Text = user.UserLogin;
-                    textBoxPassword.Text = user.UserPassword;
-                }
-            }
+            // Убрали using, так как мы не хотим создавать новый контекст
+            textBoxLogin.Text = employees.User.UserLogin;
+            textBoxPassword.Text = employees.User.UserPassword;
 
             // Загрузка фото сотрудника
             LoadEmployeePhoto();
@@ -74,35 +68,39 @@ namespace KINDERGARDENIS.UIForms
             {
                 try
                 {
-                    // Обновление данных сотрудника
-                    employees.EmployeesSurname = textBoxSurname.Text;
-                    employees.EmployeesName = textBoxName.Text;
-                    employees.EmployeesPatronymic = textBoxPatronymic.Text;
-
-                    if (DateTime.TryParse(textBoxDateofBirth.Text, out DateTime date))
-                        employees.EmployeesDateofBirth = date;
-
-                    employees.EmployeesPassportSeries = textBoxPassportSeries.Text;
-                    employees.EmployeesPassportNumber = textBoxPassportNumber.Text;
-                    employees.EmployeesSNILS = textBoxSNILS.Text;
-                    employees.EmployeesPhoneNumber = textBoxPhoneNumber.Text;
-                    employees.EmployeesEmail = textBoxEmail.Text;
-
-                    if (decimal.TryParse(textBoxSalary.Text, out decimal salary))
-                        employees.EmployeesSalary = salary;
-
-                    // Обновление данных пользователя
+                    // Используем один контекст для всех операций
                     using (var db = new DBModel.KindergartenInformationSystemEntities())
                     {
-                        var user = db.User.Find(employees.EmployeesUserID);
+                        // Прикрепляем существующего сотрудника к новому контексту
+                        var empToUpdate = db.Employees.Find(employees.EmployeesID);
+
+                        if (empToUpdate == null) return;
+
+                        // Обновление данных сотрудника
+                        empToUpdate.EmployeesSurname = textBoxSurname.Text;
+                        empToUpdate.EmployeesName = textBoxName.Text;
+                        empToUpdate.EmployeesPatronymic = textBoxPatronymic.Text;
+
+                        if (DateTime.TryParse(textBoxDateofBirth.Text, out DateTime date))
+                            empToUpdate.EmployeesDateofBirth = date;
+
+                        empToUpdate.EmployeesPassportSeries = textBoxPassportSeries.Text;
+                        empToUpdate.EmployeesPassportNumber = textBoxPassportNumber.Text;
+                        empToUpdate.EmployeesSNILS = textBoxSNILS.Text;
+                        empToUpdate.EmployeesPhoneNumber = textBoxPhoneNumber.Text;
+                        empToUpdate.EmployeesEmail = textBoxEmail.Text;
+
+                        if (decimal.TryParse(textBoxSalary.Text, out decimal salary))
+                            empToUpdate.EmployeesSalary = salary;
+
+                        // Обновление данных пользователя
+                        var user = db.User.Find(empToUpdate.EmployeesUserID);
                         if (user != null)
                         {
                             user.UserLogin = textBoxLogin.Text;
                             user.UserPassword = textBoxPassword.Text;
-                            db.SaveChanges();
                         }
 
-                        db.Entry(employees).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
 

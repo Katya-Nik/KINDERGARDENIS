@@ -147,6 +147,7 @@ namespace KINDERGARDENIS.UIForms
 
                         DialogResult = DialogResult.OK;
                         Close();
+                        MessageBox.Show($"Данные ребенка обновлены!", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {

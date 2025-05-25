@@ -9,6 +9,8 @@ namespace KINDERGARDENIS.UIForms
 {
     public partial class EmployeesWindow : Form
     {
+        private KindergartenInformationSystemEntities _dbContext;
+
         public EmployeesWindow()
         {
             InitializeComponent();
@@ -18,11 +20,17 @@ namespace KINDERGARDENIS.UIForms
 
         private void EmployeesWindow_Load(object sender, EventArgs e)
         {
+            _dbContext = new KindergartenInformationSystemEntities();
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
             UserInfoService.LoadUserInfo(pictureBoxPhotoUsers, pictureBox12, labelUsername, labelUserEmaile);
             MenuService.LoadEducatorsMenu(pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
-            pictureBox6, pictureBox7, pictureBox8, pictureBox9,
-            label1, label2, label3, label4, label5,
-            label6, label7, label8, label9);
+                pictureBox6, pictureBox7, pictureBox8, pictureBox9,
+                label1, label2, label3, label4, label5,
+                label6, label7, label8, label9);
             ConfigureDataGridView();
             LoadEmployeesData();
         }
@@ -84,66 +92,71 @@ namespace KINDERGARDENIS.UIForms
         {
             try
             {
-                using (var context = Helper.DB)
+                if (_dbContext == null)
                 {
-                    var query = from emp in context.Employees
-                                join user in context.User on emp.EmployeesUserID equals user.UserID
-                                join role in context.Role on user.RoleID equals role.RoleID
-                                where string.IsNullOrEmpty(filter) || emp.EmployeesPatronymic.Contains(filter)
-                                orderby emp.EmployeesSurname // Сортировка по фамилии
-                                select new
-                                {
-                                    Фамилия = emp.EmployeesSurname,
-                                    Имя = emp.EmployeesName,
-                                    Отчество = emp.EmployeesPatronymic,
-                                    Должность = role.RoleName,
-                                    ДатаРождения = emp.EmployeesDateofBirth,
-                                    Телефон = emp.EmployeesPhoneNumber,
-                                    Email = emp.EmployeesEmail,
-                                    Логин = user.UserLogin
-                                };
-
-                    dataGridViewEmployees.DataSource = query.ToList();
-
-                    // Форматирование колонки с датой
-                    if (dataGridViewEmployees.Columns.Contains("ДатаРождения"))
-                    {
-                        dataGridViewEmployees.Columns["ДатаРождения"].DefaultCellStyle.Format = "dd.MM.yyyy";
-                    }
-
-                    // Переименование колонок для корректного отображения
-                    dataGridViewEmployees.Columns["ДатаРождения"].HeaderText = "Дата рождения";
-                    dataGridViewEmployees.Columns["Логин"].HeaderText = "Логин";
+                    _dbContext = new KindergartenInformationSystemEntities();
                 }
+
+                var query = from emp in _dbContext.Employees
+                            join user in _dbContext.User on emp.EmployeesUserID equals user.UserID
+                            join role in _dbContext.Role on user.RoleID equals role.RoleID
+                            where string.IsNullOrEmpty(filter) ||
+                                  emp.EmployeesPatronymic.Contains(filter) ||
+                                  emp.EmployeesSurname.Contains(filter) ||
+                                  emp.EmployeesName.Contains(filter)
+                            orderby emp.EmployeesSurname
+                            select new
+                            {
+                                Фамилия = emp.EmployeesSurname,
+                                Имя = emp.EmployeesName,
+                                Отчество = emp.EmployeesPatronymic,
+                                Должность = role.RoleName,
+                                ДатаРождения = emp.EmployeesDateofBirth,
+                                Телефон = emp.EmployeesPhoneNumber,
+                                Email = emp.EmployeesEmail,
+                                Логин = user.UserLogin
+                            };
+
+                // Очищаем текущий источник данных перед установкой нового
+                dataGridViewEmployees.DataSource = null;
+                dataGridViewEmployees.DataSource = query.ToList();
+
+                // Форматирование колонки с датой
+                if (dataGridViewEmployees.Columns.Contains("ДатаРождения"))
+                {
+                    dataGridViewEmployees.Columns["ДатаРождения"].DefaultCellStyle.Format = "dd.MM.yyyy";
+                }
+
+                // Переименование колонок
+                if (dataGridViewEmployees.Columns.Contains("ДатаРождения"))
+                    dataGridViewEmployees.Columns["ДатаРождения"].HeaderText = "Дата рождения";
+
+                if (dataGridViewEmployees.Columns.Contains("Логин"))
+                    dataGridViewEmployees.Columns["Логин"].HeaderText = "Логин";
             }
             catch (Exception ex)
             {
-                // В реальном приложении здесь должна быть обработка ошибок
-                Console.WriteLine($"Ошибка при загрузке данных: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void textBoxSearchPatronymic_TextChanged(object sender, EventArgs e)
-        {
-            LoadEmployeesData(textBoxSearchPatronymic.Text);
         }
 
         private void buttonInfoEmp_Click(object sender, EventArgs e)
         {
             if (dataGridViewEmployees.SelectedRows.Count > 0)
             {
-                // Получаем логин пользователя из последней колонки
-                string userLogin = dataGridViewEmployees.CurrentRow.Cells["Логин"].Value.ToString();
+                string userLogin = dataGridViewEmployees.CurrentRow.Cells["Логин"].Value?.ToString();
 
-                using (var db = new DBModel.KindergartenInformationSystemEntities())
+                if (!string.IsNullOrEmpty(userLogin))
                 {
-                    // Находим сотрудника по логину пользователя
-                    var emp = db.Employees.FirstOrDefault(em => em.User.UserLogin == userLogin);
-                    if (emp != null)
+                    using (var db = new KindergartenInformationSystemEntities())
                     {
-                        UIForms.MoreInfoEmp moreInfoEmp = new UIForms.MoreInfoEmp(emp);
-                        moreInfoEmp.ShowDialog();
-                        this.Show();
+                        var emp = db.Employees.FirstOrDefault(em => em.User.UserLogin == userLogin);
+                        if (emp != null)
+                        {
+                            UIForms.MoreInfoEmp moreInfoEmp = new UIForms.MoreInfoEmp(emp);
+                            moreInfoEmp.ShowDialog();
+                            RefreshData();
+                        }
                     }
                 }
             }
@@ -152,8 +165,10 @@ namespace KINDERGARDENIS.UIForms
         private void labelAddEmp_Click(object sender, EventArgs e)
         {
             AddEmployees addEmployees = new AddEmployees();
-            addEmployees.ShowDialog();
-            this.Show();
+            if (addEmployees.ShowDialog() == DialogResult.OK)
+            {
+                RefreshData(); // Обновляем данные после добавления сотрудника
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -168,7 +183,7 @@ namespace KINDERGARDENIS.UIForms
 
         private void label3_Click(object sender, EventArgs e)
         {
-            // Эта форма
+            // Текущая форма, ничего не делаем
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -193,10 +208,10 @@ namespace KINDERGARDENIS.UIForms
 
         private void EmployeesWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing) // Если окно закрывается пользователем
+            if (e.CloseReason == CloseReason.UserClosing)
             {
                 Authorization auth = new Authorization();
-                auth.Show(); // Открываем Authorization
+                auth.Show();
             }
         }
 
@@ -204,7 +219,13 @@ namespace KINDERGARDENIS.UIForms
         {
             InfoUser infoUser = new InfoUser();
             infoUser.ShowDialog();
-            this.Show();
+            RefreshData(); // Обновляем данные после закрытия диалога
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            _dbContext?.Dispose();
         }
     }
 }

@@ -25,32 +25,39 @@ namespace KINDERGARDENIS.UIForms
 
         private void AddEmployees_Load(object sender, EventArgs e)
         {
-            // Установка начальных изображений
-            pictureBoxEmployees.Image = Image.FromFile(pathImage + "AddImage.png");
-            pictureBoxeye.Image = Image.FromFile(pathImage + "eyeoff.png");
+            try
+            {
+                // Установка начальных изображений
+                pictureBoxEmployees.Image = Image.FromFile(pathImage + "AddImage.png");
+                pictureBoxeye.Image = Image.FromFile(pathImage + "eyeoff.png");
 
-            // Настройка масок
-            maskedTextBoxDateofBirth.Mask = "00/00/0000";
-            maskedTextBoxPassportSeries.Mask = "0000";
-            maskedTextBoxPassportNumber.Mask = "000000";
-            maskedTextBoxSNILS.Mask = "000-000-000 00";
-            maskedTextBoxPhoneNumber.Mask = "+7 (000) 000-00-00";
+                // Настройка масок
+                maskedTextBoxDateofBirth.Mask = "00/00/0000";
+                maskedTextBoxPassportSeries.Mask = "0000";
+                maskedTextBoxPassportNumber.Mask = "000000";
+                maskedTextBoxSNILS.Mask = "000-000-000 00";
+                maskedTextBoxPhoneNumber.Mask = "+7 (000) 000-00-00";
 
-            // Настройка цвета полей
-            SetFieldsDefaultColors();
+                // Настройка цвета полей
+                SetFieldsDefaultColors();
 
-            // Скрытие пароля
-            textBoxPassword.UseSystemPasswordChar = true;
+                // Скрытие пароля
+                textBoxPassword.UseSystemPasswordChar = true;
 
-            // Загрузка ролей в comboBoxRole
-            LoadRoles();
+                // Загрузка ролей в comboBoxRole
+                LoadRoles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке формы: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadRoles()
         {
             try
             {
-                using (var db = new DBModel.KindergartenInformationSystemEntities()) 
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
                     // Получаем список ролей из базы данных
                     var roles = db.Role.ToList();
@@ -68,7 +75,7 @@ namespace KINDERGARDENIS.UIForms
                     comboBoxRole.DisplayMember = "Value";
                     comboBoxRole.ValueMember = "Key";
 
-                    // Устанавливаем значение по умолчанию (например, первую роль)
+                    // Устанавливаем значение по умолчанию
                     if (comboBoxRole.Items.Count > 0)
                     {
                         comboBoxRole.SelectedIndex = 0;
@@ -133,7 +140,11 @@ namespace KINDERGARDENIS.UIForms
 
         private void pictureBoxeye_Click(object sender, EventArgs e)
         {
-
+            isPasswordVisible = !isPasswordVisible;
+            textBoxPassword.UseSystemPasswordChar = !isPasswordVisible;
+            pictureBoxeye.Image = isPasswordVisible ?
+                Image.FromFile(pathImage + "eyeon.png") :
+                Image.FromFile(pathImage + "eyeoff.png");
         }
 
         private void buttonUploadPhoto_Click(object sender, EventArgs e)
@@ -166,80 +177,129 @@ namespace KINDERGARDENIS.UIForms
                 string.IsNullOrEmpty(textBoxPassword.Text) ||
                 comboBoxRole.SelectedIndex == -1)
             {
-                MessageBox.Show("Пожалуйста, заполните все обязательные поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Пожалуйста, заполните все обязательные поля (Фамилия, Имя, Отчество, Логин, Пароль, Роль)!",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Проверка формата СНИЛС
+            if (!maskedTextBoxSNILS.MaskCompleted)
+            {
+                MessageBox.Show("Пожалуйста, введите корректный СНИЛС!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Проверка формата номера телефона
+            if (!maskedTextBoxPhoneNumber.MaskCompleted)
+            {
+                MessageBox.Show("Пожалуйста, введите корректный номер телефона!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Проверка даты рождения
+            if (!DateTime.TryParse(maskedTextBoxDateofBirth.Text, out DateTime birthDate))
+            {
+                MessageBox.Show("Пожалуйста, введите корректную дату рождения!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Проверка зарплаты
+            if (!decimal.TryParse(textBoxSalary.Text, out decimal salary) && !string.IsNullOrEmpty(textBoxSalary.Text))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное значение зарплаты!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             try
             {
-                // Получаем выбранную роль
-                var selectedRole = (KeyValuePair<int, string>)comboBoxRole.SelectedItem;
-                int roleId = selectedRole.Key;
-
-                // Создание пользователя
-                var newUser = new DBModel.User
+                using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
-                    UserLogin = textBoxLogin.Text,
-                    UserPassword = HashPassword(textBoxPassword.Text), // Хэширование пароля
-                    RoleID = roleId
-                };
-
-                Helper.DB.User.Add(newUser);
-                Helper.DB.SaveChanges();
-
-                // Создание работника
-                var newEmployee = new DBModel.Employees
-                {
-                    EmployeesName = textBoxName.Text,
-                    EmployeesSurname = textBoxSurname.Text,
-                    EmployeesPatronymic = textBoxPatronymic.Text,
-                    EmployeesUserID = newUser.UserID,
-                    EmployeesPhoneNumber = maskedTextBoxPhoneNumber.Text,
-                    EmployeesEmail = textBoxEmail.Text,
-                    EmployeesSNILS = maskedTextBoxSNILS.Text,
-                    EmployeesPassportSeries = maskedTextBoxPassportSeries.Text,
-                    EmployeesPassportNumber = maskedTextBoxPassportNumber.Text
-                };
-
-                // Парсинг даты рождения
-                if (DateTime.TryParse(maskedTextBoxDateofBirth.Text, out DateTime birthDate))
-                {
-                    newEmployee.EmployeesDateofBirth = birthDate;
-                }
-
-                // Парсинг зарплаты
-                if (decimal.TryParse(textBoxSalary.Text, out decimal salary))
-                {
-                    newEmployee.EmployeesSalary = salary;
-                }
-
-                Helper.DB.Employees.Add(newEmployee);
-                Helper.DB.SaveChanges();
-
-                // Сохранение фотографии
-                if (uploadedPhoto != null)
-                {
-                    if (!Directory.Exists(pathPhotoUsers))
+                    // Проверка уникальности логина
+                    if (db.User.Any(u => u.UserLogin == textBoxLogin.Text))
                     {
-                        Directory.CreateDirectory(pathPhotoUsers);
+                        MessageBox.Show("Пользователь с таким логином уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
-                    string photoPath = Path.Combine(pathPhotoUsers, $"{newUser.UserID}.png");
-                    uploadedPhoto.Save(photoPath);
-                }
+                    // Получаем выбранную роль
+                    var selectedRole = (KeyValuePair<int, string>)comboBoxRole.SelectedItem;
+                    int roleId = selectedRole.Key;
 
-                MessageBox.Show("Работник успешно добавлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                    // Создание пользователя
+                    var newUser = new DBModel.User
+                    {
+                        UserLogin = textBoxLogin.Text,
+                        UserPassword = HashPassword(textBoxPassword.Text),
+                        RoleID = roleId
+                    };
+
+                    db.User.Add(newUser);
+                    db.SaveChanges();
+
+                    // Создание работника
+                    var newEmployee = new DBModel.Employees
+                    {
+                        EmployeesName = textBoxName.Text,
+                        EmployeesSurname = textBoxSurname.Text,
+                        EmployeesPatronymic = textBoxPatronymic.Text,
+                        EmployeesUserID = newUser.UserID,
+                        EmployeesPhoneNumber = maskedTextBoxPhoneNumber.Text,
+                        EmployeesEmail = textBoxEmail.Text,
+                        EmployeesSNILS = maskedTextBoxSNILS.Text,
+                        EmployeesPassportSeries = maskedTextBoxPassportSeries.Text,
+                        EmployeesPassportNumber = maskedTextBoxPassportNumber.Text,
+                        EmployeesDateofBirth = birthDate
+                    };
+
+                    // Добавляем зарплату, если она указана
+                    if (!string.IsNullOrEmpty(textBoxSalary.Text))
+                    {
+                        newEmployee.EmployeesSalary = salary;
+                    }
+
+                    db.Employees.Add(newEmployee);
+                    db.SaveChanges();
+
+                    // Сохранение фотографии
+                    if (uploadedPhoto != null)
+                    {
+                        try
+                        {
+                            if (!Directory.Exists(pathPhotoUsers))
+                            {
+                                Directory.CreateDirectory(pathPhotoUsers);
+                            }
+
+                            string photoPath = Path.Combine(pathPhotoUsers, $"{newUser.UserID}.png");
+                            uploadedPhoto.Save(photoPath);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Фото не было сохранено: {ex.Message}", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    MessageBox.Show("Работник успешно добавлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Получаем самую вложенную исключение
+                Exception innerEx = ex;
+                while (innerEx.InnerException != null)
+                {
+                    innerEx = innerEx.InnerException;
+                }
+
+                MessageBox.Show($"Ошибка при сохранении: {innerEx.Message}\n\nПодробности: {innerEx.StackTrace}",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private string HashPassword(string password)
         {
-            // Простая реализация хэширования пароля (в реальном проекте используйте более надежные методы)
             using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -256,6 +316,7 @@ namespace KINDERGARDENIS.UIForms
 
             if (result == DialogResult.Yes)
             {
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
         }

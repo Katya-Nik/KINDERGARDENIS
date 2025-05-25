@@ -249,9 +249,6 @@ namespace KINDERGARDENIS.UIForms
                         excelSheet.Cells[startRow, 5] = group.BoysCount;
                         excelSheet.Cells[startRow, 6] = group.GirlsCount;
                         startRow++;
-                        Excel.Range dataExcel = excelSheet.Range[$"A{startRow}:$F{startRow - 1}"];
-                        dataExcel.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                        dataExcel.Borders.Weight = Excel.XlBorderWeight.xlThin;
                     }
 
                     // Создаем листы для каждой группы с детьми
@@ -358,8 +355,11 @@ namespace KINDERGARDENIS.UIForms
             }
             finally
             {
-                excelApp.Quit();
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
+                if (excelApp != null)
+                {
+                    excelApp.Quit();
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(excelApp);
+                }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
