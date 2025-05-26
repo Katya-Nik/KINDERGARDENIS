@@ -36,18 +36,20 @@ namespace KINDERGARDENIS.UIForms
             {
                 using (var db = new DBModel.KindergartenInformationSystemEntities())
                 {
-                    var groups = db.Role
-                    .OrderBy(g => g.RoleName)
-                    .Select(g => g.RoleName)
-                    .Distinct()
-                    .ToList();
+                    var roles = db.Role
+                        .OrderBy(r => r.RoleName)
+                        .Select(r => new { r.RoleName, r.RoleID })
+                        .ToList();
 
-                    comboBoxRoleName.Items.Add("Все роли");
-                    foreach (var group in groups)
-                    {
-                        comboBoxRoleName.Items.Add(group);
-                    }
-                    comboBoxRoleName.SelectedIndex = 0;
+                    comboBoxRoleName.DisplayMember = "RoleName";
+                    comboBoxRoleName.ValueMember = "RoleID";
+
+                    // Добавляем элемент "Все роли" с ID = 0
+                    var allRolesItem = new { RoleName = "Все роли", RoleID = 0 };
+                    var items = new List<object> { allRolesItem };
+                    items.AddRange(roles);
+
+                    comboBoxRoleName.DataSource = items;
                 }
             }
             catch (Exception ex)
@@ -55,6 +57,7 @@ namespace KINDERGARDENIS.UIForms
                 // В соответствии с требованиями, сообщения об ошибках не выводятся
             }
         }
+
 
         private void LoadUsersToDataGridView()
         {
@@ -79,9 +82,10 @@ namespace KINDERGARDENIS.UIForms
                                          RoleID = role.RoleID
                                      };
 
-                    // Применяем фильтрацию, если выбрана конкретная роль
-                    if (comboBoxRoleName.SelectedIndex > 0 && comboBoxRoleName.SelectedValue is int selectedRoleId)
+                    // Применяем фильтрацию, если выбрана конкретная роль (не "Все роли")
+                    if (comboBoxRoleName.SelectedIndex > 0)
                     {
+                        int selectedRoleId = (int)comboBoxRoleName.SelectedValue;
                         usersQuery = usersQuery.Where(u => u.RoleID == selectedRoleId);
                     }
 

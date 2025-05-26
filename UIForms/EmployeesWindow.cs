@@ -16,6 +16,7 @@ namespace KINDERGARDENIS.UIForms
             InitializeComponent();
             this.FormClosing += EmployeesWindow_FormClosing;
             Load += EmployeesWindow_Load;
+            textBoxSearchPatronymic.TextChanged += textBoxSearchPatronymic_TextChanged;
         }
 
         private void EmployeesWindow_Load(object sender, EventArgs e)
@@ -226,6 +227,23 @@ namespace KINDERGARDENIS.UIForms
         {
             base.OnFormClosed(e);
             _dbContext?.Dispose();
+        }
+
+        private void textBoxSearchPatronymic_TextChanged(object sender, EventArgs e)
+        {
+            // Получаем текст из текстового поля
+            string searchText = textBoxSearchPatronymic.Text.Trim();
+
+            // Если текст пустой, загружаем все данные
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadEmployeesData();
+            }
+            else
+            {
+                // Фильтруем данные по фамилии (и другим полям, если нужно)
+                LoadEmployeesData(searchText);
+            }
         }
     }
 }

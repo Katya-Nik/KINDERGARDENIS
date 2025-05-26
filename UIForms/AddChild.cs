@@ -141,7 +141,8 @@ namespace KINDERGARDENIS.UIForms
                 // Получаем выбранного родителя
                 string selectedParent = comboBoxParent.SelectedItem.ToString();
                 string[] parentParts = selectedParent.Split(' ');
-                var parent = Helper.DB.Parents.FirstOrDefault(p => p.ParentsSurname == parentParts[0] && p.ParentsName == parentParts[1]);
+                var parent = Helper.DB.Parents.ToList()
+                               .FirstOrDefault(p => p.ParentsSurname == parentParts[0] && p.ParentsName == parentParts[1]);
 
                 // Получаем выбранную группу
                 string selectedGroup = comboBoxGroups.SelectedItem.ToString();

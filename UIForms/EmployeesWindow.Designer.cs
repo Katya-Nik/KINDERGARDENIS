@@ -80,8 +80,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -293,6 +293,7 @@
             this.textBoxSearchPatronymic.Name = "textBoxSearchPatronymic";
             this.textBoxSearchPatronymic.Size = new System.Drawing.Size(250, 31);
             this.textBoxSearchPatronymic.TabIndex = 1;
+            this.textBoxSearchPatronymic.TextChanged += new System.EventHandler(this.textBoxSearchPatronymic_TextChanged);
             // 
             // tableLayoutPanel20
             // 
@@ -866,18 +867,6 @@
             this.tableLayoutPanel18.Size = new System.Drawing.Size(258, 97);
             this.tableLayoutPanel18.TabIndex = 2;
             // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox13.Image = global::KINDERGARDENIS.Properties.Resources.Logo;
-            this.pictureBox13.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(76, 97);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox13.TabIndex = 3;
-            this.pictureBox13.TabStop = false;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -891,6 +880,18 @@
             this.label11.TabIndex = 4;
             this.label11.Text = "Детский\r\nсад";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox13.Image = global::KINDERGARDENIS.Properties.Resources.Logo;
+            this.pictureBox13.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(76, 97);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 3;
+            this.pictureBox13.TabStop = false;
             // 
             // EmployeesWindow
             // 
