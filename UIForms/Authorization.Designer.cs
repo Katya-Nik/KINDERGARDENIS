@@ -225,6 +225,7 @@
             this.Name = "Authorization";
             this.Text = "Авторизация";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Authorization_Load);
             this.InscriptionName.ResumeLayout(false);
             this.InscriptionName.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

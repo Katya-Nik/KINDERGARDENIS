@@ -19,25 +19,51 @@ namespace KINDERGARDENIS.UIForms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            //Получить логин и пароль от пользователя
+            // Получить логин и пароль от пользователя
             string login = this.textBoxLogin.Text;
             string password = this.textBoxPassword.Text;
-            //Получить всех пользователей из БД
-            List<DBModel.User> users = Helper.DB.User.ToList();
-            //Получить список отфильтрованных пользователей по логину и паролю
-            List<DBModel.User> usersLoginPassword = users.Where(u => u.UserLogin == login && u.UserPassword == password).ToList();
-            //Получить единственного пользователя или его отсутствие
-            Helper.users = usersLoginPassword.FirstOrDefault();
-            //Проверка наличия единственного пользователя
-            if (Helper.users != null) //Есть такой пользователь
-            {
-                MessageBox.Show("Пользователь найден. Вы вошли с ролью " + Helper.users.Role.RoleName, "Валидация пользователя", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Получить всех пользователей из БД
+            List<DBModel.User> users = Helper.DB.User.ToList();
+
+            // Найти пользователя с таким логином и паролем
+            DBModel.User currentUser = users.FirstOrDefault(u => u.UserLogin == login && u.UserPassword == password);
+
+            if (currentUser != null) // Если пользователь найден
+            {
+                // Проверяем, что RoleID >= 3 (иначе запрещаем вход)
+                if (currentUser.RoleID < 3)
+                {
+                    MessageBox.Show(
+                        "Для вашей роли функционал не разработан",
+                        "Ограничение доступа",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return; // Выходим из метода, не пускаем дальше
+                }
+
+                // Сохраняем пользователя в Helper (если RoleID >= 3)
+                Helper.users = currentUser;
+
+                MessageBox.Show(
+                    $"Пользователь найден. Вы вошли с ролью {currentUser.Role.RoleName}",
+                    "Валидация пользователя",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                // Открываем главное окно только если RoleID >= 3
                 FormHelper.ShowFormAndHideCurrent(this, new MainWindow());
             }
-            else //Отсутствует пользователь
+            else // Пользователь не найден
             {
-                MessageBox.Show("Пользователь не найден", "Валидация пользователя", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Пользователь не найден",
+                    "Валидация пользователя",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -80,6 +106,9 @@ namespace KINDERGARDENIS.UIForms
             }
         }
 
+        private void Authorization_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
